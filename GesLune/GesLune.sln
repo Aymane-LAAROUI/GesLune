@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesLune", "GesLune.csproj", "{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {161AC5D8-58B7-4448-A1FE-0D513CA19B27}
+	EndGlobalSection
+EndGlobal
