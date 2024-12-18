@@ -1,7 +1,6 @@
 ﻿using GesLune.ViewModels;
 using System.Data;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace GesLune.Windows
 {
@@ -49,5 +48,32 @@ namespace GesLune.Windows
             viewModel.Delete(id);
         }
 
+        private void Ouvrir_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Check if a row is selected in the DataGrid
+            if (MainDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Get the selected row as DataRowView
+            if (MainDataGrid.SelectedItem is not DataRowView selectedRowView)
+            {
+                MessageBox.Show("Erreur lors de la sélection de la ligne.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Get the DataRow and remove it from the DataTable
+            var dataRow = selectedRowView.Row;
+            var saisieWindow = new DocumentSaisieWindow(dataRow);
+            saisieWindow.ShowDialog();
+        }
+
+        private void Nouveau_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var saisieWindow = new DocumentSaisieWindow();
+            saisieWindow.ShowDialog();
+        }
     }
 }

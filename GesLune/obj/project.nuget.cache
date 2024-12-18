@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Zl2P251Liw4=",
+  "dgSpecHash": "4IbNrqUSxts=",
   "success": true,
   "projectFilePath": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\GesLune.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aymane\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\aymane\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\aymane\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\aymane\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\aymane\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\aymane\\.nuget\\packages\\microsoft.data.sqlclient\\5.2.2\\microsoft.data.sqlclient.5.2.2.nupkg.sha512",

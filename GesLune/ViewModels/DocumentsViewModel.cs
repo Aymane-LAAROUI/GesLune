@@ -1,13 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.ComponentModel;
 using System.Data;
 using System.Windows;
 
 namespace GesLune.ViewModels
 {
-    public class DocumentsViewModel : INotifyPropertyChanged
+    public class DocumentsViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
         public DataTable _data;
 
         public DataTable Data
@@ -29,15 +27,10 @@ namespace GesLune.ViewModels
             LoadData();
         }
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public void LoadData()
         {
             using var connection = new SqlConnection(
-                "Data Source=localhost;Initial Catalog=GesLune;User ID=sa;Password=admin@123456;TrustServerCertificate=True"
+                ConnectionString
                 );
             var adapter = new SqlDataAdapter();
             try
@@ -57,7 +50,7 @@ namespace GesLune.ViewModels
         public void Delete(int id)
         {
             using var connection = new SqlConnection(
-                "Data Source=localhost;Initial Catalog=GesLune;User ID=sa;Password=admin@123456;TrustServerCertificate=True"
+                ConnectionString
                 );
             connection.Open();
             string query = $"DELETE FROM Tble_Documents WHERE Document_Id =@Id";
