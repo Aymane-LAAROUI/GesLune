@@ -70,7 +70,10 @@
             <Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>
         </DockPanel>
         
-        <DataGrid Grid.Row="3" ItemsSource="{Binding Lignes}"/>
+        <DataGrid Grid.Row="3"
+                  ItemsSource="{Binding Lignes}"
+                  x:Name="MainDataGrid"
+                  />
 
     </Grid>
 </Window>

@@ -27,7 +27,10 @@ namespace GesLune.ViewModels
         public ObservableCollection<Model_Document_Ligne> Lignes
         {
             get => _lignes;
-            set => _lignes = value;
+            set
+            {
+                if (_lignes != value) _lignes = value;
+            }
         }
 
         public DocumentSaisieViewModel(Model_Document? document)
@@ -89,8 +92,70 @@ namespace GesLune.ViewModels
             MessageBox.Show(query);
             int res = command.ExecuteNonQuery();
             MessageBox.Show($"{res}", "Succès");
+
+            foreach (var ligne in Lignes)
+            {
+                EnregistrerLigne(ligne);
+            }
         }
 
+        public void EnregistrerLigne(Model_Document_Ligne ligne)
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
 
+            // Check if the document exists
+            string verifQuery = "SELECT COUNT(Document_Ligne_Id) FROM Tble_Document_Lignes WHERE Document_Ligne_Id = @Document_Ligne_Id";
+            using var verifCommand = new SqlCommand(verifQuery, connection);
+            verifCommand.Parameters.AddWithValue("@Document_Ligne_Id", ligne.Document_Ligne_Id);
+            int exists = (int)verifCommand.ExecuteScalar();
+
+            // Construct the query dynamically based on existence
+            string query;
+            if (exists == 0)
+            {
+                query = "INSERT INTO Tble_Document_Lignes (" +
+                        string.Join(", ", ligne.GetType().GetProperties().Select(p => p.Name).Where(e => !e.Equals("Document_Ligne_Id"))) +
+                        ") VALUES (" +
+                        string.Join(", ", ligne.GetType().GetProperties().Select(p => "@" + p.Name).Where(e => !e.Equals("@Document_Ligne_Id"))) + ")";
+            }
+            else
+            {
+                query = "UPDATE Tble_Document_Lignes SET " +
+                        string.Join(", ", ligne.GetType().GetProperties()
+                            .Where(p => p.Name != nameof(Model_Document_Ligne.Document_Ligne_Id))
+                            .Select(p => p.Name + " = @" + p.Name)) +
+                        " WHERE Document_Ligne_Id = @Document_Ligne_Id";
+            }
+
+            // Create a dictionary of parameters
+            var parameters = ligne.GetType().GetProperties()
+                .ToDictionary(p => p.Name, p => p.GetValue(ligne) ?? String.Empty);
+
+            // Create and execute the query
+            using var command = new SqlCommand(query, connection);
+            foreach (var param in parameters)
+            {
+                command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
+                MessageBox.Show($"{param.Value}");
+            }
+            MessageBox.Show(query);
+            int res = command.ExecuteNonQuery();
+            MessageBox.Show($"{res}", "Succès");
+        }
+
+        public void Delete(int id)
+        {
+            MessageBox.Show($"Supprimer {id}");
+            using var connection = new SqlConnection(
+                ConnectionString
+            );
+            connection.Open();
+            string query = $"DELETE FROM Tble_Document_Lignes WHERE Document_Ligne_Id = @Id";
+            using var command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Id", id);
+            command.ExecuteNonQuery();
+            LoadLignes();
+        }
     }
 }

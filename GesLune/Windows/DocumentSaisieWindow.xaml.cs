@@ -2,6 +2,7 @@
 using GesLune.ViewModels;
 using System.Data;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GesLune.Windows
 {
@@ -21,8 +22,33 @@ namespace GesLune.Windows
         }
 
         private void Supprimer_Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        {
+            // Check if a row is selected in the DataGrid
+            if (MainDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne à supprimer.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Get the selected row as DataRowView
+            if (MainDataGrid.SelectedItem is not Model_Document_Ligne selectedLine)
+            {
+                MessageBox.Show("Erreur lors de la sélection de la ligne.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Confirm deletion
+            var result = MessageBox.Show("Voulez-vous vraiment supprimer cette ligne ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.No)
+            {
+                return;
+            }
+
+            // Get the DataRow and remove it from the DataTable
+            //var dataRow = selectedRowView.Row;
+            //int id = Convert.ToInt32(dataRow["Document_Id"]);
+            viewModel.Delete(selectedLine.Document_Ligne_Id);
         }
     }
 }
