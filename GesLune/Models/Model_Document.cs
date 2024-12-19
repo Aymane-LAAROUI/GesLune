@@ -11,6 +11,5 @@
         public string Document_Num { get; set; }
 
         public Model_Document() { }
-
     }
 }

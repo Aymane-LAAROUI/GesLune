@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0"
                   AutoGenerateColumns="True"
-                  ItemsSource="{Binding Data}"
+                  ItemsSource="{Binding Documents}"
                   IsReadOnly="True"
                   x:Name="MainDataGrid"
                   />

@@ -1,4 +1,5 @@
-﻿using GesLune.ViewModels;
+﻿using GesLune.Models;
+using GesLune.ViewModels;
 using System.Data;
 using System.Windows;
 
@@ -29,7 +30,7 @@ namespace GesLune.Windows
             }
 
             // Get the selected row as DataRowView
-            if (MainDataGrid.SelectedItem is not DataRowView selectedRowView)
+            if (MainDataGrid.SelectedItem is not Model_Document selectedModel)
             {
                 MessageBox.Show("Erreur lors de la sélection de la ligne.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -43,9 +44,9 @@ namespace GesLune.Windows
             }
 
             // Get the DataRow and remove it from the DataTable
-            var dataRow = selectedRowView.Row;
-            int id = Convert.ToInt32(dataRow["Document_Id"]);
-            viewModel.Delete(id);
+            //var dataRow = selectedRowView.Row;
+            //int id = Convert.ToInt32(dataRow["Document_Id"]);
+            viewModel.Delete(selectedModel.Document_Id);
         }
 
         private void Ouvrir_Button_Click(object sender, RoutedEventArgs e)
@@ -58,15 +59,15 @@ namespace GesLune.Windows
             }
 
             // Get the selected row as DataRowView
-            if (MainDataGrid.SelectedItem is not DataRowView selectedRowView)
+            if (MainDataGrid.SelectedItem is not Model_Document selectedModel)
             {
                 MessageBox.Show("Erreur lors de la sélection de la ligne.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             // Get the DataRow and remove it from the DataTable
-            var dataRow = selectedRowView.Row;
-            var saisieWindow = new DocumentSaisieWindow(dataRow);
+            //var dataRow = selectedRowView.Row;
+            var saisieWindow = new DocumentSaisieWindow(selectedModel);
             saisieWindow.ShowDialog();
         }
 

@@ -1,80 +1,96 @@
 ﻿using Dapper;
+using GesLune.Models;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Windows;
 
 namespace GesLune.ViewModels
 {
-    public class DocumentSaisieViewModel(DataRow dataRow) : ViewModelBase
+    public class DocumentSaisieViewModel : ViewModelBase
     {
-        private DataRow _data = dataRow;
-        public DataRow Data
+        private Model_Document _document;
+        public Model_Document Document
         {
-            get => _data;
+            get => _document;
             set
             {
-                if (_data != value)
+                if (_document != value)
                 {
-                    _data = value;
-                    OnPropertyChanged(nameof(Data));
+                    _document = value;
+                    OnPropertyChanged(nameof(Document));
                 }
             }
         }
-        public object Num
+
+        private ObservableCollection<Model_Document_Ligne> _lignes;
+        public ObservableCollection<Model_Document_Ligne> Lignes
         {
-            get => _data["Document_Num"];
-            set
-            {
-                _data["Document_Num"] = value;
-                OnPropertyChanged(nameof(Data));
-            }
+            get => _lignes;
+            set => _lignes = value;
         }
-        public object Date
+
+        public DocumentSaisieViewModel(Model_Document? document)
         {
-            get => _data["Document_Date"];
-            set
-            {
-                _data["Document_Date"] = value;
-                OnPropertyChanged(nameof(Data));
-            }
+            _document = document ?? new Model_Document();
+            _lignes = [];
+            LoadLignes();
         }
-        public object Client
+
+        public void LoadLignes()
         {
-            get => _data["Document_Nom_Client"];
-            set
-            {
-                _data["Document_Nom_Client"] = value;
-                OnPropertyChanged(nameof(Data));
-            }
-        }
-        public object Adresse
-        {
-            get => _data["Document_Adresse_Client"];
-            set
-            {
-                _data["Document_Adresse_Client"] = value;
-                OnPropertyChanged(nameof(Data));
-            }
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            string query = "SELECT * FROM Tble_Document_Lignes WHERE Document_Id = " + _document.Document_Id;
+            _lignes = new(
+                connection.Query<Model_Document_Ligne>(query)
+                );
         }
 
         public void Enregistrer()
         {
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
-            string verif_query = $"SELECT count(Document_Id) FROM Tble_Documents WHERE Document_Id={_data["Document_Id"]}";
-            using var command = new SqlCommand(verif_query,connection);
-            int existe = (int) command.ExecuteScalar();
-            // MessageBox.Show($"{existe}");
-            string query = (existe == 0)
-                ? $"INSERT INTO Tble_Documents ({string.Join(", ", dataRow.Table.Columns)}) VALUES ({string.Join(", ", dataRow.Table.Columns.Cast<DataColumn>().Select(col => "@" + col.ColumnName))})"
-                : $"UPDATE Tble_Documents SET {string.Join(", ", dataRow.Table.Columns.Cast<DataColumn>()
-                .Where(e => !e.ColumnName.Equals("Document_Id"))
-                .Select(col => col.ColumnName + " = @" + col.ColumnName))} WHERE Document_Id = @Document_Id";
-            var parameters = dataRow.Table.Columns
-            .Cast<DataColumn>()
-            .ToDictionary(col => col.ColumnName, col => dataRow[col.ColumnName]);
-            
-            int res = connection.Execute(query, parameters );
-            //MessageBox.Show($"{res}");
+
+            // Check if the document exists
+            string verifQuery = "SELECT COUNT(Document_Id) FROM Tble_Documents WHERE Document_Id = @Document_Id";
+            using var verifCommand = new SqlCommand(verifQuery, connection);
+            verifCommand.Parameters.AddWithValue("@Document_Id", _document.Document_Id);
+            int exists = (int)verifCommand.ExecuteScalar();
+
+            // Construct the query dynamically based on existence
+            string query;
+            if (exists == 0)
+            {
+                query = "INSERT INTO Tble_Documents (" +
+                        string.Join(", ", _document.GetType().GetProperties().Select(p => p.Name).Where(e => !e.Equals("Document_Id"))) +
+                        ") VALUES (" +
+                        string.Join(", ", _document.GetType().GetProperties().Select(p => "@" + p.Name).Where(e => !e.Equals("@Document_Id"))) + ")";
+            }
+            else
+            {
+                query = "UPDATE Tble_Documents SET " +
+                        string.Join(", ", _document.GetType().GetProperties()
+                            .Where(p => p.Name != nameof(Model_Document.Document_Id))
+                            .Select(p => p.Name + " = @" + p.Name)) +
+                        " WHERE Document_Id = @Document_Id";
+            }
+
+            // Create a dictionary of parameters
+            var parameters = _document.GetType().GetProperties()
+                .ToDictionary(p => p.Name, p => p.GetValue(_document) ?? String.Empty);
+
+            // Create and execute the query
+            using var command = new SqlCommand(query, connection);
+            foreach (var param in parameters)
+            {
+                command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
+            }
+            MessageBox.Show(query);
+            int res = command.ExecuteNonQuery();
+            MessageBox.Show($"{res}", "Succès");
         }
+
+
     }
 }

@@ -1,45 +1,49 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using GesLune.Models;
+using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 using System.Windows;
+using Dapper;
 
 namespace GesLune.ViewModels
 {
     public class DocumentsViewModel : ViewModelBase
     {
-        public DataTable _data;
+        public ObservableCollection<Model_Document> _documents = [];
 
-        public DataTable Data
+        public ObservableCollection<Model_Document> Documents
         {
-            get => _data;
+            get => _documents;
             set
             {
-                if (_data != value)
+                if (_documents != value)
                 {
-                    _data = value;
-                    OnPropertyChanged(nameof(Data));
+                    _documents = value;
+                    OnPropertyChanged(nameof(Documents));
                 }
             }
         }
 
         public DocumentsViewModel() 
         {
-            _data = new DataTable();
+            //_documents = new DataTable();
             LoadData();
         }
 
         public void LoadData()
         {
-            using var connection = new SqlConnection(
-                ConnectionString
-                );
-            var adapter = new SqlDataAdapter();
             try
             {
+                using var connection = new SqlConnection(
+                    ConnectionString
+                );
                 string query = "SELECT * FROM Tble_Documents";
-                var command = new SqlCommand(query, connection);
-                adapter.SelectCommand = command;
-                Data.Clear();
-                adapter.Fill(Data);
+                List<Model_Document> models =  connection.Query<Model_Document>( query ).ToList();
+                _documents.Clear();
+                foreach (var model in models)
+                {
+                    _documents.Add(model);
+                }
+                //var command = new SqlCommand(query, connection);
             }
             catch (Exception ex) 
             {
@@ -53,7 +57,7 @@ namespace GesLune.ViewModels
                 ConnectionString
                 );
             connection.Open();
-            string query = $"DELETE FROM Tble_Documents WHERE Document_Id =@Id";
+            string query = $"DELETE FROM Tble_Document_Lignes WHERE Document_Id = @Id; DELETE FROM Tble_Documents WHERE Document_Id =@Id";
             using var command = new SqlCommand(query,connection);
             command.Parameters.AddWithValue("@Id", id);
             command.ExecuteNonQuery();

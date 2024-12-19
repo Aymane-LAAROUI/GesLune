@@ -35,7 +35,7 @@
                    />
             <TextBox Grid.Row="0"
                      Grid.Column="1"
-                     Text="{Binding Num}"
+                     Text="{Binding Document.Document_Num}"
                      />
             <Label Grid.Row="1"
                    Grid.Column="0"
@@ -43,7 +43,7 @@
                    />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
-                     Text="{Binding Date}"
+                     Text="{Binding Document.Document_Date}"
                      />
             <Label Grid.Row="0"
                    Grid.Column="2"
@@ -51,7 +51,7 @@
                    />
             <TextBox Grid.Row="0"
                      Grid.Column="3"
-                     Text="{Binding Client}"
+                     Text="{Binding Document.Document_Nom_Client}"
                      />
             <Label Grid.Row="1"
                    Grid.Column="2"
@@ -59,16 +59,18 @@
                    />
             <TextBox Grid.Row="1"
                      Grid.Column="3"
-                     Text="{Binding Adresse}"
+                     Text="{Binding Document.Document_Adresse_Client}"
                      />
 
         </Grid>
 
         <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button Content="Nouveau" Padding="10 3" Margin="5 3" Click="Button_Click"/>
+            <Button x:Name="Supprimer_Button" Content="Supprimer" Padding="10 3" Margin="5 3" Click="Supprimer_Button_Click" />
             <Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>
         </DockPanel>
         
-        <DataGrid Grid.Row="3"/>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding Lignes}"/>
 
     </Grid>
 </Window>
