@@ -8,16 +8,46 @@
         Title="DocumentsWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Orientation="Horizontal"
+                 >
+            <Button Content="Filtrer"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="10,5" 
+                    />
+        </StackPanel>
+
+        <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  SelectedItem="{Binding SelectedFilter}" 
+                  ItemsSource="{Binding Filtres}"
+                  DisplayMemberPath="Document_Type_Nom"
+                  >
+        </ListView>
+        <DataGrid Grid.Row="1"
+                  Grid.Column="1"
                   AutoGenerateColumns="True"
                   ItemsSource="{Binding Documents}"
                   IsReadOnly="True"
                   x:Name="MainDataGrid"
                   />
-        <DockPanel Grid.Row="1" HorizontalAlignment="Right" Margin="6 0">
+        <DockPanel Grid.Row="2"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   Margin="6 0"
+                   >
             <Button x:Name="Ouvrir_Button" Margin="3 6" Content="Ouvrir" Padding="10 3" Click="Ouvrir_Button_Click" />
             <Button x:Name="Nouveau_Button" Margin="3 6" Content="Nouveau" Padding="10 3" Click="Nouveau_Button_Click"/>
             <Button x:Name="Supprimer_Button" Margin="3 6" Content="Supprimer" Padding="10 3" Click="Supprimer_Button_Click"/>

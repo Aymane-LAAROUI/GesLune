@@ -17,11 +17,25 @@ namespace GesLune.ViewModels
             {
                 if (_document != value)
                 {
-                    _document = value;
-                    OnPropertyChanged(nameof(Document));
+                    if (value != null)
+                    {
+                        foreach (var property in value.GetType().GetProperties())
+                        {
+                            var propertyName = property.Name;
+                            var propertyValue = property.GetValue(value); // Utiliser 'value' au lieu de '_document'
+                            MessageBox.Show($"{propertyName} : {propertyValue}");
+                        }
+                        _document = value;
+                        OnPropertyChanged(nameof(Document));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("hwa hwa");
                 }
             }
         }
+
 
         private ObservableCollection<Model_Document_Ligne> _lignes;
         public ObservableCollection<Model_Document_Ligne> Lignes
@@ -29,15 +43,52 @@ namespace GesLune.ViewModels
             get => _lignes;
             set
             {
-                if (_lignes != value) _lignes = value;
+                if (_lignes != value)
+                {
+                    _lignes = value;
+                    OnPropertyChanged(nameof(Lignes));
+                }
             }
         }
 
-        public DocumentSaisieViewModel(Model_Document? document)
+        private List<Model_Document_Type> _document_types;
+
+        public List<Model_Document_Type> Document_Types
+        {
+            get => _document_types;
+            set
+            {
+                if (value != _document_types)
+                {
+                    _document_types = value;
+                    OnPropertyChanged(nameof(Document_Types));
+                }
+            }
+        }
+
+        public Model_Document_Type? Selected_Type
+        {
+            get => _document_types.Find(e => e.Document_Type_Id == _document.Document_Type_Id);
+            set
+            {
+                if (value  != null)
+                Document.Document_Type_Id = value.Document_Type_Id;
+            }
+        }
+
+        public DocumentSaisieViewModel(Model_Document? document = null)
         {
             _document = document ?? new Model_Document();
             _lignes = [];
+            LoadDocumentTypes();
             LoadLignes();
+        }
+
+        private void LoadDocumentTypes()
+        {
+            using var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+            Document_Types = connection.Query<Model_Document_Type>("SELECT * FROM Tble_Document_Types").ToList();
         }
 
         public void LoadLignes()
@@ -45,9 +96,7 @@ namespace GesLune.ViewModels
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             string query = "SELECT * FROM Tble_Document_Lignes WHERE Document_Id = " + _document.Document_Id;
-            _lignes = new(
-                connection.Query<Model_Document_Ligne>(query)
-                );
+            Lignes = new(connection.Query<Model_Document_Ligne>(query));
         }
 
         public void Enregistrer()
@@ -55,52 +104,45 @@ namespace GesLune.ViewModels
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
 
-            // Check if the document exists
-            string verifQuery = "SELECT COUNT(Document_Id) FROM Tble_Documents WHERE Document_Id = @Document_Id";
-            using var verifCommand = new SqlCommand(verifQuery, connection);
-            verifCommand.Parameters.AddWithValue("@Document_Id", _document.Document_Id);
-            int exists = (int)verifCommand.ExecuteScalar();
-
-            // Construct the query dynamically based on existence
-            string query;
-            if (exists == 0)
+            // Préparer les paramètres pour la procédure stockée
+            var parameters = new DynamicParameters();
+            foreach (var property in _document.GetType().GetProperties())
             {
-                query = "INSERT INTO Tble_Documents (" +
-                        string.Join(", ", _document.GetType().GetProperties().Select(p => p.Name).Where(e => !e.Equals("Document_Id"))) +
-                        ") VALUES (" +
-                        string.Join(", ", _document.GetType().GetProperties().Select(p => "@" + p.Name).Where(e => !e.Equals("@Document_Id"))) + ")";
-            }
-            else
-            {
-                query = "UPDATE Tble_Documents SET " +
-                        string.Join(", ", _document.GetType().GetProperties()
-                            .Where(p => p.Name != nameof(Model_Document.Document_Id))
-                            .Select(p => p.Name + " = @" + p.Name)) +
-                        " WHERE Document_Id = @Document_Id";
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(_document); //?? DBNull.Value
+                parameters.Add("@" + propertyName, propertyValue);
+                //MessageBox.Show($"{propertyName} : {propertyValue}");
             }
 
-            // Create a dictionary of parameters
-            var parameters = _document.GetType().GetProperties()
-                .ToDictionary(p => p.Name, p => p.GetValue(_document) ?? String.Empty);
-
-            // Create and execute the query
-            using var command = new SqlCommand(query, connection);
-            foreach (var param in parameters)
+            try
             {
-                command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
+                // Appeler la procédure stockée
+                var document_ = connection.QueryFirst<Model_Document>(
+                    "sp_save_document", // Nom de la procédure stockée
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+                if (document_ != null)
+                {
+                    MessageBox.Show($"nmra: {document_.Document_Num}");
+                    Document = document_;
+                }
+                else MessageBox.Show("ra ja 5awi");
+
+                // Afficher un message de succès
+                MessageBox.Show("Opération réussie", "Succès");
             }
-            MessageBox.Show(query);
-            int res = command.ExecuteNonQuery();
-            MessageBox.Show($"{res}", "Succès");
-
-            foreach (var ligne in Lignes)
+            catch (Exception ex)
             {
-                EnregistrerLigne(ligne);
+                // Gérer les erreurs et afficher un message
+                MessageBox.Show($"Une erreur s'est produite : {ex.Message}", "Erreur");
             }
         }
 
         public void EnregistrerLigne(Model_Document_Ligne ligne)
         {
+            Enregistrer();
+            ligne.Document_Id = Document.Document_Id;
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
 
@@ -139,9 +181,10 @@ namespace GesLune.ViewModels
                 command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
                 MessageBox.Show($"{param.Value}");
             }
-            MessageBox.Show(query);
+            //MessageBox.Show(query);
             int res = command.ExecuteNonQuery();
-            MessageBox.Show($"{res}", "Succès");
+            //MessageBox.Show($"{res}", "Succès");
+            LoadLignes();
         }
 
         public void Delete(int id)

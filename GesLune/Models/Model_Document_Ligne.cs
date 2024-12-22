@@ -4,6 +4,7 @@
     {
         public int Document_Ligne_Id { get; set; }
         public double Document_Ligne_Quantity { get; set; }
+        public string Document_Ligne_Article_Nom {  get; set; }
         public decimal Document_Ligne_Prix_Unitaire { get; set; }
         public decimal Document_Ligne_Total { get; set; }
         public int Document_Id { get; set; }
