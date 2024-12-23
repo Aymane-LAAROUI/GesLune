@@ -1,0 +1,100 @@
+﻿<Window x:Class="GesLune.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune.Windows"
+        mc:Ignorable="d"
+        Title="Connexion" Height="400" Width="350"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F5" 
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!-- Background Panel -->
+        <Border Background="#FFFFFF" CornerRadius="10" Margin="20" Padding="20">
+            <Grid>
+                <!-- Header -->
+                <TextBlock Text="Bienvenue" 
+                           FontSize="26" 
+                           FontWeight="Bold" 
+                           Foreground="#2D89EF" 
+                           HorizontalAlignment="Center" 
+                           Margin="0,10,0,0"/>
+
+                <!-- Login Form -->
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="250">
+                    <!-- Username -->
+                    <TextBlock Text="Nom d'utilisateur" Margin="0,5,0,2" Foreground="Gray"/>
+                    <Border Background="#EFEFEF" CornerRadius="5" BorderBrush="#D3D3D3" BorderThickness="1">
+                        <TextBox x:Name="UsernameBox"
+                                 Height="30" 
+                                 FontSize="14" 
+                                 Background="Transparent" 
+                                 BorderThickness="0" 
+                                 Padding="5"
+                                 />
+                    </Border>
+
+                    <!-- Password -->
+                    <TextBlock Text="Mot de passe" Margin="0,10,0,2" Foreground="Gray"/>
+                    <Border Background="#EFEFEF" CornerRadius="5" BorderBrush="#D3D3D3" BorderThickness="1">
+                        <PasswordBox
+                                 x:Name="PasswordBox"
+                                 Height="30" 
+                                 FontSize="14" 
+                                 Background="Transparent" 
+                                 BorderThickness="0" 
+                                 Padding="5"
+                                 />
+                    </Border>
+
+                    <!-- Buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+                        <Button x:Name="LoginButton"
+                                Content="Se connecter" 
+                                Width="100" 
+                                Height="35" 
+                                Background="#2D89EF" 
+                                Foreground="White" 
+                                BorderBrush="#2D89EF" 
+                                FontWeight="Bold"
+                                Cursor="Hand"
+                                Margin="5,0"
+                                Click="LoginButton_Click"
+                                />
+
+                        <Button x:Name="ExitButton"
+                                Content="Quitter" 
+                                Width="100" 
+                                Height="35" 
+                                Background="#D9534F" 
+                                Foreground="White" 
+                                BorderBrush="#D9534F" 
+                                FontWeight="Bold"
+                                Cursor="Hand"
+                                Margin="5,0"
+                                Click="ExitButton_Click"
+                                />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
