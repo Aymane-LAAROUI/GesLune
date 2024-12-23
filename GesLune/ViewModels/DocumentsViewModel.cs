@@ -9,7 +9,6 @@ namespace GesLune.ViewModels
     public class DocumentsViewModel : ViewModelBase
     {
         public IEnumerable<Model_Document> _documents = [];
-
         public IEnumerable<Model_Document> Documents
         {
             get => _documents;

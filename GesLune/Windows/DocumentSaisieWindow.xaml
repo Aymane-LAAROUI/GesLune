@@ -38,6 +38,7 @@
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Text="{Binding Document.Document_Num , UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="False"
                      />
             <Label Grid.Row="1"
                    Grid.Column="0"
@@ -77,7 +78,7 @@
 
         <DockPanel Grid.Row="2" HorizontalAlignment="Right">
             <Button x:Name="Supprimer_Button" Content="Supprimer" Padding="10 3" Margin="5 3" Click="Supprimer_Button_Click" />
-            <!--<Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>-->
+            <Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>
         </DockPanel>
         
         <DataGrid Grid.Row="3"

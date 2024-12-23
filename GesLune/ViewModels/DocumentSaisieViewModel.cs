@@ -15,19 +15,10 @@ namespace GesLune.ViewModels
             get => _document;
             set
             {
-                if (_document != value)
+                if (_document != value && value != null)
                 {
-                    if (value != null)
-                    {
-                        foreach (var property in value.GetType().GetProperties())
-                        {
-                            var propertyName = property.Name;
-                            var propertyValue = property.GetValue(value); // Utiliser 'value' au lieu de '_document'
-                            MessageBox.Show($"{propertyName} : {propertyValue}");
-                        }
-                        _document = value;
-                        OnPropertyChanged(nameof(Document));
-                    }
+                    _document = value;
+                    OnPropertyChanged(nameof(Document));
                 }
                 else
                 {
@@ -51,8 +42,8 @@ namespace GesLune.ViewModels
             }
         }
 
-        private List<Model_Document_Type> _document_types;
 
+        private List<Model_Document_Type> _document_types;
         public List<Model_Document_Type> Document_Types
         {
             get => _document_types;
@@ -89,6 +80,7 @@ namespace GesLune.ViewModels
             using var connection = new SqlConnection(ConnectionString);
             connection.Open();
             Document_Types = connection.Query<Model_Document_Type>("SELECT * FROM Tble_Document_Types").ToList();
+            if (_document.Document_Type_Id == 0) Selected_Type = Document_Types.FirstOrDefault();
         }
 
         public void LoadLignes()
