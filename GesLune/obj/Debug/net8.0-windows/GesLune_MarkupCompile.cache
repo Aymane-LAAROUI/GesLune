@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\aymane\source\repos\GesLune\GesLune\App.xaml
-51973872316
+6-1846647953
 
-201051997198
+27530807141
 215-445047662
-Windows\ActeursWindow.xaml;Windows\DocumentSaisieWindow.xaml;Windows\DocumentsWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;
+Windows\Acteurs\ActeurSaisieWindow.xaml;Windows\Acteurs\ActeursWindow.xaml;Windows\Documents\DocumentSaisieWindow.xaml;Windows\Documents\DocumentsWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;
 
 False
 

@@ -4,6 +4,7 @@ using GesLune.Windows;
 using Microsoft.Data.SqlClient;
 using System.Windows;
 using System.Data;
+using GesLune.Repositories;
 
 namespace GesLune.ViewModels
 {
@@ -18,15 +19,7 @@ namespace GesLune.ViewModels
                 MessageBox.Show("Veuillez remplir tous les champs");
                 return;
             }
-            using var connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            Object parameters = new 
-            {
-                Utilisateur_Login = username,
-                Utilisateur_Password = password
-            };
-            Model_Utilisateur? utilisateur = connection.QueryFirstOrDefault<Model_Utilisateur>
-                ("sp_authenticate_utilisateur",parameters,commandType: CommandType.StoredProcedure);
+            Model_Utilisateur? utilisateur = UtilisateurRepository.Authenticate(username,password);
             if (utilisateur != null)
             {
                 var mainWindow = new MainWindow();

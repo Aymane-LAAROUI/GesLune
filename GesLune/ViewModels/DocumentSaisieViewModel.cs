@@ -1,8 +1,6 @@
-﻿using Dapper;
-using GesLune.Models;
-using Microsoft.Data.SqlClient;
+﻿using GesLune.Models;
+using GesLune.Repositories;
 using System.Collections.ObjectModel;
-using System.Data;
 using System.Windows;
 
 namespace GesLune.ViewModels
@@ -27,7 +25,6 @@ namespace GesLune.ViewModels
             }
         }
 
-
         private ObservableCollection<Model_Document_Ligne> _lignes;
         public ObservableCollection<Model_Document_Ligne> Lignes
         {
@@ -42,8 +39,7 @@ namespace GesLune.ViewModels
             }
         }
 
-
-        private List<Model_Document_Type> _document_types;
+        private List<Model_Document_Type> _document_types = [];
         public List<Model_Document_Type> Document_Types
         {
             get => _document_types;
@@ -63,7 +59,32 @@ namespace GesLune.ViewModels
             set
             {
                 if (value  != null)
-                Document.Document_Type_Id = value.Document_Type_Id;
+                    Document.Document_Type_Id = value.Document_Type_Id;
+            }
+        }
+
+        private List<Model_Acteur> _acteurs = [];
+        public List<Model_Acteur> Acteurs
+        {
+            get => _acteurs;
+            set
+            {
+                _acteurs = value;
+                OnPropertyChanged(nameof(Acteurs));
+            }
+        }
+
+        public Model_Acteur? Selected_Acteur
+        {
+            get => _acteurs.Find(e => e.Acteur_Id == _document.Acteur_Id);
+            set
+            {
+                if (value != null)
+                {
+                    Document.Acteur_Id = value.Acteur_Id;
+                    Document.Document_Adresse_Client = value.Acteur_Adresse;
+                }
+                    
             }
         }
 
@@ -72,48 +93,33 @@ namespace GesLune.ViewModels
             _document = document ?? new Model_Document();
             _lignes = [];
             LoadDocumentTypes();
+            LoadActeurs();
             LoadLignes();
+        }
+
+        private void LoadActeurs()
+        {
+            Acteurs = ActeurRepository.GetAll(top:10);
+            if (_document.Acteur_Id == 0) Selected_Acteur = Acteurs.FirstOrDefault();
         }
 
         private void LoadDocumentTypes()
         {
-            using var connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            Document_Types = connection.Query<Model_Document_Type>("SELECT * FROM Tble_Document_Types").ToList();
+            Document_Types = DocumentRepository.GetTypes();
             if (_document.Document_Type_Id == 0) Selected_Type = Document_Types.FirstOrDefault();
         }
 
         public void LoadLignes()
         {
-            using var connection = new SqlConnection(ConnectionString);
-            connection.Open();
-            string query = "SELECT * FROM Tble_Document_Lignes WHERE Document_Id = " + _document.Document_Id;
-            Lignes = new(connection.Query<Model_Document_Ligne>(query));
+            Lignes = new(DocumentRepository.GetLignes(_document.Document_Id));
         }
 
         public void Enregistrer()
         {
-            using var connection = new SqlConnection(ConnectionString);
-            connection.Open();
-
-            // Préparer les paramètres pour la procédure stockée
-            var parameters = new DynamicParameters();
-            foreach (var property in _document.GetType().GetProperties())
-            {
-                var propertyName = property.Name;
-                var propertyValue = property.GetValue(_document); //?? DBNull.Value
-                parameters.Add("@" + propertyName, propertyValue);
-                //MessageBox.Show($"{propertyName} : {propertyValue}");
-            }
-
             try
             {
                 // Appeler la procédure stockée
-                var document_ = connection.QueryFirst<Model_Document>(
-                    "sp_save_document", // Nom de la procédure stockée
-                    parameters,
-                    commandType: CommandType.StoredProcedure
-                );
+                var document_ = DocumentRepository.Enregistrer(_document);
                 if (document_ != null)
                 {
                     MessageBox.Show($"nmra: {document_.Document_Num}");
@@ -135,61 +141,14 @@ namespace GesLune.ViewModels
         {
             Enregistrer();
             ligne.Document_Id = Document.Document_Id;
-            using var connection = new SqlConnection(ConnectionString);
-            connection.Open();
-
-            // Check if the document exists
-            string verifQuery = "SELECT COUNT(Document_Ligne_Id) FROM Tble_Document_Lignes WHERE Document_Ligne_Id = @Document_Ligne_Id";
-            using var verifCommand = new SqlCommand(verifQuery, connection);
-            verifCommand.Parameters.AddWithValue("@Document_Ligne_Id", ligne.Document_Ligne_Id);
-            int exists = (int)verifCommand.ExecuteScalar();
-
-            // Construct the query dynamically based on existence
-            string query;
-            if (exists == 0)
-            {
-                query = "INSERT INTO Tble_Document_Lignes (" +
-                        string.Join(", ", ligne.GetType().GetProperties().Select(p => p.Name).Where(e => !e.Equals("Document_Ligne_Id"))) +
-                        ") VALUES (" +
-                        string.Join(", ", ligne.GetType().GetProperties().Select(p => "@" + p.Name).Where(e => !e.Equals("@Document_Ligne_Id"))) + ")";
-            }
-            else
-            {
-                query = "UPDATE Tble_Document_Lignes SET " +
-                        string.Join(", ", ligne.GetType().GetProperties()
-                            .Where(p => p.Name != nameof(Model_Document_Ligne.Document_Ligne_Id))
-                            .Select(p => p.Name + " = @" + p.Name)) +
-                        " WHERE Document_Ligne_Id = @Document_Ligne_Id";
-            }
-
-            // Create a dictionary of parameters
-            var parameters = ligne.GetType().GetProperties()
-                .ToDictionary(p => p.Name, p => p.GetValue(ligne) ?? String.Empty);
-
-            // Create and execute the query
-            using var command = new SqlCommand(query, connection);
-            foreach (var param in parameters)
-            {
-                command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
-                MessageBox.Show($"{param.Value}");
-            }
-            //MessageBox.Show(query);
-            int res = command.ExecuteNonQuery();
-            //MessageBox.Show($"{res}", "Succès");
+            DocumentRepository.EnregistrerLigne(ligne);
             LoadLignes();
         }
 
         public void Delete(int id)
         {
-            MessageBox.Show($"Supprimer {id}");
-            using var connection = new SqlConnection(
-                ConnectionString
-            );
-            connection.Open();
-            string query = $"DELETE FROM Tble_Document_Lignes WHERE Document_Ligne_Id = @Id";
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Id", id);
-            command.ExecuteNonQuery();
+            int res = DocumentRepository.DeleteLigne(id);
+            MessageBox.Show($"{res}");
             LoadLignes();
         }
     }

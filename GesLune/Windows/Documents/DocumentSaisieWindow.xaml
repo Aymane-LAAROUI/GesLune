@@ -1,0 +1,93 @@
+﻿<Window x:Class="GesLune.Windows.DocumentSaisieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune.Windows"
+        mc:Ignorable="d"
+        Title="DocumentSaisieWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" MinWidth="100"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" MinWidth="100" />
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" MinWidth="100" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Content="Numéro:"
+                   />
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Text="{Binding Document.Document_Num , UpdateSourceTrigger=PropertyChanged}"
+                     IsEnabled="False"
+                     />
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Content="Date:"
+                   />
+            <DatePicker Grid.Row="1"
+                     Grid.Column="1"
+                     SelectedDate="{Binding Document.Document_Date , UpdateSourceTrigger=PropertyChanged}"
+                     />
+            <Label Grid.Row="0"
+                   Grid.Column="2"
+                   Content="Client:"
+                   />
+            <ComboBox Grid.Row="0"
+                      Grid.Column="3"
+                      ItemsSource="{Binding Acteurs}"
+                      SelectedItem="{Binding Selected_Acteur , UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="Acteur_Nom"
+                     />
+            <Label Grid.Row="1"
+                   Grid.Column="2"
+                   Content="Adresse:"
+                   />
+            <TextBox Grid.Row="1"
+                     Grid.Column="3"
+                     Text="{Binding Document.Document_Adresse_Client , UpdateSourceTrigger=PropertyChanged}"
+                     />
+            <Label Grid.Row="0"
+                   Grid.Column="4"
+                   Content="Type de document:"
+                   />
+            <ComboBox Grid.Row="0"
+                      Grid.Column="5"
+                      ItemsSource="{Binding Document_Types}"
+                      SelectedItem="{Binding Selected_Type , UpdateSourceTrigger=PropertyChanged}"
+                      DisplayMemberPath="Document_Type_Nom"
+                     />
+        </Grid>
+
+        <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="Supprimer_Button" Content="Supprimer" Padding="10 3" Margin="5 3" Click="Supprimer_Button_Click" />
+            <Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>
+        </DockPanel>
+        
+        <DataGrid Grid.Row="3"
+                  ItemsSource="{Binding Lignes}"
+                  x:Name="MainDataGrid"
+                  RowEditEnding="MainDataGrid_RowEditEnding"
+                  />
+
+    </Grid>
+</Window>

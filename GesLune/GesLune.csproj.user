@@ -7,13 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Windows\ActeursWindow.xaml.cs">
+    <Compile Update="Windows\Acteurs\ActeurSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\DocumentSaisieWindow.xaml.cs">
+    <Compile Update="Windows\Acteurs\ActeursWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\DocumentsWindow.xaml.cs">
+    <Compile Update="Windows\Documents\DocumentSaisieWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Documents\DocumentsWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\LoginWindow.xaml.cs">
@@ -24,13 +27,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Windows\ActeursWindow.xaml">
+    <Page Update="Windows\Acteurs\ActeurSaisieWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\DocumentSaisieWindow.xaml">
+    <Page Update="Windows\Acteurs\ActeursWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\DocumentsWindow.xaml">
+    <Page Update="Windows\Documents\DocumentSaisieWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Documents\DocumentsWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\LoginWindow.xaml">

@@ -93,7 +93,7 @@ namespace GesLune.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GesLune;component/windows/acteurswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/GesLune;V1.0.0.0;component/windows/acteurswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\ActeursWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

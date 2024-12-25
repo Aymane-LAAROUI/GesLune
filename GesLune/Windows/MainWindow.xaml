@@ -3,38 +3,42 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:GesLune.Windows"
+        xmlns:local="clr-namespace:GesLune.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
         <Menu>
             <MenuItem Header="Fichier">
             </MenuItem>
-            <MenuItem Header="Paramètrage">
-                <MenuItem Header="Clients"
-                          x:Name="ClientsMenuItem"
-                          Click="ClientsMenuItem_Click"
-                          />
-                <MenuItem Header="Fournisseurs"
-                          x:Name="FournisseursMenuItem"
-                          Click="FournisseursMenuItem_Click"
-                          />
+            <MenuItem Header="Paramètrage"
+                      ItemsSource="{Binding ActeurMenuItems}"
+                      >
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Header" Value="{Binding Acteur_Type_Nom}" />
+                        <!--<Setter Property="ItemsSource" Value="{Binding Acteur_Type_Nom}" />-->
+                        <Setter Property="Command"
+                                Value="{Binding DataContext.ActeurNavigationCommand,
+                                RelativeSource={RelativeSource AncestorType={x:Type Window}}
+                                }" />
+                        <Setter Property="CommandParameter" Value="{Binding Acteur_Type_Id}" />
+                        <!--<EventSetter Event="Click" Handler="MenuItem_Click" />-->
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Traitement">
-                <MenuItem Header="Documents de ventes">
-                    <MenuItem Header="Bon de commande"
-                              x:Name="BCMenuItem"
-                              Click="BCMenuItem_Click"
-                              />
-                    <MenuItem Header="Bon de livraison"
-                              x:Name="BLMenuItem"
-                              Click="BLMenuItem_Click"
-                              />
-                    <MenuItem Header="Facture Client"
-                              x:Name="FCMenuItem"
-                              Click="FCMenuItem_Click"
-                              />
-                </MenuItem>
+            <MenuItem Header="Traitement"
+                      ItemsSource="{Binding DocumentMenuItems}"
+                      >
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Header" Value="{Binding Document_Type_Nom}" />
+                        <Setter Property="Command"
+                                Value="{Binding DataContext.DocumentNavigationCommand,
+                                RelativeSource={RelativeSource AncestorType={x:Type Window}}
+                                }" />
+                        <Setter Property="CommandParameter" Value="{Binding Document_Type_Id}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
         </Menu>
     </StackPanel>

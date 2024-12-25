@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Windows;
 using Dapper;
+using GesLune.Repositories;
 
 namespace GesLune.ViewModels
 {
@@ -60,15 +61,10 @@ namespace GesLune.ViewModels
         {
             try
             {
-                using var connection = new SqlConnection(
-                    ConnectionString
-                );
-                string query = "SELECT * FROM Tble_Acteur_Types";
-
                 IEnumerable<Model_Acteur_Type> filtres = [
                         new Model_Acteur_Type(0,"Tous","")
                     ];
-                Filtres = filtres.Concat(connection.Query<Model_Acteur_Type>(query));
+                Filtres = filtres.Concat(ActeurRepository.GetTypes());
                 SelectedFilter = Filtres.FirstOrDefault(e=> e.Acteur_Type_Id == selectedFiltreId);
             }
             catch (Exception ex)
@@ -81,20 +77,9 @@ namespace GesLune.ViewModels
         {
             try
             {
-                using var connection = new SqlConnection(
-                    ConnectionString
-                );
-                string query;
-                if (_selectedFilter == null || _selectedFilter.Acteur_Type_Id == 0)
-                {
-                    query = "SELECT * FROM Tble_Acteurs";
-
-                }
-                else
-                {
-                    query = "SELECT * FROM Tble_Acteurs WHERE Acteur_Type_Id = " + _selectedFilter.Acteur_Type_Id;
-                }
-                Acteurs = connection.Query<Model_Acteur>(query);
+                Acteurs = (_selectedFilter == null || _selectedFilter.Acteur_Type_Id == 0)
+                    ? ActeurRepository.GetAll()
+                    : ActeurRepository.GetByTypeId(_selectedFilter.Acteur_Type_Id);
             }
             catch (Exception ex)
             {
@@ -104,14 +89,7 @@ namespace GesLune.ViewModels
 
         public void Delete(int id)
         {
-            using var connection = new SqlConnection(
-                ConnectionString
-                );
-            connection.Open();
-            string query = "DELETE FROM Tble_Acteurs WHERE Acteur_Id =@Id";
-            using var command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Id", id);
-            command.ExecuteNonQuery();
+            int res = ActeurRepository.Delete(id);
             LoadData();
         }
     }
