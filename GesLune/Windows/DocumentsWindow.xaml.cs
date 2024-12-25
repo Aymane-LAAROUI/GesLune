@@ -6,7 +6,7 @@ namespace GesLune.Windows
 {
     public partial class DocumentsWindow : Window
     {
-        private DocumentsViewModel viewModel;
+        private readonly DocumentsViewModel viewModel;
         public DocumentsWindow()
         {
             InitializeComponent();
@@ -14,6 +14,12 @@ namespace GesLune.Windows
             this.DataContext = viewModel;
         }
 
+        public DocumentsWindow(int selectedFiltreId)
+        {
+            InitializeComponent();
+            viewModel = new(selectedFiltreId);
+            this.DataContext = viewModel;
+        }
         private void Fermer_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -60,3 +60,7 @@ C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\GesLune.ge
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\ref\GesLune.dll
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\LoginWindow.g.cs
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\LoginWindow.baml
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\MainWindow.g.cs
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\MainWindow.baml
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\ActeursWindow.g.cs
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\ActeursWindow.baml

@@ -29,7 +29,7 @@ namespace GesLune.ViewModels
                 ("sp_authenticate_utilisateur",parameters,commandType: CommandType.StoredProcedure);
             if (utilisateur != null)
             {
-                var mainWindow = new DocumentsWindow();
+                var mainWindow = new MainWindow();
                 Application.Current.MainWindow = mainWindow;
                 mainWindow.Show();
                 LoginSucceded?.Invoke(this, EventArgs.Empty);

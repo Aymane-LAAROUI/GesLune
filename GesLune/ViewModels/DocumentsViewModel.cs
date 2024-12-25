@@ -2,7 +2,6 @@
 using Microsoft.Data.SqlClient;
 using System.Windows;
 using Dapper;
-using System.Linq;
 
 namespace GesLune.ViewModels
 {
@@ -37,7 +36,6 @@ namespace GesLune.ViewModels
         }
 
         private Model_Document_Type? _selectedFilter;
-
         public Model_Document_Type? SelectedFilter
         {
             get => _selectedFilter;
@@ -51,14 +49,14 @@ namespace GesLune.ViewModels
                 }
             }
         }
-        public DocumentsViewModel() 
+        public DocumentsViewModel(int selectedFiltreId = 0) 
         {
             //_documents = new DataTable();
-            LoadFiltres();
+            LoadFiltres(selectedFiltreId);
             LoadData();
         }
 
-        public void LoadFiltres() 
+        public void LoadFiltres(int selectedFiltreId) 
         {
             try
             {
@@ -77,26 +75,13 @@ namespace GesLune.ViewModels
                     ];
 
                 Filtres = filtres.Concat(connection.Query<Model_Document_Type>(query));
+                SelectedFilter = Filtres.FirstOrDefault(e => e.Document_Type_Id == selectedFiltreId);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        //private void ApplyFilter()
-        //{
-        //    if (SelectedFilter != null)
-        //    {
-        //        // Example: Access other properties for filtering or logic
-        //        var id = SelectedFilter.Document_Type_Id;
-        //        var abbr = SelectedFilter.Document_Type_Nom_Abrege;
-
-        //        // Implement your filtering logic here, e.g., update another collection or UI elements
-
-        //        System.Diagnostics.Debug.WriteLine($"Selected ID: {id}, Abbreviation: {abbr}");
-        //    }
-        //}
 
         public void LoadData()
         {

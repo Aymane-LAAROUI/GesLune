@@ -1,0 +1,41 @@
+﻿<Window x:Class="GesLune.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune.Windows"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="Fichier">
+            </MenuItem>
+            <MenuItem Header="Paramètrage">
+                <MenuItem Header="Clients"
+                          x:Name="ClientsMenuItem"
+                          Click="ClientsMenuItem_Click"
+                          />
+                <MenuItem Header="Fournisseurs"
+                          x:Name="FournisseursMenuItem"
+                          Click="FournisseursMenuItem_Click"
+                          />
+            </MenuItem>
+            <MenuItem Header="Traitement">
+                <MenuItem Header="Documents de ventes">
+                    <MenuItem Header="Bon de commande"
+                              x:Name="BCMenuItem"
+                              Click="BCMenuItem_Click"
+                              />
+                    <MenuItem Header="Bon de livraison"
+                              x:Name="BLMenuItem"
+                              Click="BLMenuItem_Click"
+                              />
+                    <MenuItem Header="Facture Client"
+                              x:Name="FCMenuItem"
+                              Click="FCMenuItem_Click"
+                              />
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+    </StackPanel>
+</Window>
