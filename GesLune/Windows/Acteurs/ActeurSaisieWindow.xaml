@@ -21,29 +21,35 @@
             <TabItem Header="Identification">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0"
-                               HorizontalAlignment="Right"
-                               >
-                        <Label Content="Raison social:"/>
-                        <Label Content="Adresse:"/>
-                        <Label Content="Téléphone:"/>
-                        <Label Content="Email:"/>
-                        <Label Content="Remarque:"/>
-                        <Label Content="Ville:"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1"
-                                HorizontalAlignment="Left"
-                                >
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                        <TextBox/>
-                        <ComboBox/>
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Raison social:"/>
+                    <Label Grid.Row="1" Grid.Column="0" Content="Adresse:"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Téléphone:"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Email:"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Remarque:"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Ville:"/>
+                    <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding Acteur.Acteur_Nom}" />
+                    <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Acteur.Acteur_Adresse}" />
+                    <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding Acteur.Acteur_Telephone}" />
+                    <TextBox  Grid.Row="3" Grid.Column="1" Text="{Binding Acteur.Acteur_Email}" />
+                    <TextBox  Grid.Row="4" Grid.Column="1" Text="{Binding Acteur.Acteur_Remarque}" />
+                    <ComboBox Grid.Row="5"
+                              Grid.Column="1"
+                              ItemsSource="{Binding Villes}"
+                              SelectedItem="{Binding Selected_Ville}"
+                              DisplayMemberPath="Ville_Nom"
+                              />
                 </Grid>
             </TabItem>
         </TabControl>

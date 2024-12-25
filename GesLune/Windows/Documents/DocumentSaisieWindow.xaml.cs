@@ -6,7 +6,7 @@ namespace GesLune.Windows
 {
     public partial class DocumentSaisieWindow : Window
     {
-        private DocumentSaisieViewModel viewModel;
+        private readonly DocumentSaisieViewModel viewModel;
         public DocumentSaisieWindow(Model_Document? document = null)
         {
             InitializeComponent();

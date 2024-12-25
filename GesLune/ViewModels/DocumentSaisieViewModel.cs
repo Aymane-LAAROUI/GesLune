@@ -24,7 +24,15 @@ namespace GesLune.ViewModels
                 }
             }
         }
-
+        public string? Document_Adresse_Client
+        {
+            get => Document.Document_Adresse_Client;
+            set
+            {
+                Document.Document_Adresse_Client = value;
+                OnPropertyChanged(nameof(Document_Adresse_Client));
+            }
+        }
         private ObservableCollection<Model_Document_Ligne> _lignes;
         public ObservableCollection<Model_Document_Ligne> Lignes
         {
@@ -38,7 +46,6 @@ namespace GesLune.ViewModels
                 }
             }
         }
-
         private List<Model_Document_Type> _document_types = [];
         public List<Model_Document_Type> Document_Types
         {
@@ -52,7 +59,6 @@ namespace GesLune.ViewModels
                 }
             }
         }
-
         public Model_Document_Type? Selected_Type
         {
             get => _document_types.Find(e => e.Document_Type_Id == _document.Document_Type_Id);
@@ -62,7 +68,6 @@ namespace GesLune.ViewModels
                     Document.Document_Type_Id = value.Document_Type_Id;
             }
         }
-
         private List<Model_Acteur> _acteurs = [];
         public List<Model_Acteur> Acteurs
         {
@@ -73,7 +78,6 @@ namespace GesLune.ViewModels
                 OnPropertyChanged(nameof(Acteurs));
             }
         }
-
         public Model_Acteur? Selected_Acteur
         {
             get => _acteurs.Find(e => e.Acteur_Id == _document.Acteur_Id);
@@ -82,12 +86,11 @@ namespace GesLune.ViewModels
                 if (value != null)
                 {
                     Document.Acteur_Id = value.Acteur_Id;
-                    Document.Document_Adresse_Client = value.Acteur_Adresse;
+                    Document_Adresse_Client = value.Acteur_Adresse;
                 }
                     
             }
         }
-
         public DocumentSaisieViewModel(Model_Document? document = null)
         {
             _document = document ?? new Model_Document();

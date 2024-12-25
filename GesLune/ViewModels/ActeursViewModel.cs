@@ -1,8 +1,8 @@
 ﻿using GesLune.Models;
-using Microsoft.Data.SqlClient;
 using System.Windows;
-using Dapper;
 using GesLune.Repositories;
+using GesLune.Commands;
+using GesLune.Windows.Acteurs;
 
 namespace GesLune.ViewModels
 {
@@ -21,7 +21,6 @@ namespace GesLune.ViewModels
                 }
             }
         }
-
         private IEnumerable<Model_Acteur_Type> _filtres = [];
         public IEnumerable<Model_Acteur_Type> Filtres
         {
@@ -35,7 +34,6 @@ namespace GesLune.ViewModels
                 }
             }
         }
-
         private Model_Acteur_Type? _selectedFilter;
         public Model_Acteur_Type? SelectedFilter
         {
@@ -50,14 +48,31 @@ namespace GesLune.ViewModels
                 }
             }
         }
+        public Model_Acteur? Selected_Acteur { get; set; }
+        public NavigationCommand SaisieNavigationCommand { get; private set; }
 
-        public ActeursViewModel(int selectedFiltreId = 0) 
+        public ActeursViewModel(int selectedFiltreId) 
         {
             LoadFiltres(selectedFiltreId);
             LoadData();
+            SaisieNavigationCommand = new(SaisieNavigate,CanSaisieNavigate);
         }
 
-        private void LoadFiltres(int selectedFiltreId = 0)
+        private bool CanSaisieNavigate(object obj) => true;
+
+        private void SaisieNavigate(object obj)
+        {
+            Model_Acteur model = Selected_Acteur 
+                ?? new()
+                   {
+                       Acteur_Type_Id = SelectedFilter?.Acteur_Type_Id ?? 1
+                   };
+            ActeurSaisieWindow saisieWindow = new(model);
+            saisieWindow.ShowDialog();
+            LoadData();
+        }
+
+        private void LoadFiltres(int selectedFiltreId)
         {
             try
             {

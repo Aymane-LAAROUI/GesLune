@@ -3,11 +3,11 @@
     public class Model_Acteur
     {
         public int Acteur_Id { get; set; }
-        public string Acteur_Nom { get; set; }
-        public string Acteur_Adresse { get; set; }
-        public string Acteur_Telephone { get; set; }
-        public string Acteur_Email { get; set; }
-        public string Acteur_Remarque { get; set; }
+        public string Acteur_Nom { get; set; } = string.Empty;
+        public string? Acteur_Adresse { get; set; }
+        public string? Acteur_Telephone { get; set; }
+        public string? Acteur_Email { get; set; }
+        public string? Acteur_Remarque { get; set; }
         public int Acteur_Type_Id { get; set; }
         public int Acteur_Ville_Id { get; set; }
 
@@ -22,5 +22,7 @@
             Acteur_Type_Id = acteur_Type_Id;
             Acteur_Ville_Id = acteur_Ville_Id;
         }
+
+        public Model_Acteur() { }
     }
 }

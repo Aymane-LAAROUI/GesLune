@@ -1,4 +1,5 @@
 ﻿using GesLune.Models;
+using GesLune.ViewModels;
 using System.Windows;
 
 namespace GesLune.Windows.Acteurs
@@ -8,19 +9,22 @@ namespace GesLune.Windows.Acteurs
     /// </summary>
     public partial class ActeurSaisieWindow : Window
     {
-        public ActeurSaisieWindow(Model_Acteur? model = null)
+        private readonly ActeurSaisieViewModel viewModel;
+        public ActeurSaisieWindow(Model_Acteur model)
         {
             InitializeComponent();
+            viewModel = new(model);
+            this.DataContext = viewModel;
         }
 
         private void Enregistrer_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            viewModel.Enregistrer();
         }
 
         private void Fermer_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

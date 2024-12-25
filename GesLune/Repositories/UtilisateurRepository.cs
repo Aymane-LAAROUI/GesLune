@@ -11,7 +11,6 @@ namespace GesLune.Repositories
         public static Model_Utilisateur? Authenticate(string username, string password)
         {
             using SqlConnection connection = new(RepositoryBase.ConnectionString);
-            connection.Open();
             Object parameters = new
             {
                 Utilisateur_Login = username,
