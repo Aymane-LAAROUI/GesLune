@@ -1,4 +1,5 @@
 ﻿using GesLune.Windows;
+using GesLune.Windows.Articles;
 using System.Windows;
 
 namespace GesLune

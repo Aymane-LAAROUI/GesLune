@@ -1,8 +1,5 @@
 ﻿using GesLune.Models;
-using Microsoft.Data.SqlClient;
 using System.Windows;
-using Dapper;
-using System.Reflection.Metadata;
 using GesLune.Repositories;
 
 namespace GesLune.ViewModels

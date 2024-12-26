@@ -7,39 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <Menu>
-            <MenuItem Header="Fichier">
-            </MenuItem>
-            <MenuItem Header="Paramètrage"
-                      ItemsSource="{Binding ActeurMenuItems}"
-                      >
-                <MenuItem.ItemContainerStyle>
-                    <Style TargetType="MenuItem">
-                        <Setter Property="Header" Value="{Binding Acteur_Type_Nom}" />
-                        <!--<Setter Property="ItemsSource" Value="{Binding Acteur_Type_Nom}" />-->
-                        <Setter Property="Command"
-                                Value="{Binding DataContext.ActeurNavigationCommand,
-                                RelativeSource={RelativeSource AncestorType={x:Type Window}}
-                                }" />
-                        <Setter Property="CommandParameter" Value="{Binding Acteur_Type_Id}" />
-                        <!--<EventSetter Event="Click" Handler="MenuItem_Click" />-->
-                    </Style>
-                </MenuItem.ItemContainerStyle>
-            </MenuItem>
-            <MenuItem Header="Traitement"
-                      ItemsSource="{Binding DocumentMenuItems}"
-                      >
-                <MenuItem.ItemContainerStyle>
-                    <Style TargetType="MenuItem">
-                        <Setter Property="Header" Value="{Binding Document_Type_Nom}" />
-                        <Setter Property="Command"
-                                Value="{Binding DataContext.DocumentNavigationCommand,
-                                RelativeSource={RelativeSource AncestorType={x:Type Window}}
-                                }" />
-                        <Setter Property="CommandParameter" Value="{Binding Document_Type_Id}" />
-                    </Style>
-                </MenuItem.ItemContainerStyle>
-            </MenuItem>
+        <Menu ItemsSource="{Binding MenuItems}">
+            <Menu.ItemContainerStyle>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Header" Value="{Binding Text}" />
+                    <Setter Property="ItemsSource" Value="{Binding Items}" />
+                    <Setter Property="Command" Value="{Binding Command}" />
+                    <Setter Property="CommandParameter" Value="{Binding Tag}" />
+                </Style>
+            </Menu.ItemContainerStyle>
         </Menu>
     </StackPanel>
 </Window>

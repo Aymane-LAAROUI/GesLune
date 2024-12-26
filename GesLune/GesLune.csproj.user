@@ -13,6 +13,9 @@
     <Compile Update="Windows\Acteurs\ActeursWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Articles\ArticlesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Documents\DocumentSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Acteurs\ActeursWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Articles\ArticlesWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Documents\DocumentSaisieWindow.xaml">

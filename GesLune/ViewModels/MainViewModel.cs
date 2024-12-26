@@ -1,67 +1,124 @@
 ﻿using GesLune.Commands;
 using GesLune.Models;
+using GesLune.Models.UI;
 using GesLune.Repositories;
 using GesLune.Windows;
+using GesLune.Windows.Articles;
 
 namespace GesLune.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private IEnumerable<Model_Document_Type> _documentMenuItems = [];
-        public IEnumerable<Model_Document_Type> DocumentMenuItems
-        {
-            get => _documentMenuItems;
-            set
-            {
-                _documentMenuItems = value;
-                OnPropertyChanged(nameof(DocumentMenuItems));
-            }
-        }
+        //private IEnumerable<Model_Document_Type> _documentMenuItems = [];
+        //public IEnumerable<Model_Document_Type> DocumentMenuItems
+        //{
+        //    get => _documentMenuItems;
+        //    set
+        //    {
+        //        _documentMenuItems = value;
+        //        OnPropertyChanged(nameof(DocumentMenuItems));
+        //    }
+        //}
 
-        private IEnumerable<Model_Acteur_Type> _acteurMenuItems = [];
-        public IEnumerable<Model_Acteur_Type> ActeurMenuItems
-        {
-            get => _acteurMenuItems;
-            set
-            {
-                _acteurMenuItems = value;
-                OnPropertyChanged(nameof(ActeurMenuItems));
-            }
-        }
+        //private IEnumerable<Model_Acteur_Type> _acteurMenuItems = [];
+        //public IEnumerable<Model_Acteur_Type> ActeurMenuItems
+        //{
+        //    get => _acteurMenuItems;
+        //    set
+        //    {
+        //        _acteurMenuItems = value;
+        //        OnPropertyChanged(nameof(ActeurMenuItems));
+        //    }
+        //}
+
+        public List<MenuItemModel> MenuItems { get; set; } = [];
 
         public NavigationCommand ActeurNavigationCommand { get; private set; }
         public NavigationCommand DocumentNavigationCommand { get; private set; }
 
         public MainViewModel() 
         {
-            LoadDocumentMenuItems();
-            LoadActeurMenuItems();
-            ActeurNavigationCommand = new(ActeurNavigate,CanActeurNavigate);
+            //LoadDocumentMenuItems();
+            //LoadActeurMenuItems();
+            ActeurNavigationCommand = new(ActeurNavigate, CanActeurNavigate);
             DocumentNavigationCommand = new(DocumentNavigate, CanDocumentNavigate);
+            LoadMenuItems();
         }
 
-        private void DocumentNavigate(object obj)
+        private void DocumentNavigate(object? obj)
         {
+            ArgumentNullException.ThrowIfNull(obj);
             new DocumentsWindow((int)obj).ShowDialog();
         }
 
-        private bool CanDocumentNavigate(object obj) => true;
+        private bool CanDocumentNavigate(object? obj) => true;
 
-        private void ActeurNavigate(object id)
+        private void ActeurNavigate(object? id)
         {
+            ArgumentNullException.ThrowIfNull(id);
             new ActeursWindow((int)id).ShowDialog();
         }
 
-        private bool CanActeurNavigate(object id) => true;
-
-        private void LoadDocumentMenuItems()
+        private bool CanActeurNavigate(object? id) => true;
+        
+        private void ArticleNavigate(object? id)
         {
-            DocumentMenuItems = DocumentRepository.GetTypes();
+            new ArticlesWindow().ShowDialog();
         }
 
-        private void LoadActeurMenuItems()
+        private bool CanArticleNavigate(object? id) => true;
+
+        private void LoadMenuItems()
         {
-            ActeurMenuItems = ActeurRepository.GetTypes();
+            // Init the List
+            MenuItems.Clear();
+
+            // Init Top Main MenuItems
+            MenuItemModel fichier = new() { Text = "Fichier"};
+            MenuItemModel Parametrage = new() { Text = "Paramètrage" };
+            MenuItemModel Traitement = new() { Text = "Traitement" };
+
+            // Fill each Main MenuItem
+            // Parametrage: (Acteurs)
+            ActeurRepository.GetTypes().ForEach(
+                e => Parametrage.Items.Add(
+                    new MenuItemModel()
+                    {
+                        Text = e.Acteur_Type_Nom,
+                        Command = ActeurNavigationCommand,
+                        Tag = e.Acteur_Type_Id
+                    }
+                )
+            );
+
+            // Parametrage: (Articles)
+            Parametrage.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Articles",
+                    Command = new NavigationCommand(ArticleNavigate,CanArticleNavigate)
+                }
+            );
+
+            // Traitement:
+            DocumentRepository.GetTypes().ForEach(
+                e => Traitement.Items.Add(
+                    new MenuItemModel()
+                    {
+                        Text = e.Document_Type_Nom,
+                        Command = DocumentNavigationCommand,
+                        Tag = e.Document_Type_Id
+                    }
+                )    
+            );
+
+            // Add Main MenuItems Into the List
+            MenuItems.Add( fichier );
+            MenuItems.Add( Parametrage );
+            MenuItems.Add( Traitement );
+
+            //Notify the UI
+            OnPropertyChanged(nameof(MenuItems));
         }
     }
 }
