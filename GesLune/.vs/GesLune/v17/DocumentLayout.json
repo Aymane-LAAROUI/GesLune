@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\articles\\articlesaisiewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\articles\\articlesaisiewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\articles\\articlesaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\articles\\articlesaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\models\\ui\\menuitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:models\\ui\\menuitemmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\models\\model_article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:models\\model_article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,8 +22,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Model_Article.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Article.cs",
+              "RelativeDocumentMoniker": "Models\\Model_Article.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Article.cs",
+              "RelativeToolTip": "Models\\Model_Article.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T19:23:52.727Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -39,39 +53,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\MainViewModel.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\MainViewModel.cs",
-              "RelativeToolTip": "ViewModels\\MainViewModel.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAIAwwDkAAAAMAAAA",
+              "Title": "ArticleSaisieWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBUAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T19:35:41.813Z",
+              "WhenOpened": "2024-12-28T19:27:18.167Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Windows\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\MainWindow.xaml",
-              "RelativeToolTip": "Windows\\MainWindow.xaml",
+              "Title": "ArticleSaisieWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml",
+              "RelativeDocumentMoniker": "Windows\\Articles\\ArticleSaisieWindow.xaml",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml",
+              "RelativeToolTip": "Windows\\Articles\\ArticleSaisieWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-26T19:23:33.834Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MenuItemModel.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\UI\\MenuItemModel.cs",
-              "RelativeDocumentMoniker": "Models\\UI\\MenuItemModel.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\UI\\MenuItemModel.cs",
-              "RelativeToolTip": "Models\\UI\\MenuItemModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T18:56:30.606Z",
+              "WhenOpened": "2024-12-28T19:24:28.38Z",
               "EditorCaption": ""
             }
           ]

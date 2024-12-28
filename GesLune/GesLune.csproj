@@ -13,4 +13,16 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Windows\Articles\ArticleSaisieWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Windows\Articles\ArticleSaisieWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

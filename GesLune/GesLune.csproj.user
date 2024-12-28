@@ -36,6 +36,9 @@
     <Page Update="Windows\Acteurs\ActeursWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\Articles\ArticleSaisieWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Articles\ArticlesWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

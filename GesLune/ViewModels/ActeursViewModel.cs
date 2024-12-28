@@ -58,9 +58,9 @@ namespace GesLune.ViewModels
             SaisieNavigationCommand = new(SaisieNavigate,CanSaisieNavigate);
         }
 
-        private bool CanSaisieNavigate(object obj) => true;
+        private bool CanSaisieNavigate(object? obj) => true;
 
-        private void SaisieNavigate(object obj)
+        private void SaisieNavigate(object? obj)
         {
             Model_Acteur model = Selected_Acteur 
                 ?? new()

@@ -68,3 +68,5 @@ C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\GesLune.ge
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\ref\GesLune.dll
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Articles\ArticlesWindow.g.cs
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Articles\ArticlesWindow.baml
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Articles\ArticleSaisieWindow.g.cs
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Articles\ArticleSaisieWindow.baml

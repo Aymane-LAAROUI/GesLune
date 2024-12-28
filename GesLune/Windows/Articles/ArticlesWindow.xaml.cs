@@ -47,35 +47,5 @@ namespace GesLune.Windows.Articles
             //int id = Convert.ToInt32(dataRow["Article_Id"]);
             viewModel.Delete(selectedModel.Article_Id);
         }
-
-        private void Ouvrir_Button_Click(object sender, RoutedEventArgs e)
-        {
-            //// Check if a row is selected in the DataGrid
-            //if (MainDataGrid.SelectedItem == null)
-            //{
-            //    MessageBox.Show("Veuillez sélectionner une ligne.", "Avertissement", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
-
-            //// Get the selected row as DataRowView
-            //if (MainDataGrid.SelectedItem is not Model_Article selectedModel)
-            //{
-            //    MessageBox.Show("Erreur lors de la sélection de la ligne.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    return;
-            //}
-
-            //// Get the DataRow and remove it from the DataTable
-            ////var dataRow = selectedRowView.Row;
-            //var saisieWindow = new ArticleSaisieWindow(selectedModel);
-            //saisieWindow.ShowDialog();
-            //viewModel.LoadData();
-        }
-
-        private void Nouveau_Button_Click(object sender, RoutedEventArgs e)
-        {
-            //var saisieWindow = new ArticleSaisieWindow();
-            //saisieWindow.ShowDialog();
-            //viewModel.LoadData();
-        }
     }
 }

@@ -32,7 +32,6 @@ namespace GesLune.ViewModels
         //}
 
         public List<MenuItemModel> MenuItems { get; set; } = [];
-
         public NavigationCommand ActeurNavigationCommand { get; private set; }
         public NavigationCommand DocumentNavigationCommand { get; private set; }
 
