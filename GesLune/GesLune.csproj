@@ -14,6 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Windows\Paiements\PaiementSaisieWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Paiements\PaiementsWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Articles\ArticleSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

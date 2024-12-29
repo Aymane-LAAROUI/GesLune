@@ -34,6 +34,7 @@ namespace GesLune.ViewModels
         public List<MenuItemModel> MenuItems { get; set; } = [];
         public NavigationCommand ActeurNavigationCommand { get; private set; }
         public NavigationCommand DocumentNavigationCommand { get; private set; }
+        public NavigationCommand PaiementNavigationCommand {  get; private set; }
 
         public MainViewModel() 
         {
@@ -41,6 +42,7 @@ namespace GesLune.ViewModels
             //LoadActeurMenuItems();
             ActeurNavigationCommand = new(ActeurNavigate, CanActeurNavigate);
             DocumentNavigationCommand = new(DocumentNavigate, CanDocumentNavigate);
+            PaiementNavigationCommand = new(PaiementNavigate, CanPaiementNavigate);
             LoadMenuItems();
         }
 
@@ -66,6 +68,13 @@ namespace GesLune.ViewModels
         }
 
         private bool CanArticleNavigate(object? id) => true;
+
+        private void PaiementNavigate(object? obj)
+        {
+            new PaiementsWindow().ShowDialog();
+        }
+
+        private bool CanPaiementNavigate(object? obj) => true;
 
         private void LoadMenuItems()
         {
@@ -110,6 +119,13 @@ namespace GesLune.ViewModels
                     }
                 )    
             );
+            Traitement.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Paiements",
+                    Command= PaiementNavigationCommand,
+                }
+                );
 
             // Add Main MenuItems Into the List
             MenuItems.Add( fichier );

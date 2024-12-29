@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\articles\\articlesaisiewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\articles\\articlesaisiewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\paiementsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\paiementsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\articles\\articlesaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\articles\\articlesaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\paiements\\paiementsaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\paiements\\paiementsaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\models\\model_article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:models\\model_article.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\models\\model_paiement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:models\\model_paiement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,19 +22,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Model_Article.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Article.cs",
-              "RelativeDocumentMoniker": "Models\\Model_Article.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Article.cs",
-              "RelativeToolTip": "Models\\Model_Article.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAiAAAA",
+              "Title": "Model_Paiement.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Paiement.cs",
+              "RelativeDocumentMoniker": "Models\\Model_Paiement.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Paiement.cs",
+              "RelativeToolTip": "Models\\Model_Paiement.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAvwAwAAACGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:23:52.727Z",
+              "WhenOpened": "2024-12-28T19:45:22.325Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -52,27 +52,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ArticleSaisieWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
-              "RelativeToolTip": "Windows\\Articles\\ArticleSaisieWindow.xaml.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBUAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:27:18.167Z",
+              "DocumentIndex": 1,
+              "Title": "PaiementSaisieWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Paiements\\PaiementSaisieWindow.xaml",
+              "RelativeDocumentMoniker": "Windows\\Paiements\\PaiementSaisieWindow.xaml",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Paiements\\PaiementSaisieWindow.xaml",
+              "RelativeToolTip": "Windows\\Paiements\\PaiementSaisieWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-29T13:54:52.987Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ArticleSaisieWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml",
-              "RelativeDocumentMoniker": "Windows\\Articles\\ArticleSaisieWindow.xaml",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Articles\\ArticleSaisieWindow.xaml",
-              "RelativeToolTip": "Windows\\Articles\\ArticleSaisieWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-28T19:24:28.38Z",
+              "DocumentIndex": 0,
+              "Title": "PaiementSaisieViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\PaiementSaisieViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\PaiementSaisieViewModel.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\PaiementSaisieViewModel.cs",
+              "RelativeToolTip": "ViewModels\\PaiementSaisieViewModel.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBsAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-28T19:57:18.786Z",
               "EditorCaption": ""
             }
           ]
