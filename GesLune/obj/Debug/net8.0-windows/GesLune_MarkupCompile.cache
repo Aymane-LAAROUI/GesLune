@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\aymane\source\repos\GesLune\GesLune\App.xaml
-101338458825
+12-944651429
 
-42-1207053625
+46-1463803963
 215-445047662
-Windows\Acteurs\ActeurSaisieWindow.xaml;Windows\Acteurs\ActeursWindow.xaml;Windows\Articles\ArticleSaisieWindow.xaml;Windows\Articles\ArticlesWindow.xaml;Windows\Documents\DocumentSaisieWindow.xaml;Windows\Documents\DocumentsWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\Paiements\PaiementSaisieWindow.xaml;Windows\Paiements\PaiementsWindow.xaml;
+Windows\Acteurs\ActeurSaisieWindow.xaml;Windows\Acteurs\ActeurSelectionWindow.xaml;Windows\Acteurs\ActeursWindow.xaml;Windows\Articles\ArticleSaisieWindow.xaml;Windows\Articles\ArticleSelectionWindow.xaml;Windows\Articles\ArticlesWindow.xaml;Windows\Documents\DocumentSaisieWindow.xaml;Windows\Documents\DocumentsWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\Paiements\PaiementSaisieWindow.xaml;Windows\Paiements\PaiementsWindow.xaml;
 
 False
 

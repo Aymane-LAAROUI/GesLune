@@ -1,5 +1,6 @@
 ﻿using GesLune.Models;
 using GesLune.ViewModels;
+using GesLune.Windows.Acteurs;
 using System.Windows;
 
 namespace GesLune.Windows
@@ -75,6 +76,16 @@ namespace GesLune.Windows
             Task.Run(
                 () => viewModel.EnregistrerLigne(selectedLine)
                 );
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.SelectActeur();
+        }
+
+        private void Rechercher_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.RechercherArticles();
         }
     }
 }

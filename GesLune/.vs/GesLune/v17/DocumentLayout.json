@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\paiementsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\paiementsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\paiements\\paiementsaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\paiements\\paiementsaisiewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\models\\model_paiement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:models\\model_paiement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,22 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Model_Paiement.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Paiement.cs",
-              "RelativeDocumentMoniker": "Models\\Model_Paiement.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Models\\Model_Paiement.cs",
-              "RelativeToolTip": "Models\\Model_Paiement.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAvwAwAAACGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:45:22.325Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -49,31 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PaiementSaisieWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Paiements\\PaiementSaisieWindow.xaml",
-              "RelativeDocumentMoniker": "Windows\\Paiements\\PaiementSaisieWindow.xaml",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Paiements\\PaiementSaisieWindow.xaml",
-              "RelativeToolTip": "Windows\\Paiements\\PaiementSaisieWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-29T13:54:52.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PaiementSaisieViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\PaiementSaisieViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\PaiementSaisieViewModel.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\PaiementSaisieViewModel.cs",
-              "RelativeToolTip": "ViewModels\\PaiementSaisieViewModel.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBsAAABDAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T19:57:18.786Z",
-              "EditorCaption": ""
             }
           ]
         }

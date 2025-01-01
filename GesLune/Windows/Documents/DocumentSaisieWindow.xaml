@@ -51,12 +51,11 @@
                    Grid.Column="2"
                    Content="Client:"
                    />
-            <ComboBox Grid.Row="0"
-                      Grid.Column="3"
-                      ItemsSource="{Binding Acteurs}"
-                      SelectedItem="{Binding Selected_Acteur , UpdateSourceTrigger=PropertyChanged}"
-                      DisplayMemberPath="Acteur_Nom"
-                     />
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="3" VerticalAlignment="Center">
+                <TextBlock Text="{Binding Selected_Acteur.Acteur_Nom, UpdateSourceTrigger=PropertyChanged}" 
+                           MinWidth="100" Margin="0,0,10,0"/>
+                <Button Content="Parcourir..." Click="BrowseButton_Click"/>
+            </StackPanel>
             <Label Grid.Row="1"
                    Grid.Column="2"
                    Content="Adresse:"
@@ -80,15 +79,30 @@
         </Grid>
 
         <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="Rechercher_Button" Content="Rechercher Artcile" Padding="10 3" Margin="5 3" Click="Rechercher_Button_Click"/>
             <Button x:Name="Supprimer_Button" Content="Supprimer" Padding="10 3" Margin="5 3" Click="Supprimer_Button_Click" />
             <Button Content="Enregistrer" Padding="10 3" Margin="5 3" Click="Button_Click"/>
         </DockPanel>
-        
+
         <DataGrid Grid.Row="3"
                   ItemsSource="{Binding Lignes}"
                   x:Name="MainDataGrid"
                   RowEditEnding="MainDataGrid_RowEditEnding"
-                  />
+                  >
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Prix Unitaire" Binding="{Binding Document_Ligne_Prix_Unitaire, StringFormat={}{0:N2}}" />
+                <DataGridTextColumn Header="Total" Binding="{Binding Document_Ligne_Total, StringFormat={}{0:N2}}" />-->
+                
+            </DataGrid.Columns>
 
+        </DataGrid>
+
+        <DockPanel Grid.Row="4"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   >
+            <TextBlock Text="{Binding Total_Document, StringFormat=N2}" />
+
+        </DockPanel>
     </Grid>
 </Window>

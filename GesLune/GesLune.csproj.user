@@ -10,7 +10,13 @@
     <Compile Update="Windows\Acteurs\ActeurSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Acteurs\ActeurSelectionWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Acteurs\ActeursWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Articles\ArticleSelectionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Articles\ArticlesWindow.xaml.cs">
@@ -30,6 +36,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Windows\Acteurs\ActeurSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Articles\ArticleSelectionWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Paiements\PaiementSaisieWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

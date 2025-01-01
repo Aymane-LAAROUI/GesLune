@@ -1,5 +1,7 @@
 ﻿using GesLune.Models;
 using GesLune.Repositories;
+using GesLune.Windows.Acteurs;
+using GesLune.Windows.Articles;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -85,12 +87,28 @@ namespace GesLune.ViewModels
             {
                 if (value != null)
                 {
+                    MessageBox.Show($"{value.Acteur_Id} sda9 machi null");
                     Document.Acteur_Id = value.Acteur_Id;
+                    Document.Document_Nom_Client = value.Acteur_Nom;
                     Document_Adresse_Client = value.Acteur_Adresse;
+                    OnPropertyChanged(nameof(Selected_Acteur));
                 }
-                    
+                  
             }
         }
+
+        private decimal _Total_Document;
+        public decimal Total_Document
+        {
+            get => _Total_Document;
+            set
+            {
+                _Total_Document = value;
+                //MessageBox.Show($"{_Total_Document} : {value}");
+                OnPropertyChanged(nameof(Total_Document));
+            }
+        }
+
         public DocumentSaisieViewModel(Model_Document? document = null)
         {
             _document = document ?? new Model_Document();
@@ -102,7 +120,7 @@ namespace GesLune.ViewModels
 
         private void LoadActeurs()
         {
-            Acteurs = ActeurRepository.GetAll(top:10);
+            Acteurs = ActeurRepository.GetAll();
             if (_document.Acteur_Id == 0) Selected_Acteur = Acteurs.FirstOrDefault();
         }
 
@@ -115,6 +133,7 @@ namespace GesLune.ViewModels
         public void LoadLignes()
         {
             Lignes = new(DocumentRepository.GetLignes(_document.Document_Id));
+            UpdateTotal();
         }
 
         public void Enregistrer()
@@ -125,7 +144,7 @@ namespace GesLune.ViewModels
                 var document_ = DocumentRepository.Enregistrer(_document);
                 if (document_ != null)
                 {
-                    MessageBox.Show($"nmra: {document_.Document_Num}");
+                    //MessageBox.Show($"nmra: {document_.Document_Num}");
                     Document = document_;
                 }
                 else MessageBox.Show("ra ja 5awi");
@@ -153,6 +172,47 @@ namespace GesLune.ViewModels
             int res = DocumentRepository.DeleteLigne(id);
             MessageBox.Show($"{res}");
             LoadLignes();
+        }
+
+        private void UpdateTotal()
+        {
+            decimal total = 0.00m;
+            foreach (var item in Lignes)
+            {
+                total += item.Document_Ligne_Total;
+            }
+            Total_Document = total;
+        }
+
+        public void SelectActeur()
+        {
+            ActeurSelectionWindow selectionWindow = new();
+            if (selectionWindow.ShowDialog() == true)
+            {
+                MessageBox.Show($"{selectionWindow.SelectedActeur?.Acteur_Id}");
+                Selected_Acteur = selectionWindow.SelectedActeur;
+            }
+        }
+
+        public void RechercherArticles()
+        {
+            ArticleSelectionWindow selectionWindow = new();
+            if (selectionWindow.ShowDialog() == true)
+            {
+                foreach (Model_Article article in selectionWindow.SelectedArticles)
+                {
+                    EnregistrerLigne(
+                        new()
+                        {
+                            Document_Ligne_Article_Nom = article.Article_Nom,
+                            Document_Ligne_Quantity = 1,
+                            Document_Ligne_Prix_Unitaire =(decimal) article.Article_Prix,
+                            Document_Id = Document.Document_Id,
+                            Document_Ligne_Total = (decimal)article.Article_Prix
+                        }
+                    );
+                }
+            }
         }
     }
 }

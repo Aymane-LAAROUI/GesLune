@@ -90,7 +90,7 @@ namespace GesLune.Repositories
             foreach (var param in parameters)
             {
                 command.Parameters.AddWithValue("@" + param.Key, param.Value ?? DBNull.Value);
-                MessageBox.Show($"{param.Value}");
+                //MessageBox.Show($"{param.Value}");
             }
             //MessageBox.Show(query);
             return command.ExecuteNonQuery();
