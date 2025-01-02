@@ -53,6 +53,7 @@
                 <DataGridTextColumn Header="Nom Acteur" Binding="{Binding Paiement_Acteur_Nom}" Width="*" />
                 <DataGridTextColumn Header="Date" Binding="{Binding Paiement_Date, StringFormat=d}" Width="Auto" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Paiement_Description}" Width="2*" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Paiement_Document_Id}" Width="2*" Visibility="Hidden"/>
             </DataGrid.Columns>
         </DataGrid>
         

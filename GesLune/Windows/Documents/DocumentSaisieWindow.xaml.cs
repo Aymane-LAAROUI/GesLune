@@ -1,6 +1,5 @@
 ﻿using GesLune.Models;
 using GesLune.ViewModels;
-using GesLune.Windows.Acteurs;
 using System.Windows;
 
 namespace GesLune.Windows
@@ -86,6 +85,11 @@ namespace GesLune.Windows
         private void Rechercher_Button_Click(object sender, RoutedEventArgs e)
         {
             viewModel.RechercherArticles();
+        }
+
+        private void Encaisser_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Encaisser();
         }
     }
 }

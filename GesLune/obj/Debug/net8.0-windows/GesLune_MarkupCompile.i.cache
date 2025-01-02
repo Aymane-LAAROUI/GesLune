@@ -16,5 +16,5 @@ C:\Users\aymane\source\repos\GesLune\GesLune\App.xaml
 215-445047662
 Windows\Acteurs\ActeurSaisieWindow.xaml;Windows\Acteurs\ActeurSelectionWindow.xaml;Windows\Acteurs\ActeursWindow.xaml;Windows\Articles\ArticleSaisieWindow.xaml;Windows\Articles\ArticleSelectionWindow.xaml;Windows\Articles\ArticlesWindow.xaml;Windows\Documents\DocumentSaisieWindow.xaml;Windows\Documents\DocumentsWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\Paiements\PaiementSaisieWindow.xaml;Windows\Paiements\PaiementsWindow.xaml;
 
-False
+True
 

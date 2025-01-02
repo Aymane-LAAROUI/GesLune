@@ -193,7 +193,6 @@ namespace GesLune.ViewModels
                 Selected_Acteur = selectionWindow.SelectedActeur;
             }
         }
-
         public void RechercherArticles()
         {
             ArticleSelectionWindow selectionWindow = new();
@@ -213,6 +212,19 @@ namespace GesLune.ViewModels
                     );
                 }
             }
+        }
+
+        public void Encaisser()
+        {
+            Model_Paiement paiement = new Model_Paiement()
+            {
+                Paiement_Acteur_Id = Document.Acteur_Id,
+                Paiement_Acteur_Nom = Selected_Acteur?.Acteur_Nom,
+                Paiement_Date = DateTime.Now,
+                Paiement_Document_Id = Document.Document_Id,
+                Paiement_Montant = Total_Document,
+            };
+            PaiementRepository.Enregistrer(paiement);
         }
     }
 }
