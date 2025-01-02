@@ -12,9 +12,21 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="0"
-                  x:Name="MainDataGrid"
-                  ItemsSource="{Binding Acteurs}"
-                  />
+          x:Name="MainDataGrid"
+          AutoGenerateColumns="False"
+          ItemsSource="{Binding Acteurs}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Acteur_Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Raison sociale" Binding="{Binding Acteur_Nom}" />
+                <DataGridTextColumn Header="Adresse" Binding="{Binding Acteur_Adresse}" />
+                <DataGridTextColumn Header="Téléphone" Binding="{Binding Acteur_Telephone}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Acteur_Email}" />
+                <DataGridTextColumn Header="Remarque" Binding="{Binding Acteur_Remarque}" />
+                <DataGridTextColumn Header="Type ID" Binding="{Binding Acteur_Type_Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="City ID" Binding="{Binding Acteur_Ville_Id}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
         <DockPanel Grid.Row="1"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Right"

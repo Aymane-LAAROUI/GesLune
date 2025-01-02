@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using GesLune.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.Identity.Client;
 using System.Data;
 using System.Windows;
 
@@ -55,6 +56,8 @@ namespace GesLune.Repositories
         
         public static int EnregistrerLigne(Model_Document_Ligne ligne)
         {
+            // Corriger le Sous total
+            ligne.Document_Ligne_Total = ligne.Document_Ligne_Prix_Unitaire * (decimal)ligne.Document_Ligne_Quantity;
             using SqlConnection connection = new (RepositoryBase.ConnectionString);
             connection.Open();
             // Check if the document exists

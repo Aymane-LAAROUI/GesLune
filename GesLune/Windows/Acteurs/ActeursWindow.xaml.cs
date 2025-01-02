@@ -1,5 +1,5 @@
 ﻿using GesLune.Models;
-using GesLune.ViewModels;
+using GesLune.ViewModels.Acteurs;
 using GesLune.Windows.Acteurs;
 using System.Windows;
 

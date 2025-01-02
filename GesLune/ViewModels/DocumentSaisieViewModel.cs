@@ -87,7 +87,7 @@ namespace GesLune.ViewModels
             {
                 if (value != null)
                 {
-                    MessageBox.Show($"{value.Acteur_Id} sda9 machi null");
+                    //MessageBox.Show($"{value.Acteur_Id} sda9 machi null");
                     Document.Acteur_Id = value.Acteur_Id;
                     Document.Document_Nom_Client = value.Acteur_Nom;
                     Document_Adresse_Client = value.Acteur_Adresse;
@@ -150,7 +150,7 @@ namespace GesLune.ViewModels
                 else MessageBox.Show("ra ja 5awi");
 
                 // Afficher un message de succès
-                MessageBox.Show("Opération réussie", "Succès");
+                //MessageBox.Show("Opération réussie", "Succès");
             }
             catch (Exception ex)
             {
@@ -170,7 +170,7 @@ namespace GesLune.ViewModels
         public void Delete(int id)
         {
             int res = DocumentRepository.DeleteLigne(id);
-            MessageBox.Show($"{res}");
+            //MessageBox.Show($"{res}");
             LoadLignes();
         }
 
@@ -189,7 +189,7 @@ namespace GesLune.ViewModels
             ActeurSelectionWindow selectionWindow = new();
             if (selectionWindow.ShowDialog() == true)
             {
-                MessageBox.Show($"{selectionWindow.SelectedActeur?.Acteur_Id}");
+                //MessageBox.Show($"{selectionWindow.SelectedActeur?.Acteur_Id}");
                 Selected_Acteur = selectionWindow.SelectedActeur;
             }
         }

@@ -36,12 +36,23 @@
         </ListView>
         <DataGrid Grid.Row="1"
                   Grid.Column="1"
-                  AutoGenerateColumns="True"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding Articles}"
                   IsReadOnly="True"
                   x:Name="MainDataGrid"
                   SelectedItem="{Binding Selected_Article, Mode=TwoWay}"
-                  />
+                  VirtualizingPanel.IsVirtualizing="True"
+                  VirtualizingPanel.VirtualizationMode="Recycling"
+                  EnableRowVirtualization="True"
+                  EnableColumnVirtualization="True">
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Identifiant" Binding="{Binding Article_Id}" Width="100" />
+                <DataGridTextColumn Header="Désignation" Binding="{Binding Article_Nom}" Width="200" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Article_Description}" Width="300" />
+                <DataGridTextColumn Header="Prix" Binding="{Binding Article_Prix, StringFormat=C}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
         <DockPanel Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Right"

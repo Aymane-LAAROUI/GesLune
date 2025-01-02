@@ -37,12 +37,38 @@
                   >
         </ListView>
         <DataGrid Grid.Row="1"
-                  Grid.Column="1"
-                  AutoGenerateColumns="True"
-                  ItemsSource="{Binding Documents}"
-                  IsReadOnly="True"
-                  x:Name="MainDataGrid"
-                  />
+          Grid.Column="1"
+          AutoGenerateColumns="False"
+          ItemsSource="{Binding Documents}"
+          IsReadOnly="True"
+          x:Name="MainDataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Document_Id}" 
+                                    Visibility="Hidden"
+                                    />
+                <DataGridTextColumn Header="Numéro de bon"
+                                    Binding="{Binding Document_Num}" />
+                <DataGridTextColumn Header="Societé"
+                                    Binding="{Binding Document_Nom_Ste}" 
+                                    Visibility="Hidden"
+                                    />
+                <DataGridTextColumn Header="ICE"
+                                    Binding="{Binding Document_Ice}"
+                                    Visibility="Hidden"
+                                    />
+                <DataGridTextColumn Header="Date"
+                                    Binding="{Binding Document_Date, StringFormat=dd/MM/yyyy}" />
+                <DataGridTextColumn Header="Nom du client"
+                                    Binding="{Binding Document_Nom_Client}" />
+                <DataGridTextColumn Header="Adresse du client"
+                                    Binding="{Binding Document_Adresse_Client}" />
+                <DataGridTextColumn Header="Type ID"
+                                    Binding="{Binding Document_Type_Id}" />
+                <DataGridTextColumn Header="Actor ID" Binding="{Binding Acteur_Id}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
         <DockPanel Grid.Row="2"
                    Grid.Column="1"
                    HorizontalAlignment="Right"

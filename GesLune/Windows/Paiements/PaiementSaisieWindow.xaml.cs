@@ -26,5 +26,10 @@ namespace GesLune.Windows.Paiements
         {
             this.Close();
         }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.SelectActeur();
+        }
     }
 }

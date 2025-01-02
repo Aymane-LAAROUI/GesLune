@@ -37,15 +37,24 @@
               DisplayMemberPath="Paiement_Type_Nom"
               >
         </ListView>
-        
+
         <DataGrid Grid.Row="1"
                   Grid.Column="1"
-                  AutoGenerateColumns="True"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding Paiements}"
                   IsReadOnly="True"
                   x:Name="MainDataGrid"
                   SelectedItem="{Binding Selected_Paiement, Mode=TwoWay}"
-              />
+              >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Identifiant" Binding="{Binding Paiement_Id}" Width="Auto" />
+                <DataGridTextColumn Header="Montant" Binding="{Binding Paiement_Montant, StringFormat=N2}" Width="*" />
+                <DataGridTextColumn Header="Acteur ID" Binding="{Binding Paiement_Acteur_Id}" Width="Auto" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Nom Acteur" Binding="{Binding Paiement_Acteur_Nom}" Width="*" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Paiement_Date, StringFormat=d}" Width="Auto" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Paiement_Description}" Width="2*" />
+            </DataGrid.Columns>
+        </DataGrid>
         
         <DockPanel Grid.Row="2"
                Grid.Column="1"

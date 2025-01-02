@@ -85,17 +85,32 @@
         </DockPanel>
 
         <DataGrid Grid.Row="3"
-                  ItemsSource="{Binding Lignes}"
-                  x:Name="MainDataGrid"
-                  RowEditEnding="MainDataGrid_RowEditEnding"
-                  >
+          ItemsSource="{Binding Lignes}"
+          x:Name="MainDataGrid"
+          AutoGenerateColumns="False"
+          SelectionMode="Extended"
+          RowEditEnding="MainDataGrid_RowEditEnding">
             <DataGrid.Columns>
-                <!--<DataGridTextColumn Header="Prix Unitaire" Binding="{Binding Document_Ligne_Prix_Unitaire, StringFormat={}{0:N2}}" />
-                <DataGridTextColumn Header="Total" Binding="{Binding Document_Ligne_Total, StringFormat={}{0:N2}}" />-->
-                
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Document_Ligne_Id}"
+                                    Visibility="Hidden"
+                                    />
+                <DataGridTextColumn Header="Quantité"
+                                    Binding="{Binding Document_Ligne_Quantity}" />
+                <DataGridTextColumn Header="Désignation"
+                                    Binding="{Binding Document_Ligne_Article_Nom}" />
+                <DataGridTextColumn Header="Prix unitaire"
+                                    Binding="{Binding Document_Ligne_Prix_Unitaire, StringFormat=C}" />
+                <DataGridTextColumn Header="Sous total"
+                                    Binding="{Binding Document_Ligne_Total, StringFormat=C}"
+                                    IsReadOnly="True"
+                                    />
+                <DataGridTextColumn Header="Document ID"
+                                    Binding="{Binding Document_Id}"
+                                    Visibility="Hidden"/>
             </DataGrid.Columns>
-
         </DataGrid>
+
 
         <DockPanel Grid.Row="4"
                    VerticalAlignment="Center"

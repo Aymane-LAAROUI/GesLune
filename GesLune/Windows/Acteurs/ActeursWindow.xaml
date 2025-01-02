@@ -37,15 +37,26 @@
               DisplayMemberPath="Acteur_Type_Nom"
               >
         </ListView>
-        
+
         <DataGrid Grid.Row="1"
                   Grid.Column="1"
-                  AutoGenerateColumns="True"
+                  x:Name="MainDataGrid"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding Acteurs}"
                   IsReadOnly="True"
-                  x:Name="MainDataGrid"
                   SelectedItem="{Binding Selected_Acteur, Mode=TwoWay}"
-              />
+              >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Acteur_Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Header="Raison sociale" Binding="{Binding Acteur_Nom}" />
+                <DataGridTextColumn Header="Adresse" Binding="{Binding Acteur_Adresse}" />
+                <DataGridTextColumn Header="Téléphone" Binding="{Binding Acteur_Telephone}" />
+                <DataGridTextColumn Header="Email" Binding="{Binding Acteur_Email}" />
+                <DataGridTextColumn Header="Remarque" Binding="{Binding Acteur_Remarque}" />
+                <DataGridTextColumn Header="Type ID" Binding="{Binding Acteur_Type_Id}" Visibility="Hidden" />
+                <DataGridTextColumn Header="City ID" Binding="{Binding Acteur_Ville_Id}" />
+            </DataGrid.Columns>
+        </DataGrid>
         
         <DockPanel Grid.Row="2"
                Grid.Column="1"

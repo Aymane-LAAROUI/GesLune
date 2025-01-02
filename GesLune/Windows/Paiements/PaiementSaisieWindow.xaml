@@ -42,12 +42,13 @@
                      SelectedDate="{Binding Paiement.Paiement_Date , UpdateSourceTrigger=PropertyChanged}"
                      />
                     <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding Paiement.Paiement_Description}" />
-                    <ComboBox Grid.Row="5"
-                              Grid.Column="1"
-                              ItemsSource="{Binding Acteurs}"
-                              SelectedItem="{Binding Selected_Acteur}"
-                              DisplayMemberPath="Acteur_Nom"
-                              />
+                    <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Selected_Acteur.Acteur_Nom, UpdateSourceTrigger=PropertyChanged}" 
+                                   Margin="0,0,10,0"
+                                   MinWidth="300"
+                                   />
+                        <Button Content="Parcourir..." Click="BrowseButton_Click"/>
+                    </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>

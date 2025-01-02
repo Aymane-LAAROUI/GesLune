@@ -1,5 +1,5 @@
 ﻿using GesLune.Models;
-using GesLune.ViewModels;
+using GesLune.ViewModels.Articles;
 using System.Windows;
 
 namespace GesLune.Windows.Articles
@@ -20,7 +20,7 @@ namespace GesLune.Windows.Articles
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"{MainDataGrid.SelectedItems} mnha {MainDataGrid.SelectedItems.Count}");
+            //MessageBox.Show($"{MainDataGrid.SelectedItems} mnha {MainDataGrid.SelectedItems.Count}");
 
             if (MainDataGrid.SelectedItems != null && MainDataGrid.SelectedItems.Count > 0)
             {

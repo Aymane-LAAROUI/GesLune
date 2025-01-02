@@ -1,5 +1,5 @@
 ﻿using GesLune.Models;
-using GesLune.ViewModels;
+using GesLune.ViewModels.Articles;
 using System.Windows;
 
 namespace GesLune.Windows.Articles
@@ -11,6 +11,7 @@ namespace GesLune.Windows.Articles
         {
             InitializeComponent();
             viewModel = new();
+            MainDataGrid.Items.Clear();
             this.DataContext = viewModel;
         }
 
