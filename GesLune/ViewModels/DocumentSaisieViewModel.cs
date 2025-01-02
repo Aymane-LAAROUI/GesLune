@@ -2,6 +2,7 @@
 using GesLune.Repositories;
 using GesLune.Windows.Acteurs;
 using GesLune.Windows.Articles;
+using GesLune.Windows.Documents;
 using System.Collections.ObjectModel;
 using System.Windows;
 
@@ -96,7 +97,6 @@ namespace GesLune.ViewModels
                   
             }
         }
-
         private decimal _Total_Document;
         public decimal Total_Document
         {
@@ -225,6 +225,11 @@ namespace GesLune.ViewModels
                 Paiement_Montant = Total_Document,
             };
             PaiementRepository.Enregistrer(paiement);
+        }
+
+        public void Transferer()
+        {
+            new DocumentTransfertWindow(Document).ShowDialog();
         }
     }
 }

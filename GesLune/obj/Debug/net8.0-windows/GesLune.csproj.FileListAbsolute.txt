@@ -78,3 +78,6 @@ C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\refint\Ges
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\GesLune.pdb
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\GesLune.genruntimeconfig.cache
 C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\ref\GesLune.dll
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Documents\DocumentTransfertWindow.g.cs
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\Windows\Documents\DocumentTransfertWindow.baml
+C:\Users\aymane\source\repos\GesLune\GesLune\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

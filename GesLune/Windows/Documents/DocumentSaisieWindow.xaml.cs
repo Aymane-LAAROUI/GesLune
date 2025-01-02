@@ -1,5 +1,6 @@
 ﻿using GesLune.Models;
 using GesLune.ViewModels;
+using GesLune.Windows.Documents;
 using System.Windows;
 
 namespace GesLune.Windows
@@ -90,6 +91,11 @@ namespace GesLune.Windows
         private void Encaisser_Button_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Encaisser();
+        }
+
+        private void Transferer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Transferer();
         }
     }
 }

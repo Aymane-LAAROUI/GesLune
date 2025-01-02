@@ -79,6 +79,7 @@
         </Grid>
 
         <DockPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button x:Name="Transferer_Button" Content="Transférer" Padding="10 3" Margin="5 3" Click="Transferer_Button_Click"/>
             <Button x:Name="Encaisser_Button" Content="Encaisser" Padding="10 3" Margin="5 3" Click="Encaisser_Button_Click"/>
             <Button x:Name="Rechercher_Button" Content="Rechercher Artcile" Padding="10 3" Margin="5 3" Click="Rechercher_Button_Click"/>
             <Button x:Name="Supprimer_Button" Content="Supprimer" Padding="10 3" Margin="5 3" Click="Supprimer_Button_Click" />
