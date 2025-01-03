@@ -38,11 +38,11 @@ namespace GesLune.Windows
             }
 
             // Confirm deletion
-            var result = MessageBox.Show("Voulez-vous vraiment supprimer cette ligne ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No)
-            {
-                return;
-            }
+            //var result = MessageBox.Show("Voulez-vous vraiment supprimer cette ligne ?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //if (result == MessageBoxResult.No)
+            //{
+            //    return;
+            //}
 
             // Get the DataRow and remove it from the DataTable
             //var dataRow = selectedRowView.Row;

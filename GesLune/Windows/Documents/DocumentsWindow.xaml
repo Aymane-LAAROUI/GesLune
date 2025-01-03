@@ -59,13 +59,14 @@
                                     />
                 <DataGridTextColumn Header="Date"
                                     Binding="{Binding Document_Date, StringFormat=dd/MM/yyyy}" />
+                <DataGridTextColumn Header="Identifiant d'acteur"
+                                    Binding="{Binding Document_Acteur_Id}" />
                 <DataGridTextColumn Header="Nom du client"
-                                    Binding="{Binding Document_Nom_Client}" />
+                                    Binding="{Binding Document_Acteur_Nom}" />
                 <DataGridTextColumn Header="Adresse du client"
-                                    Binding="{Binding Document_Adresse_Client}" />
+                                    Binding="{Binding Document_Acteur_Adresse}" />
                 <DataGridTextColumn Header="Type ID"
                                     Binding="{Binding Document_Type_Id}" />
-                <DataGridTextColumn Header="Actor ID" Binding="{Binding Acteur_Id}" />
             </DataGrid.Columns>
         </DataGrid>
 

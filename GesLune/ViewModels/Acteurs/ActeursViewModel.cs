@@ -107,5 +107,14 @@ namespace GesLune.ViewModels.Acteurs
             int res = ActeurRepository.Delete(id);
             LoadData();
         }
+
+        public void ShowReleve()
+        {
+            if (Selected_Acteur == null) return;
+            if (Selected_Acteur.Acteur_Id == 0) return;
+            ActeurReleveWindow window = new(Selected_Acteur);
+            //window.Acteur = Selected_Acteur;
+            window.ShowDialog();
+        }
     }
 }

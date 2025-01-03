@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\documents\\documentsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\documents\\documentsaisieviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\acteurs\\acteurreleveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\acteurs\\acteurreleveviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\viewmodels\\acteurs\\acteursviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:viewmodels\\acteurs\\acteursviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\acteurs\\acteurrelevewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\acteurs\\acteurrelevewindow.xaml.cs||{8B382828-6202-11D1-8870-0000F87579D2}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|c:\\users\\aymane\\source\\repos\\geslune\\geslune\\windows\\acteurs\\acteurrelevewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}|GesLune.csproj|solutionrelative:windows\\acteurs\\acteurrelevewindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +42,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DocumentSaisieViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Documents\\DocumentSaisieViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\Documents\\DocumentSaisieViewModel.cs",
-              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Documents\\DocumentSaisieViewModel.cs",
-              "RelativeToolTip": "ViewModels\\Documents\\DocumentSaisieViewModel.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAcwGgAAAAVAAAA",
+              "DocumentIndex": 1,
+              "Title": "ActeursViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Acteurs\\ActeursViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\Acteurs\\ActeursViewModel.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Acteurs\\ActeursViewModel.cs",
+              "RelativeToolTip": "ViewModels\\Acteurs\\ActeursViewModel.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAkwG0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T00:00:19.322Z",
+              "WhenOpened": "2025-01-03T16:59:26.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ActeurReleveWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Acteurs\\ActeurReleveWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\Acteurs\\ActeurReleveWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Acteurs\\ActeurReleveWindow.xaml.cs",
+              "RelativeToolTip": "Windows\\Acteurs\\ActeurReleveWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T16:58:54.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ActeurReleveWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Acteurs\\ActeurReleveWindow.xaml",
+              "RelativeDocumentMoniker": "Windows\\Acteurs\\ActeurReleveWindow.xaml",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\Windows\\Acteurs\\ActeurReleveWindow.xaml",
+              "RelativeToolTip": "Windows\\Acteurs\\ActeurReleveWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-01-03T16:58:37.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ActeurReleveViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Acteurs\\ActeurReleveViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\Acteurs\\ActeurReleveViewModel.cs",
+              "ToolTip": "C:\\Users\\aymane\\source\\repos\\GesLune\\GesLune\\ViewModels\\Acteurs\\ActeurReleveViewModel.cs",
+              "RelativeToolTip": "ViewModels\\Acteurs\\ActeurReleveViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA0AAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T16:57:30.197Z",
               "EditorCaption": ""
             }
           ]

@@ -31,6 +31,41 @@ namespace GesLune.Repositories
             return connection.Query<Model_Acteur>($"SELECT * FROM Tble_Acteurs WHERE Acteur_Type_Id = {Acteur_Type_Id}").ToList();
         }
 
+        public static DataTable GetReleve(int Acteur_Id)
+        {
+            using SqlConnection connection = new SqlConnection(RepositoryBase.ConnectionString);
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                // Open the connection
+                connection.Open();
+
+                // Create the command and specify the stored procedure
+                using SqlCommand command = new SqlCommand("sp_releve_acteur", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                // Add the parameter for the stored procedure
+                command.Parameters.AddWithValue("@ActeurId", Acteur_Id);
+
+                // Execute the command and fill the DataTable
+                using SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                // Log the error and throw the exception
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
+
+            // Return the populated DataTable
+            return dataTable;
+        }
+
+
         public static Model_Acteur Enregistrer(Model_Acteur model)
         {
             using SqlConnection connection = new(RepositoryBase.ConnectionString);

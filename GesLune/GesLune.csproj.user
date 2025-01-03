@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Windows\Acteurs\ActeurReleveWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Acteurs\ActeurSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +42,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Windows\Acteurs\ActeurReleveWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Acteurs\ActeurSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

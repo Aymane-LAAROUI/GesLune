@@ -23,10 +23,12 @@
                Grid.ColumnSpan="2"
                Orientation="Horizontal"
              >
-            <Button Content="Filtrer"
-                Background="Transparent"
-                BorderThickness="0"
-                Padding="10,5" 
+            <Button x:Name="Releve_Button"
+                    Content="Relevé"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Padding="10,5"
+                    Click="Releve_Button_Click"
                 />
         </StackPanel>
         

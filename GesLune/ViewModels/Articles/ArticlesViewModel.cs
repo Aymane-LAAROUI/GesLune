@@ -8,7 +8,7 @@ namespace GesLune.ViewModels.Articles
 {
     public class ArticlesViewModel : ViewModelBase
     {
-        public List<Model_Article> Articles { get; set; }
+        public List<Model_Article> Articles { get; set; } = [];
         public Model_Article? Selected_Article { get; set; }
         public NavigationCommand SaisieNavigationCommand { get; private set; }
 
@@ -33,6 +33,7 @@ namespace GesLune.ViewModels.Articles
             try
             {
                 Articles = ArticleRepository.GetAll();
+                OnPropertyChanged(nameof(Articles));
             }
             catch (Exception ex)
             {
