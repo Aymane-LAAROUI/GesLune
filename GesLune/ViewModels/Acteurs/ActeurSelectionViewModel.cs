@@ -9,9 +9,12 @@ namespace GesLune.ViewModels.Acteurs
         //public Model_Acteur? SelectedActeur { get; set; }
         //public event EventHandler<Model_Acteur?>? SelectedActeurChanged;
 
-        public ActeurSelectionViewModel()
+        public ActeurSelectionViewModel(int Acteur_Type_Id = 0)
         {
-            Acteurs = ActeurRepository.GetAll();
+            if (Acteur_Type_Id == 0)
+                Acteurs = ActeurRepository.GetAll();
+            else
+                Acteurs = ActeurRepository.GetByTypeId(Acteur_Type_Id);
             OnPropertyChanged(nameof(Acteurs));
         }
 

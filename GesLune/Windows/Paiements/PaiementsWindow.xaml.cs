@@ -1,5 +1,5 @@
 ﻿using GesLune.Models;
-using GesLune.ViewModels;
+using GesLune.ViewModels.Paiements;
 using GesLune.Windows.Paiements;
 using System.Windows;
 

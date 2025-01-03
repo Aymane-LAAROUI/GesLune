@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\aymane\source\repos\GesLune\GesLune\App.xaml
 13-2008386119
 
-501998597234
+50662125427
 215-445047662
 Windows\Acteurs\ActeurSaisieWindow.xaml;Windows\Acteurs\ActeurSelectionWindow.xaml;Windows\Acteurs\ActeursWindow.xaml;Windows\Articles\ArticleSaisieWindow.xaml;Windows\Articles\ArticleSelectionWindow.xaml;Windows\Articles\ArticlesWindow.xaml;Windows\Documents\DocumentSaisieWindow.xaml;Windows\Documents\DocumentsWindow.xaml;Windows\Documents\DocumentTransfertWindow.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\Paiements\PaiementSaisieWindow.xaml;Windows\Paiements\PaiementsWindow.xaml;
 
-True
+False
 

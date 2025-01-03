@@ -5,6 +5,7 @@
         public int Document_Type_Id { get; set; }
         public string Document_Type_Nom { get; set; }
         public string Document_Type_Nom_Abrege { get; set; }
+        public int Document_Type_Acteur_Type_Id { get; set; }
 
         public Model_Document_Type() { }
 
