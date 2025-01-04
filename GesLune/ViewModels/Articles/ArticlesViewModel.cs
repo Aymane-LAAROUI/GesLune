@@ -47,5 +47,11 @@ namespace GesLune.ViewModels.Articles
             LoadData();
         }
 
+        public void AfficherFicheStock()
+        { 
+            if (Selected_Article == null) return;
+            new ArticleFicheStockWindow(Selected_Article.Article_Id).ShowDialog();
+        }
+
     }
 }

@@ -22,10 +22,11 @@
                    Grid.ColumnSpan="2"
                    Orientation="Horizontal"
                  >
-            <Button Content="Filtrer"
+            <Button Content="Fiche de stock"
                     Background="Transparent"
                     BorderThickness="0"
                     Padding="10,5" 
+                    Click="Button_Click_1"
                     />
         </StackPanel>
 

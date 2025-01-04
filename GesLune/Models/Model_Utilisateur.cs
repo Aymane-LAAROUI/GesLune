@@ -15,6 +15,6 @@
             Utilisateur_Password = utilisateur_Password;
         }
 
-
+        public Model_Utilisateur() { }
     }
 }

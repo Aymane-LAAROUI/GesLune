@@ -19,6 +19,9 @@
     <Compile Update="Windows\Acteurs\ActeursWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Articles\ArticleFicheStockWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Articles\ArticleSelectionWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Documents\DocumentTransfertWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Articles\EtatStockWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\LoginWindow.xaml.cs">
@@ -48,10 +54,16 @@
     <Page Update="Windows\Acteurs\ActeurSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\Articles\ArticleFicheStockWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Articles\ArticleSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Documents\DocumentTransfertWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Articles\EtatStockWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Paiements\PaiementSaisieWindow.xaml">
@@ -82,6 +94,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Utilisateurs\UtilisateurSaisieWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Utilisateurs\UtilisateursWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

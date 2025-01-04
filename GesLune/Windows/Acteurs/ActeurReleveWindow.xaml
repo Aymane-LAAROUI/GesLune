@@ -16,10 +16,6 @@
                   AutoGenerateColumns="True"
                   ItemsSource="{Binding Releve}"
                   >
-            <!--<DataGrid.Columns>
-                <DataGridTextColumn Header="Date"/>
-                <DataGridTextColumn Header=""/>
-            </DataGrid.Columns>-->
         </DataGrid>
     </Grid>
 </Window>

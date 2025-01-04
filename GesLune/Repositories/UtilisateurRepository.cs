@@ -8,6 +8,12 @@ namespace GesLune.Repositories
     public class UtilisateurRepository
     {
 
+        public static List<Model_Utilisateur> GetAll()
+        {
+            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            return connection.Query<Model_Utilisateur>("SELECT * FROM Tble_Utilisateurs").ToList();
+        }
+
         public static Model_Utilisateur? Authenticate(string username, string password)
         {
             using SqlConnection connection = new(RepositoryBase.ConnectionString);
@@ -19,6 +25,24 @@ namespace GesLune.Repositories
 
             return connection.QueryFirstOrDefault<Model_Utilisateur>
                 ("sp_authenticate_utilisateur", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        public static Model_Utilisateur Enregistrer(Model_Utilisateur model)
+        {
+            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            Object parameters = new
+            {
+                model.Utilisateur_Id,
+                model.Utilisateur_Login,
+                model.Utilisateur_Password,
+            };
+            return connection.QueryFirst<Model_Utilisateur>("sp_save_utilisateur",parameters,commandType: CommandType.StoredProcedure);
+        }
+
+        public static int Delete(int Utilisateur_Id)
+        {
+            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            return connection.Execute("DELETE FROM Tble_Utilisateurs WHERE Utilisateur_Id = " + Utilisateur_Id);
         }
 
     }

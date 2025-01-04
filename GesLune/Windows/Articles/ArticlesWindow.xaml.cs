@@ -48,5 +48,10 @@ namespace GesLune.Windows.Articles
             //int id = Convert.ToInt32(dataRow["Article_Id"]);
             viewModel.Delete(selectedModel.Article_Id);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            viewModel.AfficherFicheStock();
+        }
     }
 }

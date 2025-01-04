@@ -1,0 +1,66 @@
+﻿<Window x:Class="GesLune.Windows.UtilisateursWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune.Windows"
+        mc:Ignorable="d"
+        Title="UtilisateursWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"
+               Orientation="Horizontal"
+             >
+            <Button Content="Filtrer"
+                Background="Transparent"
+                BorderThickness="0"
+                Padding="10,5" 
+                />
+        </StackPanel>
+        
+        <ListView Grid.Row="1"
+              Grid.Column="0"
+              SelectedItem="{Binding SelectedFilter}" 
+              ItemsSource="{Binding Filtres}"
+              DisplayMemberPath="Utilisateur_Type_Nom"
+              >
+        </ListView>
+
+        <DataGrid Grid.Row="1"
+                  Grid.Column="1"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Utilisateurs}"
+                  IsReadOnly="True"
+                  x:Name="MainDataGrid"
+                  SelectedItem="{Binding Selected_Utilisateur, Mode=TwoWay}"
+              >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Identifiant" Binding="{Binding Utilisateur_Id}" Width="Auto" />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Utilisateur_Login, StringFormat=N2}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <DockPanel Grid.Row="2"
+               Grid.Column="1"
+               HorizontalAlignment="Right"
+               Margin="6 0"
+               >
+            <Button x:Name="Ouvrir_Button" Margin="3 6" Content="Ouvrir" Padding="10 3" Command="{Binding SaisieNavigationCommand}"/>
+            <Button x:Name="Nouveau_Button" Margin="3 6" Content="Nouveau" Padding="10 3" Command="{Binding SaisieNavigationCommand}"/>
+            <Button x:Name="Supprimer_Button" Margin="3 6" Content="Supprimer" Padding="10 3" Click="Supprimer_Button_Click"/>
+            <Button x:Name="Fermer_Button" Margin="3 6" Content="Fermer" Padding="10 3" Click="Fermer_Button_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>

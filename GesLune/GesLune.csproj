@@ -23,6 +23,12 @@
     <Compile Update="Windows\Articles\ArticleSaisieWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\Utilisateurs\UtilisateurSaisieWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Utilisateurs\UtilisateursWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using GesLune.Commands;
-using GesLune.Models;
 using GesLune.Models.UI;
 using GesLune.Repositories;
 using GesLune.Windows;
@@ -9,28 +8,6 @@ namespace GesLune.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        //private IEnumerable<Model_Document_Type> _documentMenuItems = [];
-        //public IEnumerable<Model_Document_Type> DocumentMenuItems
-        //{
-        //    get => _documentMenuItems;
-        //    set
-        //    {
-        //        _documentMenuItems = value;
-        //        OnPropertyChanged(nameof(DocumentMenuItems));
-        //    }
-        //}
-
-        //private IEnumerable<Model_Acteur_Type> _acteurMenuItems = [];
-        //public IEnumerable<Model_Acteur_Type> ActeurMenuItems
-        //{
-        //    get => _acteurMenuItems;
-        //    set
-        //    {
-        //        _acteurMenuItems = value;
-        //        OnPropertyChanged(nameof(ActeurMenuItems));
-        //    }
-        //}
-
         public List<MenuItemModel> MenuItems { get; set; } = [];
         public NavigationCommand ActeurNavigationCommand { get; private set; }
         public NavigationCommand DocumentNavigationCommand { get; private set; }
@@ -38,8 +15,6 @@ namespace GesLune.ViewModels
 
         public MainViewModel() 
         {
-            //LoadDocumentMenuItems();
-            //LoadActeurMenuItems();
             ActeurNavigationCommand = new(ActeurNavigate, CanActeurNavigate);
             DocumentNavigationCommand = new(DocumentNavigate, CanDocumentNavigate);
             PaiementNavigationCommand = new(PaiementNavigate, CanPaiementNavigate);
@@ -51,30 +26,21 @@ namespace GesLune.ViewModels
             ArgumentNullException.ThrowIfNull(obj);
             new DocumentsWindow((int)obj).ShowDialog();
         }
-
         private bool CanDocumentNavigate(object? obj) => true;
-
         private void ActeurNavigate(object? id)
         {
             ArgumentNullException.ThrowIfNull(id);
             new ActeursWindow((int)id).ShowDialog();
         }
-
         private bool CanActeurNavigate(object? id) => true;
-        
-        private void ArticleNavigate(object? id)
-        {
-            new ArticlesWindow().ShowDialog();
-        }
-
+        private void ArticleNavigate(object? id) => new ArticlesWindow().ShowDialog();
         private bool CanArticleNavigate(object? id) => true;
-
-        private void PaiementNavigate(object? obj)
-        {
-            new PaiementsWindow().ShowDialog();
-        }
-
+        private void PaiementNavigate(object? obj) => new PaiementsWindow().ShowDialog();
         private bool CanPaiementNavigate(object? obj) => true;
+        private void UtilisateurNavigate(object? obj) => new UtilisateursWindow().ShowDialog();
+        private bool CanUtilisateurNavigate(object? obj) => true;
+        private void EtatStockNavigate(object? obj) => new EtatStockWindow().ShowDialog();
+        private bool CanEtatStockNavigate(object? obj) => true;
 
         private void LoadMenuItems()
         {
@@ -82,11 +48,30 @@ namespace GesLune.ViewModels
             MenuItems.Clear();
 
             // Init Top Main MenuItems
-            MenuItemModel fichier = new() { Text = "Fichier"};
+            MenuItemModel Fichier = new() { Text = "Fichier"};
             MenuItemModel Parametrage = new() { Text = "Paramètrage" };
+            MenuItemModel Stock = new() { Text = "Stock"};
             MenuItemModel Traitement = new() { Text = "Traitement" };
 
             // Fill each Main MenuItem
+            // Fichier
+            Fichier.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Utilisateurs",
+                    Command = new NavigationCommand(UtilisateurNavigate, CanUtilisateurNavigate)
+                }
+            );
+
+            // Stock
+            Stock.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Etat de stock",
+                    Command = new NavigationCommand(EtatStockNavigate, CanEtatStockNavigate)
+                }
+            );
+
             // Parametrage: (Acteurs)
             ActeurRepository.GetTypes().ForEach(
                 e => Parametrage.Items.Add(
@@ -128,7 +113,8 @@ namespace GesLune.ViewModels
                 );
 
             // Add Main MenuItems Into the List
-            MenuItems.Add( fichier );
+            MenuItems.Add( Fichier );
+            MenuItems.Add( Stock );
             MenuItems.Add( Parametrage );
             MenuItems.Add( Traitement );
 
