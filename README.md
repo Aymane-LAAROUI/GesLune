@@ -1,5 +1,5 @@
 # GesLune
-04-01-2025
+V0.1.0
  - Ne pas supprimer les documents encaissés
  - Correctif date dd/mm/yyyy
  - Correctif sasie de date (date enregistré ?? Date.now)
