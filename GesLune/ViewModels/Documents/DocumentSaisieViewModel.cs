@@ -183,6 +183,7 @@ namespace GesLune.ViewModels.Documents
                 Selected_Acteur = selectionWindow.SelectedActeur;
             }
         }
+
         public void RechercherArticles()
         {
             ArticleSelectionWindow selectionWindow = new();

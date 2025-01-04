@@ -95,6 +95,8 @@ namespace GesLune.ViewModels.Documents
         public void Delete(int id)
         {
             int res = DocumentRepository.Delete(id);
+            if (res == 0) MessageBox.Show("Impossible de supprimer un document Encaissé!!");
+            else MessageBox.Show("Opération réussie");
             LoadData();
         }
 

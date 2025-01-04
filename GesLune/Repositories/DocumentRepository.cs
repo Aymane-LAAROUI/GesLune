@@ -103,6 +103,12 @@ namespace GesLune.Repositories
         public static int Delete(int Document_Id)
         {
             using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            // VERIFIER SI LE DOCUMENT EST DEJA ENCAISSEE
+            var command = new SqlCommand($"SELECT Paiement_Id FROM Tble_Paiements WHERE Paiement_Document_Id = {Document_Id}", connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader != null && reader.HasRows) return 0;
+            reader?.Close();
             return connection.Execute($"DELETE FROM Tble_Documents WHERE Document_Id = {Document_Id}");
         }
 

@@ -51,7 +51,7 @@
                 <DataGridTextColumn Header="Montant" Binding="{Binding Paiement_Montant, StringFormat=N2}" Width="*" />
                 <DataGridTextColumn Header="Acteur ID" Binding="{Binding Paiement_Acteur_Id}" Width="Auto" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Nom Acteur" Binding="{Binding Paiement_Acteur_Nom}" Width="*" />
-                <DataGridTextColumn Header="Date" Binding="{Binding Paiement_Date, StringFormat=d}" Width="Auto" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Paiement_Date, StringFormat=dd/MM/yyyy}" Width="Auto" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Paiement_Description}" Width="2*" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Paiement_Document_Id}" Width="2*" Visibility="Hidden"/>
             </DataGrid.Columns>

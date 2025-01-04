@@ -32,6 +32,7 @@
                    HorizontalAlignment="Right"
                    >
             <Button Padding="5" Margin = "7 5" Content = "Selectionner" Click="Button_Click_1"/>
+            <Button x:Name="Nouveau_Button" Margin="3 6" Content="Nouveau" Padding="10 3" Command="{Binding SaisieNavigationCommand}"/>
             <Button Padding="5" Margin = "7 5"  Content = "Annuler" Click="Button_Click"/>
         </DockPanel>
     </Grid>

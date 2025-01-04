@@ -1,15 +1,36 @@
-﻿using GesLune.Models;
+﻿using GesLune.Commands;
+using GesLune.Models;
 using GesLune.Repositories;
+using GesLune.Windows.Acteurs;
 
 namespace GesLune.ViewModels.Acteurs
 {
     public class ActeurSelectionViewModel : ViewModelBase
     {
-        public IEnumerable<Model_Acteur> Acteurs { get; set; }
-        //public Model_Acteur? SelectedActeur { get; set; }
-        //public event EventHandler<Model_Acteur?>? SelectedActeurChanged;
+        public IEnumerable<Model_Acteur> Acteurs { get; set; } = [];
+        public NavigationCommand SaisieNavigationCommand { get; private set; }
+        private readonly int Acteur_Type_Id;
+        public ActeurSelectionViewModel(int Acteur_Type_Id)
+        {
+            this.Acteur_Type_Id = Acteur_Type_Id;
+            LoadData();
+            SaisieNavigationCommand = new(SaisieNavigate, CanSaisieNavigate);
+        }
+        private bool CanSaisieNavigate(object? obj) => true;
 
-        public ActeurSelectionViewModel(int Acteur_Type_Id = 0)
+        private void SaisieNavigate(object? obj)
+        {
+            Model_Acteur model = 
+                new()
+                {
+                    Acteur_Type_Id = this.Acteur_Type_Id,
+                };
+            ActeurSaisieWindow saisieWindow = new(model);
+            saisieWindow.ShowDialog();
+            LoadData();
+        }
+
+        private void LoadData()
         {
             if (Acteur_Type_Id == 0)
                 Acteurs = ActeurRepository.GetAll();
@@ -17,11 +38,5 @@ namespace GesLune.ViewModels.Acteurs
                 Acteurs = ActeurRepository.GetByTypeId(Acteur_Type_Id);
             OnPropertyChanged(nameof(Acteurs));
         }
-
-        //public void Select(Model_Acteur model)
-        //{
-        //    SelectedActeur = model;
-        //    SelectedActeurChanged?.Invoke(this, model);
-        //}
     }
 }
