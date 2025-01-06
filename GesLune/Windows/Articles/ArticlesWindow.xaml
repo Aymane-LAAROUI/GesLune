@@ -46,11 +46,11 @@
                   VirtualizingPanel.VirtualizationMode="Recycling"
                   EnableRowVirtualization="True"
                   EnableColumnVirtualization="True">
-                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Identifiant" Binding="{Binding Article_Id}" Width="100" />
                 <DataGridTextColumn Header="Désignation" Binding="{Binding Article_Nom}" Width="200" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Article_Description}" Width="300" />
+                <DataGridCheckBoxColumn Header="Stockable" Binding="{Binding Article_Stockable}" Width="auto" />
                 <DataGridTextColumn Header="Prix" Binding="{Binding Article_Prix, StringFormat=C}" Width="100" />
             </DataGrid.Columns>
         </DataGrid>

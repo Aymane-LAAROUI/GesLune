@@ -50,6 +50,7 @@ namespace GesLune.ViewModels.Articles
         public void AfficherFicheStock()
         { 
             if (Selected_Article == null) return;
+            if (!Selected_Article.Article_Stockable) return;
             new ArticleFicheStockWindow(Selected_Article.Article_Id).ShowDialog();
         }
 

@@ -30,7 +30,7 @@ namespace GesLune.Repositories
             connection.Open();
 
             // Create the SqlCommand and set the CommandType to StoredProcedure
-            using var command = new SqlCommand("sp_fiche_article", connection)
+            using var command = new SqlCommand("sp_fiche_stock", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };

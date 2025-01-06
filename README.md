@@ -17,3 +17,8 @@ V0.2.1
  - Supprimer le filtre "tout" pour Acteur
  - Relevé CLT / FRS
  - Relevé Filtre de date
+
+V0.2.2
+ - Definir un article comme non stockable
+ - Etat de stock pour tous les E/S
+ - Fiche de stock pour tous les E/S

@@ -28,14 +28,17 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Grid.Column="0" Content="Nom:"/>
                     <Label Grid.Row="1" Grid.Column="0" Content="Description:"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="Prix:"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Stockable:"/>
                     <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding Article.Article_Nom}" />
                     <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Article.Article_Description}" />
                     <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding Article.Article_Prix}" />
+                    <CheckBox Grid.Row="3" Grid.Column="1" Margin="10 5" IsChecked="{Binding Article.Article_Stockable}" />
                 </Grid>
             </TabItem>
         </TabControl>
