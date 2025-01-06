@@ -1,9 +1,11 @@
+# Visual Studio files
+.vs/
+
 # Build outputs
 bin/
 obj/
 
 # User-specific files
-.vs/
 *.user
 *.suo
 
@@ -11,19 +13,8 @@ obj/
 packages/
 NuGet.exe
 
-# IDE/Editor files
-.vscode/
-.idea/
-
 # Miscellaneous
 .DS_Store
 Thumbs.db
 *.log
 *.bak
-
-# Environment-specific files
-.env
-appsettings.Development.json
-
-# Test results
-TestResults/

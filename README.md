@@ -10,3 +10,10 @@ V0.2.0
  - Etat du stock
  - Fiche de stock
  - Utilisateurs CRUD
+
+V0.2.1
+ - Correctif suppression document encaissé
+ - Correctif choix CLT / FRS dans saisie document
+ - Supprimer le filtre "tout" pour Acteur
+ - Relevé CLT / FRS
+ - Relevé Filtre de date

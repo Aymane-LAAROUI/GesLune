@@ -1,6 +1,8 @@
 ﻿using GesLune.Models;
 using System.Windows;
 using GesLune.Repositories;
+using GesLune.Windows;
+using System.Diagnostics;
 
 namespace GesLune.ViewModels.Documents
 {
@@ -54,7 +56,6 @@ namespace GesLune.ViewModels.Documents
             LoadFiltres(selectedFiltreId);
             LoadData();
         }
-
         public void LoadFiltres(int selectedFiltreId)
         {
             try
@@ -77,7 +78,6 @@ namespace GesLune.ViewModels.Documents
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void LoadData()
         {
             try
@@ -92,11 +92,26 @@ namespace GesLune.ViewModels.Documents
             }
         }
 
+        public void Ajouter()
+        {
+            Model_Document model = new()
+            {
+                Document_Type_Id = SelectedFilter?.Document_Type_Id ?? 0,
+            };
+            var saisieWindow = new DocumentSaisieWindow(model);
+            saisieWindow.ShowDialog();
+            LoadData();
+        }
         public void Delete(int id)
         {
-            int res = DocumentRepository.Delete(id);
-            if (res == 0) MessageBox.Show("Impossible de supprimer un document Encaissé!!");
-            else MessageBox.Show("Opération réussie");
+            if (DocumentRepository.EstEncaisse(id))
+            {
+                MessageBox.Show("Déjà encaissée!");
+                return;
+            }
+            int res1 = DocumentRepository.DeleteDocumentLignes(id);
+            int res2 = DocumentRepository.Delete(id);
+            MessageBox.Show("Opération réussie");
             LoadData();
         }
 

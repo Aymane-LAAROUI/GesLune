@@ -76,10 +76,7 @@ namespace GesLune.ViewModels.Acteurs
         {
             try
             {
-                IEnumerable<Model_Acteur_Type> filtres = [
-                        new Model_Acteur_Type(0,"Tous","")
-                    ];
-                Filtres = filtres.Concat(ActeurRepository.GetTypes());
+                Filtres = ActeurRepository.GetTypes();
                 SelectedFilter = Filtres.FirstOrDefault(e => e.Acteur_Type_Id == selectedFiltreId);
             }
             catch (Exception ex)

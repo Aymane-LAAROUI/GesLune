@@ -100,16 +100,27 @@ namespace GesLune.Repositories
             //MessageBox.Show($"{res}", "Succès");
         }
 
-        public static int Delete(int Document_Id)
+        public static bool EstEncaisse(int Document_Id)
         {
             using SqlConnection connection = new(RepositoryBase.ConnectionString);
             // VERIFIER SI LE DOCUMENT EST DEJA ENCAISSEE
             var command = new SqlCommand($"SELECT Paiement_Id FROM Tble_Paiements WHERE Paiement_Document_Id = {Document_Id}", connection);
             connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader != null && reader.HasRows) return 0;
-            reader?.Close();
+            using SqlDataReader reader = command.ExecuteReader();
+            if (reader != null && reader.HasRows) return true;
+            return false;
+        }
+
+        public static int Delete(int Document_Id)
+        {
+            using SqlConnection connection = new(RepositoryBase.ConnectionString);
             return connection.Execute($"DELETE FROM Tble_Documents WHERE Document_Id = {Document_Id}");
+        }
+
+        public static int DeleteDocumentLignes(int Document_Id)
+        {
+            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            return connection.Execute($"DELETE FROM Tble_Document_Lignes WHERE Document_Id = {Document_Id}");
         }
 
         public static int DeleteLigne(int Document_Ligne_Id)

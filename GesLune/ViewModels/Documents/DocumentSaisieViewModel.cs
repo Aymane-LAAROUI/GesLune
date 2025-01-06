@@ -62,13 +62,17 @@ namespace GesLune.ViewModels.Documents
                 }
             }
         }
-        public Model_Document_Type? Selected_Type
+        private Model_Document_Type _Selected_Type;
+        public Model_Document_Type Selected_Type
         {
-            get => _document_types.Find(e => e.Document_Type_Id == _document.Document_Type_Id);
+            get => _Selected_Type;
             set
             {
                 if (value != null)
+                {
                     Document.Document_Type_Id = value.Document_Type_Id;
+                    _Selected_Type = value;
+                }
             }
         }
         private Model_Acteur? _Selected_Acteur;
@@ -112,12 +116,13 @@ namespace GesLune.ViewModels.Documents
             _lignes = [];
             LoadDocumentTypes();
             LoadLignes();
+            _Selected_Type = Document_Types.Find(e => _document.Document_Type_Id == e.Document_Type_Id)!;
         }
 
         private void LoadDocumentTypes()
         {
             Document_Types = DocumentRepository.GetTypes();
-            if (_document.Document_Type_Id == 0) Selected_Type = Document_Types.FirstOrDefault();
+            if (_document.Document_Type_Id == 0) Selected_Type = Document_Types.First();
         }
 
         public void LoadLignes()
@@ -176,7 +181,7 @@ namespace GesLune.ViewModels.Documents
 
         public void SelectActeur()
         {
-            ActeurSelectionWindow selectionWindow = new(Selected_Type?.Document_Type_Acteur_Type_Id ?? 0);
+            ActeurSelectionWindow selectionWindow = new(Selected_Type.Document_Type_Acteur_Type_Id);
             if (selectionWindow.ShowDialog() == true)
             {
                 //MessageBox.Show($"{selectionWindow.SelectedActeur?.Acteur_Id}");

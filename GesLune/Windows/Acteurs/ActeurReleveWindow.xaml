@@ -17,5 +17,11 @@
                   ItemsSource="{Binding Releve}"
                   >
         </DataGrid>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Center">
+            <Label Content="Du:"/>
+            <DatePicker SelectedDate="{Binding DateDu}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+            <Label Content="Au:"/>
+            <DatePicker SelectedDate="{Binding DateAu}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+        </DockPanel>
     </Grid>
 </Window>

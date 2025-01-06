@@ -76,7 +76,7 @@
                    Margin="6 0"
                    >
             <Button x:Name="Ouvrir_Button" Margin="3 6" Content="Ouvrir" Padding="10 3" Click="Ouvrir_Button_Click" />
-            <Button x:Name="Nouveau_Button" Margin="3 6" Content="Nouveau" Padding="10 3" Click="Nouveau_Button_Click"/>
+            <Button x:Name="Nouveau_Button" Margin="3 6" Content="Nouveau" Padding="10 3" Click="Nouveau_Button_Click" Width="70"/>
             <Button x:Name="Supprimer_Button" Margin="3 6" Content="Supprimer" Padding="10 3" Click="Supprimer_Button_Click"/>
             <Button x:Name="Fermer_Button" Margin="3 6" Content="Fermer" Padding="10 3" Click="Fermer_Button_Click"/>
         </DockPanel>

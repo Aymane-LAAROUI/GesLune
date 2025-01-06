@@ -79,9 +79,7 @@ namespace GesLune.Windows
 
         private void Nouveau_Button_Click(object sender, RoutedEventArgs e)
         {
-            var saisieWindow = new DocumentSaisieWindow();
-            saisieWindow.ShowDialog();
-            viewModel.LoadData();
+            viewModel.Ajouter();
         }
     }
 }

@@ -13,5 +13,10 @@ namespace GesLune.Windows.Acteurs
             viewModel = new(Acteur);
             this.DataContext = viewModel;
         }
+
+        private void DatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            viewModel.LoadData();
+        }
     }
 }
