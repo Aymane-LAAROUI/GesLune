@@ -11,6 +11,7 @@
         public string Document_Acteur_Nom { get; set; } = string.Empty;
         public string? Document_Acteur_Adresse { get; set; }
         public int Document_Type_Id { get; set; }
+        public int Document_Reference_Id { get; set; }
 
         public Model_Document() { }
     }

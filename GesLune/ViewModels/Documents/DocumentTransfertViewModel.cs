@@ -34,6 +34,9 @@ namespace GesLune.ViewModels.Documents
             document.Document_Type_Id = SelectedDocumentType.Document_Type_Id;
             var documentLignes = DocumentRepository.GetLignes(document.Document_Id);
 
+            // SET The reference
+            document.Document_Reference_Id = Document.Document_Id;
+
             // REMOVE ALL PKs
             document.Document_Id = 0;
             document.Document_Num = string.Empty;

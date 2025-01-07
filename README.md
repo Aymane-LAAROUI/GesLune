@@ -22,3 +22,8 @@ V0.2.2
  - Definir un article comme non stockable
  - Etat de stock pour tous les E/S
  - Fiche de stock pour tous les E/S
+
+V0.2.3
+ - Correctif relevé (Retirer Debit et crédit pour les documents transferés ou non payables)
+ - Correctif calcul de stock (Stock calculé en double en cas de transfert des documents)
+ - Stock alert
