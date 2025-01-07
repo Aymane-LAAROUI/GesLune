@@ -11,7 +11,7 @@ namespace GesLune
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = new LoginWindow();
+            var mainWindow = new ArticlesWindow();
             mainWindow.Show(); 
         }
     }

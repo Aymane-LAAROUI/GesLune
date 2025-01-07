@@ -10,13 +10,13 @@ namespace GesLune.Repositories
 
         public static List<Model_Utilisateur> GetAll()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Utilisateur>("SELECT * FROM Tble_Utilisateurs").ToList();
         }
 
         public static Model_Utilisateur? Authenticate(string username, string password)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             Object parameters = new
             {
                 Utilisateur_Login = username,
@@ -29,7 +29,7 @@ namespace GesLune.Repositories
 
         public static Model_Utilisateur Enregistrer(Model_Utilisateur model)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             Object parameters = new
             {
                 model.Utilisateur_Id,
@@ -41,7 +41,7 @@ namespace GesLune.Repositories
 
         public static int Delete(int Utilisateur_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute("DELETE FROM Tble_Utilisateurs WHERE Utilisateur_Id = " + Utilisateur_Id);
         }
 

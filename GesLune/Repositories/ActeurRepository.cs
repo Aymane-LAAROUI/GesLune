@@ -10,31 +10,31 @@ namespace GesLune.Repositories
     {
         public static List<Model_Acteur> GetAll()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Acteur>("SELECT * FROM Tble_Acteurs").ToList();
         }
 
         public static List<Model_Acteur> GetAll(int top)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Acteur>($"SELECT TOP({top}) * FROM Tble_Acteurs").ToList();
         }
 
         public static List<Model_Acteur_Type> GetTypes()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Acteur_Type>($"SELECT * FROM Tble_Acteur_Types").ToList();
         }
 
         public static List<Model_Acteur> GetByTypeId(int Acteur_Type_Id) 
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Acteur>($"SELECT * FROM Tble_Acteurs WHERE Acteur_Type_Id = {Acteur_Type_Id}").ToList();
         }
 
         public static DataTable GetReleve(int Acteur_Id,DateTime? DateDu = null,DateTime? DateAu = null)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             DataTable dataTable = new();
 
             // Set default values for DateDu and DateAu if they are null
@@ -88,7 +88,7 @@ namespace GesLune.Repositories
 
         public static Model_Acteur Enregistrer(Model_Acteur model)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             // Préparer les paramètres pour la procédure stockée
             var parameters = new DynamicParameters();
             foreach (var property in model.GetType().GetProperties())
@@ -106,7 +106,7 @@ namespace GesLune.Repositories
 
         public static int Delete(int Acteur_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute
                 ($"DELETE FROM Tble_Acteurs WHERE Acteur_Id = {Acteur_Id}");
         }

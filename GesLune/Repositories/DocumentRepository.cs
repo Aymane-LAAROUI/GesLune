@@ -11,13 +11,13 @@ namespace GesLune.Repositories
     {
         public static List<Model_Document> GetAll()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Document>("SELECT * FROM Tble_Documents").ToList();
         }
 
         public static List<Model_Document> GetByTypeId(int Document_Type_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Document>
                 ($"SELECT * FROM Tble_Documents WHERE Document_Type_Id = {Document_Type_Id}")
                 .ToList();
@@ -25,19 +25,19 @@ namespace GesLune.Repositories
 
         public static List<Model_Document_Type> GetTypes()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Document_Type>("SELECT * FROM Tble_Document_Types").ToList();
         }
 
         public static List<Model_Document_Ligne> GetLignes(int Document_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Document_Ligne>($"SELECT * FROM Tble_Document_Lignes WHERE Document_Id = {Document_Id}").ToList();
         }
 
         public static Model_Document Enregistrer(Model_Document model)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             // Préparer les paramètres pour la procédure stockée
             var parameters = new DynamicParameters();
             foreach (var property in model.GetType().GetProperties())
@@ -58,7 +58,7 @@ namespace GesLune.Repositories
         {
             // Corriger le Sous total
             ligne.Document_Ligne_Total = ligne.Document_Ligne_Prix_Unitaire * (decimal)ligne.Document_Ligne_Quantity;
-            using SqlConnection connection = new (RepositoryBase.ConnectionString);
+            using SqlConnection connection = new (MainRepository.ConnectionString);
             connection.Open();
             // Check if the document exists
             string verifQuery = "SELECT COUNT(Document_Ligne_Id) FROM Tble_Document_Lignes WHERE Document_Ligne_Id = @Document_Ligne_Id";
@@ -102,7 +102,7 @@ namespace GesLune.Repositories
 
         public static bool EstEncaisse(int Document_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             // VERIFIER SI LE DOCUMENT EST DEJA ENCAISSEE
             var command = new SqlCommand($"SELECT Paiement_Id FROM Tble_Paiements WHERE Paiement_Document_Id = {Document_Id}", connection);
             connection.Open();
@@ -113,19 +113,19 @@ namespace GesLune.Repositories
 
         public static int Delete(int Document_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute($"DELETE FROM Tble_Documents WHERE Document_Id = {Document_Id}");
         }
 
         public static int DeleteDocumentLignes(int Document_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute($"DELETE FROM Tble_Document_Lignes WHERE Document_Id = {Document_Id}");
         }
 
         public static int DeleteLigne(int Document_Ligne_Id)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute($"DELETE FROM Tble_Document_Lignes WHERE Document_Ligne_Id = {Document_Ligne_Id}");
         }
 

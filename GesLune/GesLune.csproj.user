@@ -66,6 +66,12 @@
     <Page Update="Windows\Articles\EtatStockWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Windows\Categories\CategorieSaisieWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Categories\CategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Paiements\PaiementSaisieWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

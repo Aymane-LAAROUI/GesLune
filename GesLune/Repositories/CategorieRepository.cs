@@ -5,21 +5,27 @@ using System.Data;
 
 namespace GesLune.Repositories
 {
-    public class PaiementRepository
+    public class CategorieRepository
     {
-        public static List<Model_Paiement> GetAll()
+        public static List<Model_Categorie> GetAll()
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
-            return connection.Query<Model_Paiement>("SELECT * FROM Tble_Paiements").ToList();
+            return connection.Query<Model_Categorie>("SELECT * FROM Tble_Categories").ToList();
+        }
+        
+        public static Model_Categorie GetById(int id)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.QueryFirst<Model_Categorie>("SELECT * FROM Tble_Categories WHERE Categorie_Id = " + id);
         }
 
         public static int Delete(int id) 
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
-            return connection.Execute("DELETE FROM Tble_Paiements WHERE Paiement_Id = " + id);
+            return connection.Execute("DELETE FROM Tble_Categories WHERE Categorie_Id = " + id);
         }
 
-        public static Model_Paiement Enregistrer(Model_Paiement model)
+        public static Model_Categorie Enregistrer(Model_Categorie model)
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
             // Préparer les paramètres pour la procédure stockée
@@ -30,8 +36,8 @@ namespace GesLune.Repositories
                 var propertyValue = property.GetValue(model); //?? DBNull.Value
                 parameters.Add("@" + propertyName, propertyValue);
             }
-            return connection.QueryFirst<Model_Paiement>(
-                    "sp_save_paiement", // Nom de la procédure stockée
+            return connection.QueryFirst<Model_Categorie>(
+                    "sp_save_Categorie", // Nom de la procédure stockée
                     parameters,
                     commandType: CommandType.StoredProcedure
                 );

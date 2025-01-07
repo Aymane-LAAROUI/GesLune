@@ -9,13 +9,13 @@ namespace GesLune.Repositories
     {
         public static List<Model_Article> GetAll()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Article>("SELECT * FROM Tble_Articles").ToList();
         }
 
         public static DataTable GetEtatStock()
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             connection.Open();
             SqlCommand command = new("SELECT * FROM view_etat_stock",connection);
             SqlDataAdapter adapter = new(command);
@@ -26,7 +26,7 @@ namespace GesLune.Repositories
         
         public static DataTable GetFicheStock(int Article_Id)
         {
-            using var connection = new SqlConnection(RepositoryBase.ConnectionString);
+            using var connection = new SqlConnection(MainRepository.ConnectionString);
             connection.Open();
 
             // Create the SqlCommand and set the CommandType to StoredProcedure
@@ -48,7 +48,7 @@ namespace GesLune.Repositories
 
         public static Model_Article Enregistrer(Model_Article model)
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             // Préparer les paramètres pour la procédure stockée
             var parameters = new DynamicParameters();
             foreach (var property in model.GetType().GetProperties())
@@ -66,7 +66,7 @@ namespace GesLune.Repositories
 
         public static int Delete(int id) 
         {
-            using SqlConnection connection = new(RepositoryBase.ConnectionString);
+            using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute("DELETE FROM Tble_Articles WHERE Article_Id = " + id);
         }
 

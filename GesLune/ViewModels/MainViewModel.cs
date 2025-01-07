@@ -63,15 +63,6 @@ namespace GesLune.ViewModels
                 }
             );
 
-            // Stock
-            Stock.Items.Add(
-                new MenuItemModel()
-                {
-                    Text = "Etat de stock",
-                    Command = new NavigationCommand(EtatStockNavigate, CanEtatStockNavigate)
-                }
-            );
-
             // Parametrage: (Acteurs)
             ActeurRepository.GetTypes().ForEach(
                 e => Parametrage.Items.Add(
@@ -84,12 +75,31 @@ namespace GesLune.ViewModels
                 )
             );
 
+            // Parametrage: (Categories)
+            Parametrage.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Categorie",
+                    Command = new NavigationCommand(e => new CategoriesWindow().ShowDialog(),e => true),
+                }
+            );
             // Parametrage: (Articles)
             Parametrage.Items.Add(
                 new MenuItemModel()
                 {
-                    Text = "Articles",
+                    Text = "Article",
                     Command = new NavigationCommand(ArticleNavigate,CanArticleNavigate)
+                }
+            );
+
+
+
+            // Stock
+            Stock.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Etat de stock",
+                    Command = new NavigationCommand(EtatStockNavigate, CanEtatStockNavigate)
                 }
             );
 
