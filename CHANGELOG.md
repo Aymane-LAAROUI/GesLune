@@ -6,9 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - (Add new features or changes here as you work on them.)
 
-## [0.3.0] - YYYY-MM-DD
+## [0.3.0] - 2025-01-07
 ### Added
-- CRUD functionality.
+- Catégorie CRUD functionality.
 - Article => Catégorie association.
 
 ### Fixed
