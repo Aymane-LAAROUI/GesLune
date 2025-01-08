@@ -3,6 +3,8 @@ using GesLune.Models.UI;
 using GesLune.Repositories;
 using GesLune.Windows;
 using GesLune.Windows.Articles;
+using GesLune.Windows.Statistiques;
+using System.Windows;
 
 namespace GesLune.ViewModels
 {
@@ -52,6 +54,7 @@ namespace GesLune.ViewModels
             MenuItemModel Parametrage = new() { Text = "Paramètrage" };
             MenuItemModel Stock = new() { Text = "Stock"};
             MenuItemModel Traitement = new() { Text = "Traitement" };
+            MenuItemModel Stats = new() { Text = "Statistique" };
 
             // Fill each Main MenuItem
             // Fichier
@@ -122,11 +125,21 @@ namespace GesLune.ViewModels
                 }
                 );
 
+            // STATS
+            Stats.Items.Add(
+                new MenuItemModel()
+                {
+                    Text = "Chiffre d'affaire",
+                    Command = new NavigationCommand(e => new ChiffreAffaireWindow().ShowDialog(),e => true),
+                }
+            );
+
             // Add Main MenuItems Into the List
             MenuItems.Add( Fichier );
             MenuItems.Add( Stock );
             MenuItems.Add( Parametrage );
             MenuItems.Add( Traitement );
+            MenuItems.Add( Stats );
 
             //Notify the UI
             OnPropertyChanged(nameof(MenuItems));

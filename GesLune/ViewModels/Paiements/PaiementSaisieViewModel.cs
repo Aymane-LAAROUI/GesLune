@@ -23,9 +23,32 @@ namespace GesLune.ViewModels.Paiements
                 }
             }
         }
+
+        private Model_Paiement_Type _Selected_Type;
+        public Model_Paiement_Type Selected_Type
+        {
+            get => _Selected_Type;
+            set
+            {
+                if (value != null)
+                {
+                    _Selected_Type = value;
+                    Paiement.Paiement_Type_Id = value.Paiement_Type_Id;
+                    OnPropertyChanged(nameof(Selected_Type));
+                }
+            }
+        }
+        public List<Model_Paiement_Type> Types { get; private set; }
         public PaiementSaisieViewModel(Model_Paiement model)
         {
             Paiement = model ?? new Model_Paiement();
+            LoadTypes();
+            _Selected_Type = Types.Find(e => e.Paiement_Type_Id == Paiement.Paiement_Type_Id) ?? Types.First();
+        }
+
+        public void LoadTypes()
+        {
+            Types = PaiementRepository.GetTypes();
         }
 
         public void Enregistrer()

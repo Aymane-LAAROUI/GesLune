@@ -35,6 +35,17 @@ namespace GesLune.Repositories
             return connection.Query<Model_Document_Ligne>($"SELECT * FROM Tble_Document_Lignes WHERE Document_Id = {Document_Id}").ToList();
         }
 
+        public static DataTable GetChiffreAffaireMensuel()
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            connection.Open();
+            SqlCommand command = new("SELECT * FROM view_chiffre_affaire_mensuel ORDER BY Chiffre_Affaire_Annee, Chiffre_Affaire_Mois",connection);
+            SqlDataAdapter adapter = new(command);
+            DataTable dt = new();
+            adapter.Fill(dt);
+            return dt;
+        }
+
         public static Model_Document Enregistrer(Model_Document model)
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);

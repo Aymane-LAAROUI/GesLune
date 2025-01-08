@@ -1,7 +1,7 @@
 ﻿using GesLune.Repositories;
 using System.Data;
 
-namespace GesLune.ViewModels.Articles
+namespace GesLune.ViewModels.Stocks
 {
     public class EtatStockViewModel : ViewModelBase
     {

@@ -13,6 +13,12 @@ namespace GesLune.Repositories
             return connection.Query<Model_Paiement>("SELECT * FROM Tble_Paiements").ToList();
         }
 
+        public static List<Model_Paiement_Type> GetTypes()
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.Query<Model_Paiement_Type>("SELECT * FROM Tble_Paiement_Types").ToList();
+        }
+
         public static int Delete(int id) 
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);

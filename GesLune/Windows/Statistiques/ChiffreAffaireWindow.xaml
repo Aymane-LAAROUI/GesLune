@@ -1,0 +1,18 @@
+﻿<Window x:Class="GesLune.Windows.Statistiques.ChiffreAffaireWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune.Windows.Statistiques"
+        xmlns:vms="clr-namespace:GesLune.ViewModels.Statistiques"
+        xmlns:UC="clr-namespace:GesLune.UserControls"
+        mc:Ignorable="d"
+        Title="ChiffreAffaireWindow" Height="450" Width="800"
+        >
+    <!-- Separate ViewModel specifically for the UserControl -->
+    <UC:SolidColorChartUserControl>
+        <UC:SolidColorChartUserControl.DataContext>
+            <vms:ChiffreAffaireViewModel/>
+        </UC:SolidColorChartUserControl.DataContext>
+    </UC:SolidColorChartUserControl>
+</Window>

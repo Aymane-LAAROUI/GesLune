@@ -1,4 +1,4 @@
-﻿using GesLune.ViewModels.Articles;
+﻿using GesLune.ViewModels.Stocks;
 using System.Windows;
 
 namespace GesLune.Windows.Articles

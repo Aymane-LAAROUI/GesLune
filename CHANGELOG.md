@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-- (Add new features or changes here as you work on them.)
+- Impression.
+- Tickets de caisse.
+- Inventaire.
+
+## [0.4.0]
+### Added
+- Chiffre d'affaires.
+- Modes de paiement.
 
 ## [0.3.0] - 2025-01-07
 ### Added

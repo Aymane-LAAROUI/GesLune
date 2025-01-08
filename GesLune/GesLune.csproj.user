@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UserControls\SolidColorChartUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\Acteurs\ActeurReleveWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,7 +22,10 @@
     <Compile Update="Windows\Acteurs\ActeursWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\Articles\ArticleFicheStockWindow.xaml.cs">
+    <Compile Update="Windows\Statistiques\ChiffreAffaireWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Windows\Stocks\ArticleFicheStockWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\Articles\ArticleSelectionWindow.xaml.cs">
@@ -37,7 +43,7 @@
     <Compile Update="Windows\Documents\DocumentTransfertWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\Articles\EtatStockWindow.xaml.cs">
+    <Compile Update="Windows\Stocks\EtatStockWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\LoginWindow.xaml.cs">
@@ -48,13 +54,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UserControls\SolidColorChartUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Windows\Acteurs\ActeurReleveWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Acteurs\ActeurSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\Articles\ArticleFicheStockWindow.xaml">
+    <Page Update="Windows\Statistiques\ChiffreAffaireWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\Stocks\ArticleFicheStockWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Articles\ArticleSelectionWindow.xaml">
@@ -63,7 +75,7 @@
     <Page Update="Windows\Documents\DocumentTransfertWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Windows\Articles\EtatStockWindow.xaml">
+    <Page Update="Windows\Stocks\EtatStockWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\Categories\CategorieSaisieWindow.xaml">

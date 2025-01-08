@@ -9,8 +9,7 @@
         public DateTime Paiement_Date {  get; set; } = DateTime.Now;
         public string? Paiement_Description {  get; set; }
         public int? Paiement_Document_Id { get; set; }
-
+        public int Paiement_Type_Id { get; set; }
         public Model_Paiement() { }
-
     }
 }

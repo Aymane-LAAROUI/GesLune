@@ -19,6 +19,7 @@
                   VirtualizingPanel.VirtualizationMode="Recycling"
                   EnableRowVirtualization="True"
                   EnableColumnVirtualization="True"
+                  IsReadOnly="True"
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Identifiant" Binding="{Binding Article_Id}" Width="100" />
