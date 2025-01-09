@@ -30,17 +30,32 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Content="Nom:"/>
                     <Label Grid.Row="1" Grid.Column="0" Content="Description:"/>
                     <Label Grid.Row="2" Grid.Column="0" Content="Prix:"/>
                     <Label Grid.Row="3" Grid.Column="0" Content="Stockable:"/>
                     <Label Grid.Row="4" Grid.Column="0" Content="Catégorie:"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Codes à barre:"/>
                     <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding Article.Article_Nom}" />
                     <TextBox  Grid.Row="1" Grid.Column="1" Text="{Binding Article.Article_Description}" />
                     <TextBox  Grid.Row="2" Grid.Column="1" Text="{Binding Article.Article_Prix}" />
                     <CheckBox Grid.Row="3" Grid.Column="1" Margin="10 5" IsChecked="{Binding Article.Article_Stockable}" />
                     <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Categories, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Selected_Categorie}" DisplayMemberPath="Categorie_Nom"/>
+                    <DockPanel Grid.Row="5"
+                               Grid.Column="1"
+                               HorizontalAlignment="Stretch"
+                               LastChildFill="False"
+                               >
+                        <TextBox MinWidth="50" Text="{Binding New_Code, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Content="+" Click="Button_Click_1"/>
+                        <ListView DockPanel.Dock="Left"
+                                  ItemsSource="{Binding Codes, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedItem="{Binding Selected_Code}"
+                                  />
+                        <Button Content="-" Click="Button_Click"/>
+                    </DockPanel>
                 </Grid>
             </TabItem>
         </TabControl>

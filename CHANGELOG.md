@@ -2,13 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.5.0] - 2025-01-08
 ### Added
-- Impression.
-- Tickets de caisse.
-- Inventaire.
+- Code Barre CRUD.
 
-## [0.4.0]
+## [0.4.0] - 2025-01-08
 ### Added
 - Chiffre d'affaires.
 - Modes de paiement.

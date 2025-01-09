@@ -19,19 +19,25 @@ namespace GesLune.ViewModels.Articles
                 OnPropertyChanged(nameof(Selected_Categorie));
             }
         }
+        public List<string> Codes { get; set; }
+        public string? Selected_Code { get; set; }
+        public string New_Code { get; set; } = string.Empty;
         public ArticleSaisieViewModel(Model_Article? model)
         {
             Article = model ?? new Model_Article();
             Categories = CategorieRepository.GetAll();
             if (model == null || model.Article_Categorie_Id == 0)
             {
-                Selected_Categorie = Categories.First();
-                MessageBox.Show("ra 5awi");
+                _Categorie = Categories.First();
+                Codes = [];
+                OnPropertyChanged(nameof (Codes));
+                //MessageBox.Show("ra 5awi");
             }
             else
             {
-                Selected_Categorie = Categories.Find(e => e.Categorie_Id == model.Article_Categorie_Id)!;
-                MessageBox.Show($"{Selected_Categorie.Categorie_Nom}");
+                _Categorie = Categories.Find(e => e.Categorie_Id == model.Article_Categorie_Id)!;
+                Codes = ArticleRepository.GetCodes(Article.Article_Id);
+                OnPropertyChanged(nameof(Codes));
             }
             OnPropertyChanged(nameof(Selected_Categorie));
         }
@@ -50,6 +56,21 @@ namespace GesLune.ViewModels.Articles
             {
                 MessageBox.Show($"Une erreur s'est produite : {ex.Message}", "Erreur");
             }
+        }
+
+        public void AjouterCode()
+        {
+            if (string.IsNullOrEmpty(New_Code)) return;
+            ArticleRepository.AddCode(Article.Article_Id, New_Code);
+            Codes = ArticleRepository.GetCodes(Article.Article_Id);
+            OnPropertyChanged(nameof(Codes));
+        }
+        public void DeleteCode()
+        {
+            if (Selected_Code == null) return;
+            ArticleRepository.DeleteCode(Selected_Code);
+            Codes = ArticleRepository.GetCodes(Article.Article_Id);
+            OnPropertyChanged(nameof(Codes));
         }
     }
 }

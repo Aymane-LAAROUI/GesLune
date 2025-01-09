@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace GesLune.Windows.Articles
 {
-    /// <summary>
-    /// Logique d'interaction pour ArticleSaisieWindow.xaml
-    /// </summary>
     public partial class ArticleSaisieWindow : Window
     {
         private readonly ArticleSaisieViewModel viewModel;
@@ -25,6 +22,16 @@ namespace GesLune.Windows.Articles
         private void Fermer_Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.DeleteCode();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            viewModel.AjouterCode();
         }
     }
 }
