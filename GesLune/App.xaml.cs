@@ -1,6 +1,4 @@
-﻿using GesLune.Windows;
-using GesLune.Windows.Articles;
-using System.Windows;
+﻿using System.Windows;
 
 namespace GesLune
 {
@@ -11,7 +9,7 @@ namespace GesLune
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = new MainWindow();
+            var mainWindow = new LoginWindow();
             mainWindow.Show(); 
         }
     }

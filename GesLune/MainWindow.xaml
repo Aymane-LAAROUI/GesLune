@@ -1,0 +1,205 @@
+﻿<Window x:Class="GesLune.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PosLune"
+        Height="450"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        >
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="materialDesign:PackIcon">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Grid.Row" Value="0"/>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="Grid.Row" Value="1"/>
+        </Style>
+    </Window.Resources>
+    <Grid FlowDirection="RightToLeft">
+        <UniformGrid>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Computer"  />
+                    <TextBlock 
+                               Text="البيع"
+                                
+                               
+                               
+                               
+                               />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Book"  />
+                    <TextBlock Text="سجل المبيعات"/>
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Money"  />
+                    <TextBlock 
+                               Text="تسديد ديون الزبناء"
+                                
+                               
+                               
+                               
+                               />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Package"  />
+                    <TextBlock 
+                   Text="المخزون"
+                    
+                   
+                   
+                   
+                   />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="AttachMoney"  />
+                    <TextBlock 
+       Text="سداد المزودين"
+        
+       
+       
+       
+       />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Shop"  />
+                    <TextBlock 
+                               Text="الشراء"
+                                
+                               
+                               
+                               
+                               />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="WalletBifold"  />
+                    <TextBlock 
+    Text="المصروفات"
+     
+    
+    
+    
+    />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Barcode"  />
+                    <TextBlock 
+    Text="الباركود"
+     
+    
+    
+    
+    />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Chips"  />
+                    <TextBlock 
+    Text="السلعة"
+     
+    
+    
+    
+    />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Administrator"  />
+                    <TextBlock 
+    Text="الادارة"
+     
+    
+    
+    
+    />
+                </Grid>
+            </Button>
+            <Button>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <materialDesign:PackIcon  Kind="Close"  />
+                    <TextBlock 
+    Text="خروج"
+     
+    
+    
+    
+    />
+                </Grid>
+            </Button>
+        </UniformGrid>
+    </Grid>
+</Window>

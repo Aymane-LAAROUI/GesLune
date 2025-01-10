@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GesLune", "GesLune.csproj", "{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GesLune.Sdk", "..\GesLune.Sdk\GesLune.Sdk.csproj", "{116E2B1F-1B0B-4FC8-9437-AC94C80928BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40E3F8F4-B300-4442-B2E2-0A786CFBFC5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{116E2B1F-1B0B-4FC8-9437-AC94C80928BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{116E2B1F-1B0B-4FC8-9437-AC94C80928BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{116E2B1F-1B0B-4FC8-9437-AC94C80928BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{116E2B1F-1B0B-4FC8-9437-AC94C80928BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
