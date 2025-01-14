@@ -1,9 +1,9 @@
-﻿using GesLune.Models;
+﻿using GesLune.Sdk.Models;
 using Microsoft.Data.SqlClient;
 using Dapper;
 using System.Data;
 
-namespace GesLune.Repositories
+namespace GesLune.Sdk.Repositories
 {
     public class ArticleRepository
     {
@@ -11,6 +11,34 @@ namespace GesLune.Repositories
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Article>("SELECT * FROM Tble_Articles").ToList();
+        }
+        public static List<Model_Article> GetByName(string rech)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.Query<Model_Article>($"SELECT * FROM Tble_Articles WHERE Article_Nom LIKE '%{rech}%'").ToList();
+        }
+        public static List<Model_Article> GetByCategorieId(int id)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.Query<Model_Article>($"SELECT * FROM Tble_Articles WHERE Article_Categorie_Id = {id}").ToList();
+        }
+        public static List<Model_Article> GetByCategorieId(int id, int pageNumber, int pageSize)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+
+            // Calculate the offset based on the page number and page size
+            int offset = (pageNumber - 1) * pageSize;
+
+            // Fetch the paginated results
+            string query = $@"
+                           SELECT * 
+                           FROM Tble_Articles 
+                           WHERE Article_Categorie_Id = @id 
+                           ORDER BY Article_Id -- Ensure consistent ordering
+                           OFFSET @offset ROWS 
+                           FETCH NEXT @pageSize ROWS ONLY";
+
+            return connection.Query<Model_Article>(query, new { id, offset, pageSize }).ToList();
         }
         public static List<string> GetCodes(int article_id)
         {

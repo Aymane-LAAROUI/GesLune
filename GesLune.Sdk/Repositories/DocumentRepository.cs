@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using GesLune.Models;
+using GesLune.Sdk.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Identity.Client;
 using System.Data;
 using System.Windows;
 
-namespace GesLune.Repositories
+namespace GesLune.Sdk.Repositories
 {
     public class DocumentRepository
     {
@@ -64,11 +64,29 @@ namespace GesLune.Repositories
                     commandType: CommandType.StoredProcedure
                 );
         }
+        public static Model_Ticket Enregistrer(Model_Ticket model)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            // Préparer les paramètres pour la procédure stockée
+            var parameters = new DynamicParameters();
+            foreach (var property in model.GetType().GetProperties())
+            {
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(model); //?? DBNull.Value
+                parameters.Add("@" + propertyName, propertyValue);
+                //MessageBox.Show($"{propertyName} : {propertyValue}");
+            }
+            return connection.QueryFirst<Model_Ticket>(
+                    "sp_save_document", // Nom de la procédure stockée
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
+        }
         
         public static int EnregistrerLigne(Model_Document_Ligne ligne)
         {
             // Corriger le Sous total
-            ligne.Document_Ligne_Total = ligne.Document_Ligne_Prix_Unitaire * (decimal)ligne.Document_Ligne_Quantity;
+            ligne.Document_Ligne_Total = ligne.Document_Ligne_Prix_Unitaire * ligne.Document_Ligne_Quantity;
             using SqlConnection connection = new (MainRepository.ConnectionString);
             connection.Open();
             // Check if the document exists

@@ -1,15 +1,20 @@
 ﻿using System.ComponentModel;
 
-namespace GesLune.ViewModels
+namespace GesLune.Sdk.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        //public static readonly string ConnectionString = "Data Source=localhost;Initial Catalog=GesLune;User ID=sa;Password=admin@123456;TrustServerCertificate=True";
-
+        public event EventHandler<Exception>? ExceptionThrown;
+        
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void OnExceptionThrown(Exception exception)
+        {
+            ExceptionThrown?.Invoke(this, exception);
         }
     }
 }

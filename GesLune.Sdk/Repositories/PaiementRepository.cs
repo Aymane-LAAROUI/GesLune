@@ -1,9 +1,9 @@
-﻿using GesLune.Models;
+﻿using GesLune.Sdk.Models;
 using Microsoft.Data.SqlClient;
 using Dapper;
 using System.Data;
 
-namespace GesLune.Repositories
+namespace GesLune.Sdk.Repositories
 {
     public class PaiementRepository
     {
@@ -23,6 +23,12 @@ namespace GesLune.Repositories
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Execute("DELETE FROM Tble_Paiements WHERE Paiement_Id = " + id);
+        }
+        
+        public static int DeleteByDocument_Id(int Document_Id) 
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.Execute("DELETE FROM Tble_Paiements WHERE Paiement_Document_Id = " + Document_Id);
         }
 
         public static Model_Paiement Enregistrer(Model_Paiement model)

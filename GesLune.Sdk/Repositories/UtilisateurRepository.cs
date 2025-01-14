@@ -1,9 +1,9 @@
-﻿using GesLune.Models;
+﻿using GesLune.Sdk.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Dapper;
 
-namespace GesLune.Repositories
+namespace GesLune.Sdk.Repositories
 {
     public class UtilisateurRepository
     {

@@ -1,4 +1,5 @@
-﻿using GesLune.ViewModels;
+﻿using GesLune.Sdk.ViewModels;
+using GesLune.Sdk.Models;
 using System.Windows;
 
 namespace GesLune
@@ -19,7 +20,7 @@ namespace GesLune
             throw new NotImplementedException();
         }
 
-        private void ViewModel_LoginSucceded(object? sender, Models.Model_Utilisateur e)
+        private void ViewModel_LoginSucceded(object? sender, Model_Utilisateur e)
         {
             var mainWindow = new MainWindow();
             Application.Current.MainWindow = mainWindow;

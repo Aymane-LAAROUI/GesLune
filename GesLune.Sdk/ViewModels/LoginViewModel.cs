@@ -1,9 +1,9 @@
-﻿using GesLune.Models;
-using System.Windows;
-using GesLune.Repositories;
+﻿using GesLune.Sdk.Models;
+using GesLune.Sdk.Repositories;
 using GesLune.Sdk.Commands;
+using System.Windows;
 
-namespace GesLune.ViewModels
+namespace GesLune.Sdk.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {

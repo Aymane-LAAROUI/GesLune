@@ -13,6 +13,7 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>
+            <EventSetter Event="Click" Handler="Button_Click"/>
         </Style>
         <Style TargetType="materialDesign:PackIcon">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -22,7 +23,7 @@
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
             <Setter Property="Grid.Row" Value="1"/>
@@ -30,23 +31,17 @@
     </Window.Resources>
     <Grid FlowDirection="RightToLeft">
         <UniformGrid>
-            <Button>
+            <Button Tag="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <materialDesign:PackIcon  Kind="Computer"  />
-                    <TextBlock 
-                               Text="البيع"
-                                
-                               
-                               
-                               
-                               />
+                    <TextBlock Text="البيع"/>
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -56,7 +51,7 @@
                     <TextBlock Text="سجل المبيعات"/>
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -72,7 +67,7 @@
                                />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="3">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -88,7 +83,7 @@
                    />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="4">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -104,7 +99,7 @@
        />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="5">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -120,7 +115,7 @@
                                />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="6">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -136,7 +131,7 @@
     />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="7">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -152,7 +147,7 @@
     />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="8">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -168,7 +163,7 @@
     />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="9">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -184,7 +179,7 @@
     />
                 </Grid>
             </Button>
-            <Button>
+            <Button Tag="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>

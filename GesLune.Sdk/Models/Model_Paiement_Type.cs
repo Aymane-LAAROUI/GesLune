@@ -1,4 +1,4 @@
-﻿namespace GesLune.Models
+﻿namespace GesLune.Sdk.Models
 {
     public class Model_Paiement_Type
     {

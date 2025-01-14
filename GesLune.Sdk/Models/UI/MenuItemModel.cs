@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace GesLune.Models.UI
+namespace GesLune.Sdk.Models.UI
 {
     public class MenuItemModel
     {

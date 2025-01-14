@@ -1,4 +1,4 @@
-﻿namespace GesLune.Repositories
+﻿namespace GesLune.Sdk.Repositories
 {
     public abstract class MainRepository
     {

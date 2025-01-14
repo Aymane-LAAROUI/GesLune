@@ -1,9 +1,9 @@
-﻿namespace GesLune.Models
+﻿namespace GesLune.Sdk.Models
 {
     public class Model_Paiement
     {
         public int Paiement_Id { get; set; }
-        public decimal Paiement_Montant { get; set; }
+        public double Paiement_Montant { get; set; }
         public int? Paiement_Acteur_Id { get; set; }
         public string? Paiement_Acteur_Nom {  get; set; }
         public DateTime Paiement_Date {  get; set; } = DateTime.Now;

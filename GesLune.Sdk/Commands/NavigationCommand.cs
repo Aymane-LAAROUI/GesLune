@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace GesLune.Commands
+namespace GesLune.Sdk.Commands
 {
     public class NavigationCommand(Action<object?> execute, Predicate<object?> canExecute) : ICommand
     {

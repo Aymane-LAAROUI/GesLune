@@ -1,0 +1,175 @@
+﻿<Window x:Class="GesLune.PosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vms="clr-namespace:GesLune.Sdk.ViewModels;assembly=GesLune.Sdk"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="{Binding Title}"
+        Height="450"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        >
+    <Window.DataContext>
+        <vms:PosViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Button"
+               x:Key="CategorieButton">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style TargetType="Button"
+               x:Key="ArticleButton">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
+    <Grid  FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <!--Column 0-->
+        <ItemsControl Grid.Row="0"
+                      Grid.Column="0"
+                      ItemsSource="{Binding Categories}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button x:Name="CategorieButton"
+                            Content="{Binding Categorie_Nom}"
+                            Margin="5"
+                            Command="{Binding DataContext.SelectCategorieCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource CategorieButton}"
+                            />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <UniformGrid Grid.Row="2"
+                     Grid.Column="0"
+              >
+            <Button x:Name="SearchArticleButton"
+                    Click="SearchArticleButton_Click"
+                    >
+                <md:PackIcon Kind="Search" Width="50" Height="50"/>
+            </Button>
+            <Separator/>
+            <Button x:Name="PageSuivanteButton"
+                    Click="PageSuivanteButton_Click"
+                    >
+                <md:PackIcon Kind="ArrowRight" Width="50" Height="50"/>
+            </Button>
+            <Button x:Name="PagePrecedenteButton"
+                    Click="PagePrecedenteButton_Click"
+                    >
+                <md:PackIcon Kind="ArrowLeft" Width="50" Height="50"/>
+            </Button>
+            
+        </UniformGrid>
+        
+        <!--Column 1-->
+        <UniformGrid Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Grid.Column="1"
+                     Columns="1"
+                    >
+            <Button Content="نقود" Name="EspeceButton" Click="EspeceButton_Click"/>
+            <Button Content="سلف" Name="CreditButton" Click="CreditButton_Click"/>
+            <Button Content="شيك" Name="ChequeButton" Click="ChequeButton_Click"/>
+            <Button Content="الغاء الدفع" Name="AnnulerPaiementButton" Click="AnnulerPaiementButton_Click"/>
+        </UniformGrid>
+        
+        <!--Column 2-->
+        <UniformGrid Grid.Row="0"
+                     Grid.Column="2"
+                     Columns="3"
+                    >
+            <TextBlock Text="{Binding Ticket.Document_Acteur_Nom}"/>
+            <TextBlock Text="Ticket"/>
+            <TextBlock Text="{Binding Ticket.Document_Num}"/>
+        </UniformGrid>
+
+        <DataGrid Grid.Row="1"
+                  Grid.Column="2"
+                  Background="White"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Lignes}"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="الكمية" Binding="{Binding Document_Ligne_Quantity}"/>
+                <DataGridTextColumn Header="الاسم" Binding="{Binding Document_Ligne_Article_Nom}"/>
+                <DataGridTextColumn Header="التمن" Binding="{Binding Document_Ligne_Prix_Unitaire}"/>
+                <DataGridTextColumn Header="المجموع" Binding="{Binding Document_Ligne_Total}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2"
+              Grid.Column="2">
+            <ItemsControl VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Articles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5" Rows="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding DataContext.AddArticleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                    CommandParameter="{Binding}"
+                    Style="{StaticResource ArticleButton}"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Padding="5">
+                            <md:Card x:Name="ArticleButton"
+                         MaxWidth="150">
+                                <!-- Constrain the width of the Card -->
+                                <TextBlock Text="{Binding Article_Nom}"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               TextAlignment="Center" />
+                            </md:Card>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label Content="{Binding PageActuelle}"
+                   ContentStringFormat="Page {0}"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="left"
+                   />
+        </Grid>
+        
+        <!--Column 3-->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="3"
+                    Grid.RowSpan="3"
+                    >
+            <Button Content="Choix client"/>
+            <Button Content="+"/>
+            <Button Content="-"/>
+            <Button Content="Imprimer"/>
+            <Button Content="supprimer"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>
