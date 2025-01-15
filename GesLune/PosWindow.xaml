@@ -9,20 +9,30 @@
         Width="1000"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
+        ButtonBase.Click="Window_Click"
         >
     <Window.DataContext>
         <vms:PosViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <Style TargetType="Button"
-               x:Key="CategorieButton">
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
             <Setter Property="Background" Value="White"/>
+        </Style>
+        <Style TargetType="Button"
+               x:Key="CategorieButtonStyle"
+               BasedOn="{StaticResource ButtonStyle}"
+               >
             <Setter Property="Padding" Value="10"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
         <Style TargetType="Button"
-               x:Key="ArticleButton">
-            <Setter Property="Background" Value="White"/>
+               x:Key="ArticleButtonStyle"
+               BasedOn="{StaticResource ButtonStyle}"
+               >
             <Setter Property="Padding" Value="10"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -57,7 +67,7 @@
                             Margin="5"
                             Command="{Binding DataContext.SelectCategorieCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                             CommandParameter="{Binding}"
-                            Style="{StaticResource CategorieButton}"
+                            Style="{StaticResource CategorieButtonStyle}"
                             />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -68,17 +78,20 @@
               >
             <Button x:Name="SearchArticleButton"
                     Click="SearchArticleButton_Click"
+                    Style="{StaticResource ButtonStyle}"
                     >
                 <md:PackIcon Kind="Search" Width="50" Height="50"/>
             </Button>
             <Separator/>
             <Button x:Name="PageSuivanteButton"
                     Click="PageSuivanteButton_Click"
+                    Style="{StaticResource ButtonStyle}"
                     >
                 <md:PackIcon Kind="ArrowRight" Width="50" Height="50"/>
             </Button>
             <Button x:Name="PagePrecedenteButton"
                     Click="PagePrecedenteButton_Click"
+                    Style="{StaticResource ButtonStyle}"
                     >
                 <md:PackIcon Kind="ArrowLeft" Width="50" Height="50"/>
             </Button>
@@ -91,20 +104,23 @@
                      Grid.Column="1"
                      Columns="1"
                     >
-            <Button Content="نقود" Name="EspeceButton" Click="EspeceButton_Click"/>
-            <Button Content="سلف" Name="CreditButton" Click="CreditButton_Click"/>
-            <Button Content="شيك" Name="ChequeButton" Click="ChequeButton_Click"/>
-            <Button Content="الغاء الدفع" Name="AnnulerPaiementButton" Click="AnnulerPaiementButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="نقود" Name="EspeceButton" Click="EspeceButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="سلف" Name="CreditButton" Click="CreditButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="شيك" Name="ChequeButton" Click="ChequeButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="الغاء الدفع" Name="AnnulerPaiementButton" Click="AnnulerPaiementButton_Click"/>
         </UniformGrid>
         
         <!--Column 2-->
         <UniformGrid Grid.Row="0"
                      Grid.Column="2"
-                     Columns="3"
+                     Columns="4"
                     >
-            <TextBlock Text="{Binding Ticket.Document_Acteur_Nom}"/>
-            <TextBlock Text="Ticket"/>
-            <TextBlock Text="{Binding Ticket.Document_Num}"/>
+            <Label Content="البيع بالتقسيط"/>
+            <Label Content="{Binding Ticket.Document_Num}"/>
+            <Label Content="{Binding Ticket.Document_Acteur_Nom}"/>
+            <Label Content="{Binding Total}"
+                       ContentStringFormat="المجموع : {0} درهم"
+                       />
         </UniformGrid>
 
         <DataGrid Grid.Row="1"
@@ -112,12 +128,14 @@
                   Background="White"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Lignes}"
+                  SelectedItem="{Binding SelectedLigne}"
+                  IsReadOnly="True"
                   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="الكمية" Binding="{Binding Document_Ligne_Quantity}"/>
-                <DataGridTextColumn Header="الاسم" Binding="{Binding Document_Ligne_Article_Nom}"/>
-                <DataGridTextColumn Header="التمن" Binding="{Binding Document_Ligne_Prix_Unitaire}"/>
-                <DataGridTextColumn Header="المجموع" Binding="{Binding Document_Ligne_Total}"/>
+                <DataGridTextColumn Width="*" Header="الكمية" Binding="{Binding Document_Ligne_Quantity}"/>
+                <DataGridTextColumn Width="3*" Header="الاسم" Binding="{Binding Document_Ligne_Article_Nom}"/>
+                <DataGridTextColumn Width="*" Header="التمن" Binding="{Binding Document_Ligne_Prix_Unitaire}"/>
+                <DataGridTextColumn Width="*" Header="المجموع" Binding="{Binding Document_Ligne_Total}"/>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -135,7 +153,7 @@
                     <DataTemplate>
                         <Button Command="{Binding DataContext.AddArticleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                     CommandParameter="{Binding}"
-                    Style="{StaticResource ArticleButton}"
+                    Style="{StaticResource ArticleButtonStyle}"
                     HorizontalContentAlignment="Stretch"
                     VerticalContentAlignment="Stretch"
                     Padding="5">
@@ -153,23 +171,32 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             <Label Content="{Binding PageActuelle}"
-                   ContentStringFormat="Page {0}"
+                   ContentStringFormat=" صفحة {0}"
                    VerticalAlignment="Bottom"
                    HorizontalAlignment="left"
                    />
         </Grid>
         
         <!--Column 3-->
-        <StackPanel Grid.Row="0"
-                    Grid.Column="3"
-                    Grid.RowSpan="3"
+        <UniformGrid Grid.Row="0"
+                     Grid.Column="3"
+                     Grid.RowSpan="3"
+                     Columns="1"
                     >
-            <Button Content="Choix client"/>
-            <Button Content="+"/>
-            <Button Content="-"/>
-            <Button Content="Imprimer"/>
-            <Button Content="supprimer"/>
-        </StackPanel>
+            <Button Style="{StaticResource ButtonStyle}" Content="اختيار الزبون" Name="ChoixClientButton" Click="ChoixClientButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Name="PlusQteButton" Click="PlusQteButton_Click">
+                <md:PackIcon Kind="Plus"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" Name="MoinsQteButton" Click="MoinsQteButton_Click">
+                <md:PackIcon Kind="Minus"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" Name="ImprimerButton" Click="ImprimerButton_Click">
+                <md:PackIcon Kind="Printer"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" Name="SupprimerLigneButton" Click="SupprimerLigneButton_Click">
+                <md:PackIcon Kind="Trash"/>
+            </Button>
+        </UniformGrid>
         
     </Grid>
 </Window>

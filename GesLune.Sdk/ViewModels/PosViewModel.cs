@@ -17,6 +17,10 @@ namespace GesLune.Sdk.ViewModels
         public Model_Document_Ligne? SelectedLigne { get; set; }
         public List<Model_Paiement_Type> ModesPaiement { get; set; } = [];
         public int PageActuelle { get; set; }
+        public double Total
+        {
+            get => Lignes.Sum(e => e.Document_Ligne_Total);
+        }
 
         // -- COMMANDS -- //
         public GenericCommand<Model_Categorie> SelectCategorieCommand{ get; set; }
@@ -64,8 +68,8 @@ namespace GesLune.Sdk.ViewModels
             if (SelectedLigne == null) return;
             SelectedLigne.Document_Ligne_Quantity++;
             SelectedLigne.Document_Ligne_Total = SelectedLigne.Document_Ligne_Quantity * SelectedLigne.Document_Ligne_Prix_Unitaire;
-            DocumentRepository.EnregistrerLigne(SelectedLigne);
-            OnPropertyChanged(nameof(SelectedLigne));
+            if (DocumentRepository.EnregistrerLigne(SelectedLigne) > 0)
+                RefreshLignes();
         }
 
         public void MinusQuantity()
@@ -75,8 +79,8 @@ namespace GesLune.Sdk.ViewModels
             {
                 SelectedLigne.Document_Ligne_Quantity--;
                 SelectedLigne.Document_Ligne_Total = SelectedLigne.Document_Ligne_Quantity * SelectedLigne.Document_Ligne_Prix_Unitaire;
-                DocumentRepository.EnregistrerLigne(SelectedLigne);
-                OnPropertyChanged(nameof(SelectedLigne));
+                if (DocumentRepository.EnregistrerLigne(SelectedLigne) > 0)
+                    RefreshLignes();
             }
             else
                 DeleteLigne();
@@ -162,7 +166,16 @@ namespace GesLune.Sdk.ViewModels
         // -- HELPER METHODS -- //
         private void RefreshLignes()
         {
-            Lignes = DocumentRepository.GetLignes(Ticket.Document_Id);
+            if (SelectedLigne == null)
+                Lignes = DocumentRepository.GetLignes(Ticket.Document_Id);
+            else
+            {
+                int ligne_id = SelectedLigne.Document_Ligne_Id;
+                Lignes = DocumentRepository.GetLignes(Ticket.Document_Id);
+                SelectedLigne = Lignes.Find(e => e.Document_Ligne_Id == ligne_id);
+                OnPropertyChanged(nameof (SelectedLigne));
+            }
+
             OnPropertyChanged(nameof (Lignes));
         }
 
