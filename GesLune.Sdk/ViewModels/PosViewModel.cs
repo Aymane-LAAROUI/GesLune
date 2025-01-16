@@ -6,6 +6,8 @@ namespace GesLune.Sdk.ViewModels
 {
     public class PosViewModel : ViewModelBase
     {
+        // -- FIELDS -- //
+        private string _searchArticle = string.Empty;
 
         // -- PROPERTIES -- //
         public string Title { get; } = "PosLune";
@@ -16,15 +18,39 @@ namespace GesLune.Sdk.ViewModels
         public List<Model_Document_Ligne> Lignes { get; set; } = [];
         public Model_Document_Ligne? SelectedLigne { get; set; }
         public List<Model_Paiement_Type> ModesPaiement { get; set; } = [];
-        public int PageActuelle { get; set; }
+        public int ArticlePage { get; set; }
+        public int CategoriePage { get; set; }
+        public string SearchArticle
+        {
+            get => _searchArticle;
+            set
+            {
+                _searchArticle = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    Articles.Clear();
+                    OnPropertyChanged(nameof(SearchArticle));
+                }
+                else
+                    Articles = ArticleRepository.GetByName(value);
+                OnArticlesChanged();
+            }
+        }
         public double Total
         {
             get => Lignes.Sum(e => e.Document_Ligne_Total);
         }
 
         // -- COMMANDS -- //
-        public GenericCommand<Model_Categorie> SelectCategorieCommand{ get; set; }
-        public GenericCommand<Model_Article> AddArticleCommand{ get; set; }
+        public GenericCommand<Model_Categorie> SelectCategorieCommand{ get; private set; }
+        public GenericCommand<Model_Article> AddArticleCommand{ get; private set; }
+        public RelayCommand DeleteLigneCommand { get; private set; }
+        public RelayCommand AddArticleWithCodeCommand { get; private set; }
+
+        // -- EVENTS -- //
+        public event EventHandler? ArticlesChanged;
+        public event EventHandler? CategoriesChanged;
+
 
 
         // -- CTOR -- //
@@ -35,13 +61,20 @@ namespace GesLune.Sdk.ViewModels
             //InitTicket();
             SelectCategorieCommand = new(SelectCategorie);
             AddArticleCommand = new(AddLigne);
+            DeleteLigneCommand = new(DeleteLigne);
+            AddArticleWithCodeCommand = new(AddLigneByArticleCode);
         }
+
+
+
 
         // -- INIT METHODS -- //
 
         public void InitCategories()
         {
-            Categories = CategorieRepository.GetAll();
+            CategoriePage = 1;
+            Categories = CategorieRepository.GetAll(1,8);
+            OnCategoriesChanged();
         }
 
         public void InitModesPaiement()
@@ -51,8 +84,31 @@ namespace GesLune.Sdk.ViewModels
 
         public void InitTicket()
         {
-            Ticket = new();
+            Model_Acteur? client = ActeurRepository.GetById(2);
+            Ticket = new()
+            {
+                Document_Acteur_Id = 2,
+                Document_Acteur_Nom = client?.Acteur_Nom ?? String.Empty,
+                Document_Acteur_Adresse = client?.Acteur_Adresse,
+            };
         }
+
+
+
+        // -- EVENT HELPER METHODS -- //
+        private void OnArticlesChanged()
+        {
+            OnPropertyChanged(nameof(Articles));
+            ArticlesChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnCategoriesChanged()
+        {
+            OnPropertyChanged(nameof(Categories));
+            CategoriesChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+
 
         // -- METHODS -- //
         public void SelectClient(Model_Acteur client)
@@ -100,17 +156,33 @@ namespace GesLune.Sdk.ViewModels
             };
             DocumentRepository.EnregistrerLigne(ligne);
             RefreshLignes();
+            SelectedLigne = Lignes.OrderByDescending(e => e.Document_Ligne_Id).First();
+            //MessageBox.Show($"{SelectedLigne.Document_Ligne_Id}");
+            OnPropertyChanged(nameof(SelectedLigne));
+        }
+
+        public void AddLigneByArticleCode()
+        {
+            string code = SearchArticle.Trim();
+            SearchArticle = string.Empty;
+            if (string.IsNullOrEmpty(code)) return;
+            Model_Article? article = ArticleRepository.GetByCode(code); 
+            if (article == null)
+            {
+                OnExceptionThrown(new("Code article ou code à barre introuvable"));
+                return;
+            }
+            AddLigne(article);
         }
 
         public void SelectCategorie(Model_Categorie categorie)
         {
             SelectedCategorie = categorie;
-            PageActuelle = 1;
-            Articles = ArticleRepository.GetByCategorieId(categorie.Categorie_Id,PageActuelle,15);
-            //NombrePages = Articles.Count / 15;
-            OnPropertyChanged(nameof(Articles));
-            OnPropertyChanged(nameof(PageActuelle));
-            //OnPropertyChanged(nameof(NombrePages));
+            ArticlePage = 1;
+            SearchArticle = string.Empty;
+            Articles = ArticleRepository.GetByCategorieId(categorie.Categorie_Id,ArticlePage,15);
+            OnArticlesChanged();
+            OnPropertyChanged(nameof(ArticlePage));
         }
 
         public void AddPaiementWithType(Model_Paiement_Type paiementType)
@@ -137,23 +209,41 @@ namespace GesLune.Sdk.ViewModels
             //TODO
         }
 
-        public void MoveNextPage()
+        public void MoveNextPageArticle()
         {
             if (SelectedCategorie == null) return;
-            PageActuelle++;
-            Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id,PageActuelle,15);
-            OnPropertyChanged(nameof(PageActuelle));
-            OnPropertyChanged(nameof(Articles));
+            ArticlePage++;
+            Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id,ArticlePage,15);
+            OnPropertyChanged(nameof(ArticlePage));
+            OnArticlesChanged();
         }
 
-        public void MovePreviousPage()
+        public void MovePreviousPageArticle()
         {
             if (SelectedCategorie == null) return;
-            if (PageActuelle == 1) return;
-            PageActuelle--;
-            Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id, PageActuelle, 15);
-            OnPropertyChanged(nameof(PageActuelle));
-            OnPropertyChanged(nameof(Articles));
+            if (ArticlePage == 1) return;
+            ArticlePage--;
+            Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id, ArticlePage, 15);
+            OnPropertyChanged(nameof(ArticlePage));
+            OnArticlesChanged();
+        }
+
+        public void MoveNextPageCategorie()
+        {
+            //if (SelectedCategorie == null) return;
+            CategoriePage++;
+            Categories = CategorieRepository.GetAll(CategoriePage,8);
+            OnPropertyChanged(nameof(CategoriePage));
+            OnCategoriesChanged();
+        }
+
+        public void MovePreviousPageCategorie()
+        {
+            if (CategoriePage == 1) return;
+            CategoriePage--;
+            Categories = CategorieRepository.GetAll(CategoriePage, 8);
+            OnPropertyChanged(nameof(CategoriePage));
+            OnCategoriesChanged();
         }
 
         public void DeleteLigne()
@@ -162,6 +252,8 @@ namespace GesLune.Sdk.ViewModels
             DocumentRepository.DeleteLigne(SelectedLigne.Document_Ligne_Id);
             RefreshLignes();
         }
+
+
 
         // -- HELPER METHODS -- //
         private void RefreshLignes()
@@ -175,8 +267,8 @@ namespace GesLune.Sdk.ViewModels
                 SelectedLigne = Lignes.Find(e => e.Document_Ligne_Id == ligne_id);
                 OnPropertyChanged(nameof (SelectedLigne));
             }
-
             OnPropertyChanged(nameof (Lignes));
+            OnPropertyChanged(nameof(Total));
         }
 
         private void SaveTicket()

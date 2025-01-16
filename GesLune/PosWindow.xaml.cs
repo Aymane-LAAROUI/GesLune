@@ -3,6 +3,7 @@ using GesLune.Sdk.ViewModels;
 using GesLune.Windows;
 using System.Media;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace GesLune
 {
@@ -12,7 +13,13 @@ namespace GesLune
         public PosWindow()
         {
             InitializeComponent();
-            _viewModel = (PosViewModel)DataContext;
+            _viewModel = new PosViewModel();
+            this.DataContext = _viewModel;
+            RefreshArticleButtons();
+            RefreshCategorieButtons();
+            _viewModel.CategoriesChanged += (s,e) => RefreshCategorieButtons();
+            _viewModel.ArticlesChanged += (s,e) => RefreshArticleButtons();
+            _viewModel.ExceptionThrown += (s, e) => MessageBox.Show(e.Message);
         }
 
         private void Window_Click(object sender, RoutedEventArgs e)
@@ -25,9 +32,9 @@ namespace GesLune
             
         }
 
-        private void PageSuivanteButton_Click(object sender, RoutedEventArgs e) => _viewModel.MoveNextPage();
+        private void PageSuivanteButton_Click(object sender, RoutedEventArgs e) => _viewModel.MoveNextPageArticle();
 
-        private void PagePrecedenteButton_Click(object sender, RoutedEventArgs e) => _viewModel.MovePreviousPage();
+        private void PagePrecedenteButton_Click(object sender, RoutedEventArgs e) => _viewModel.MovePreviousPageArticle();
 
         private void EspeceButton_Click(object sender, RoutedEventArgs e)
         {
@@ -66,7 +73,6 @@ namespace GesLune
             if (window.DialogResult != true) return;
             if (window.SelectedActeur == null) return;
             _viewModel.SelectClient(window.SelectedActeur);
-
         }
 
         private void PlusQteButton_Click(object sender, RoutedEventArgs e)
@@ -87,6 +93,53 @@ namespace GesLune
         {
             _viewModel.DeleteLigne();
             SystemSounds.Asterisk.Play();
+        }
+
+        private void CategoriePageSuivanteButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.MoveNextPageCategorie();
+        }
+
+        private void CategoriePagePrecedenteButton_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.MovePreviousPageCategorie();
+        }
+
+        private void RefreshCategorieButtons()
+        {
+            CategoriesGrid.Children.Clear();
+            //List<Button> CategorieButtons = [];
+            foreach (var categorie in _viewModel.Categories)
+            {
+                Button button = new()
+                {
+                    Margin = new Thickness(5),
+                    Content = categorie.Categorie_Nom
+                };
+                button.Click += (s, e) => _viewModel.SelectCategorie(categorie);
+                CategoriesGrid.Children.Add(button);
+                //CategorieButtons.Add(button);
+            }
+        }
+
+        private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter) _viewModel.AddArticleWithCodeCommand.Execute(null);
+        }
+
+        private void RefreshArticleButtons()
+        {
+            ArticlesGrid.Children.Clear();
+            foreach (var article in _viewModel.Articles)
+            {
+                Button button = new()
+                {
+                    Margin = new Thickness(5),
+                    Content = article.Article_Nom
+                };
+                button.Click += (s, e) => _viewModel.AddArticleCommand.Execute(article);
+                ArticlesGrid.Children.Add(button);
+            }
         }
     }
 }

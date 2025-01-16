@@ -13,6 +13,12 @@ namespace GesLune.Sdk.Repositories
             using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<Model_Acteur>("SELECT * FROM Tble_Acteurs").ToList();
         }
+        
+        public static Model_Acteur? GetById(int id)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.QueryFirstOrDefault<Model_Acteur>("SELECT * FROM Tble_Acteurs WHERE Acteur_Id = " + id);
+        }
 
         public static List<Model_Acteur> GetAll(int top)
         {

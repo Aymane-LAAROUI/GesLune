@@ -30,5 +30,6 @@ namespace GesLune.Windows
             this.DialogResult = false;
             this.Close();
         }
+
     }
 }

@@ -45,6 +45,14 @@ namespace GesLune.Sdk.Repositories
             using SqlConnection connection = new(MainRepository.ConnectionString);
             return connection.Query<string>("SELECT Article_Code FROM Tble_Article_Codes WHERE Article_Id =" + article_id).ToList();
         }
+        
+        public static Model_Article? GetByCode(string code)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            return connection.QueryFirstOrDefault<Model_Article>("SELECT A.* FROM Tble_Article_Codes AC" +
+                                                                 " JOIN Tble_Articles A ON A.Article_Id = AC.Article_Id" +
+                                                                 $" WHERE AC.Article_Code = '{code}'");
+        }
 
         public static DataTable GetEtatStock()
         {

@@ -14,7 +14,9 @@
         <DataGrid Grid.Row="0"
           x:Name="MainDataGrid"
           AutoGenerateColumns="False"
-          ItemsSource="{Binding Acteurs}">
+          ItemsSource="{Binding Acteurs}"
+          IsReadOnly="True"        
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Acteur_Id}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Raison sociale" Binding="{Binding Acteur_Nom}" />
