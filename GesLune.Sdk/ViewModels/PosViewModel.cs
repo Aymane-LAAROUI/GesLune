@@ -1,6 +1,7 @@
 ﻿using GesLune.Sdk.Commands;
 using GesLune.Sdk.Models;
 using GesLune.Sdk.Repositories;
+using System.Windows;
 
 namespace GesLune.Sdk.ViewModels
 {
@@ -18,8 +19,8 @@ namespace GesLune.Sdk.ViewModels
         public List<Model_Document_Ligne> Lignes { get; set; } = [];
         public Model_Document_Ligne? SelectedLigne { get; set; }
         public List<Model_Paiement_Type> ModesPaiement { get; set; } = [];
-        public int ArticlePage { get; set; }
-        public int CategoriePage { get; set; }
+        public int ArticlePage { get; set; } = 1;
+        public int CategoriePage { get; set; } = 1;
         public string SearchArticle
         {
             get => _searchArticle;
@@ -29,10 +30,12 @@ namespace GesLune.Sdk.ViewModels
                 if (string.IsNullOrEmpty(value))
                 {
                     Articles.Clear();
-                    OnPropertyChanged(nameof(SearchArticle));
                 }
                 else
-                    Articles = ArticleRepository.GetByName(value);
+                {
+                    Articles = ArticleRepository.GetByName(value,ArticlePage,15);
+                }
+                OnPropertyChanged(nameof(SearchArticle));
                 OnArticlesChanged();
             }
         }
@@ -42,21 +45,27 @@ namespace GesLune.Sdk.ViewModels
         }
 
         // -- COMMANDS -- //
-        public GenericCommand<Model_Categorie> SelectCategorieCommand{ get; private set; }
-        public GenericCommand<Model_Article> AddArticleCommand{ get; private set; }
-        public RelayCommand DeleteLigneCommand { get; private set; }
-        public RelayCommand AddArticleWithCodeCommand { get; private set; }
+        public GenericCommand<Model_Categorie> SelectCategorieCommand{ get; }
+        public GenericCommand<Model_Article> AddArticleCommand{ get; }
+        public RelayCommand DeleteLigneCommand { get; }
+        public RelayCommand AddArticleWithCodeCommand { get; }
 
         // -- EVENTS -- //
         public event EventHandler? ArticlesChanged;
+        public event EventHandler? LigneAdded;
         public event EventHandler? CategoriesChanged;
 
 
 
-        // -- CTOR -- //
-        public PosViewModel()
+        // -- CTORs -- //
+
+        public PosViewModel() : this(false)
         {
-            InitCategories();
+
+        }
+        public PosViewModel(bool categories_paginated = false)
+        {
+            InitCategories(categories_paginated);
             InitModesPaiement();
             //InitTicket();
             SelectCategorieCommand = new(SelectCategorie);
@@ -70,10 +79,15 @@ namespace GesLune.Sdk.ViewModels
 
         // -- INIT METHODS -- //
 
-        public void InitCategories()
+        public void InitCategories(bool categories_paginated)
         {
-            CategoriePage = 1;
-            Categories = CategorieRepository.GetAll(1,8);
+            if (categories_paginated)
+            {
+                CategoriePage = 1;
+                Categories = CategorieRepository.GetAll(1,8);
+            }
+            else
+                Categories = CategorieRepository.GetAll();
             OnCategoriesChanged();
         }
 
@@ -106,6 +120,11 @@ namespace GesLune.Sdk.ViewModels
         {
             OnPropertyChanged(nameof(Categories));
             CategoriesChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnLigneAdded()
+        {
+            LigneAdded?.Invoke(this,EventArgs.Empty);
         }
 
 
@@ -142,6 +161,15 @@ namespace GesLune.Sdk.ViewModels
                 DeleteLigne();
         }
 
+        public void SetQuantity(double Qte)
+        {
+            if (SelectedLigne == null) return;
+            SelectedLigne.Document_Ligne_Quantity = Qte;
+            SelectedLigne.Document_Ligne_Total = SelectedLigne.Document_Ligne_Quantity * SelectedLigne.Document_Ligne_Prix_Unitaire;
+            if (DocumentRepository.EnregistrerLigne(SelectedLigne) > 0)
+                RefreshLignes();
+        }
+
         public void AddLigne(Model_Article article)
         {
             if (Ticket.Document_Id == 0) SaveTicket();
@@ -154,11 +182,13 @@ namespace GesLune.Sdk.ViewModels
                 Document_Ligne_Total = article.Article_Prix,
                 Document_Id = Ticket.Document_Id,
             };
-            DocumentRepository.EnregistrerLigne(ligne);
-            RefreshLignes();
-            SelectedLigne = Lignes.OrderByDescending(e => e.Document_Ligne_Id).First();
-            //MessageBox.Show($"{SelectedLigne.Document_Ligne_Id}");
-            OnPropertyChanged(nameof(SelectedLigne));
+            if(DocumentRepository.EnregistrerLigne(ligne) > 0)
+            {
+                RefreshLignes();
+                SelectedLigne = Lignes.OrderByDescending(e => e.Document_Ligne_Id).First();
+                OnPropertyChanged(nameof(SelectedLigne));
+                OnLigneAdded();
+            }
         }
 
         public void AddLigneByArticleCode()
@@ -209,11 +239,26 @@ namespace GesLune.Sdk.ViewModels
             //TODO
         }
 
+        //public void MoveNextPageArticle()
+        //{
+        //    if (SelectedCategorie == null) return;
+        //    ArticlePage++;
+        //    Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id,ArticlePage,15);
+        //    OnPropertyChanged(nameof(ArticlePage));
+        //    OnArticlesChanged();
+        //}
+
         public void MoveNextPageArticle()
         {
-            if (SelectedCategorie == null) return;
-            ArticlePage++;
-            Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id,ArticlePage,15);
+            if (!string.IsNullOrEmpty(SearchArticle))
+            {
+                Articles = ArticleRepository.GetByName(SearchArticle, ++ArticlePage, 15);
+            }
+            else if (SelectedCategorie != null)
+            {
+                Articles = ArticleRepository.GetByCategorieId(SelectedCategorie.Categorie_Id, ++ArticlePage, 15);
+            }
+            else return;
             OnPropertyChanged(nameof(ArticlePage));
             OnArticlesChanged();
         }

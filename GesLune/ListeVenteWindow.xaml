@@ -3,11 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="ListeVenteWindow"
+        Title="سجل المبيعات"
         Height="450"
         Width="800"
-        
         >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <md:BundledTheme BaseTheme="Light" PrimaryColor="Grey" SecondaryColor="LightBlue" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -15,9 +23,11 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0"/>
         <UniformGrid Grid.Row="1">
-            <md:Card md:ShadowAssist.CacheMode="BitmapCache">
-                <StackPanel Orientation="Horizontal" Margin="16">
-                    
+            <md:Card UniformCornerRadius="4" Margin="16">
+                <StackPanel Margin="16">
+                    <TextBlock Text="Material Design Card" Style="{StaticResource MaterialDesignHeadline6TextBlock}" />
+                    <TextBlock Text="This is an example of a Material Design card in WPF." Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0,8,0,0" />
+                    <Button Content="Action" Style="{StaticResource MaterialDesignFlatButton}" HorizontalAlignment="Right" Margin="0,16,0,0" />
                 </StackPanel>
             </md:Card>
         </UniformGrid>

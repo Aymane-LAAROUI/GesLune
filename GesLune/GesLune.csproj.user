@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="KeyBoards\ArabicKeyBoardWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ListeVenteWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="KeyBoards\NumericKeyBoardWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="PosWindow.xaml.cs">
@@ -24,6 +30,9 @@
     <Page Update="ActeurSelectionWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="KeyBoards\ArabicKeyBoardWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="ListeVenteWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -31,6 +40,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="KeyBoards\NumericKeyBoardWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="PosWindow.xaml">

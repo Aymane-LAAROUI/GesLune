@@ -30,7 +30,7 @@
         </Style>
     </Window.Resources>
     <Grid FlowDirection="RightToLeft">
-        <UniformGrid>
+        <UniformGrid Margin="20">
             <Button Tag="0">
                 <Grid>
                     <Grid.RowDefinitions>

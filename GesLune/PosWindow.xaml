@@ -10,153 +10,239 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         ButtonBase.Click="Window_Click"
+        WindowStyle="None"
         >
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <vms:PosViewModel/>
-    </Window.DataContext>-->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <md:BundledTheme BaseTheme="Light" PrimaryColor="Grey" SecondaryColor="LightBlue" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="Button" x:Key="ButtonStyle">
+                <Setter Property="Background" Value="White"/>
+            </Style>
+            <Style TargetType="Button"
+                   x:Key="CategorieButtonStyle"
+                   BasedOn="{StaticResource ButtonStyle}"
+                   >
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="Button"
+                   x:Key="ArticleButtonStyle"
+                   BasedOn="{StaticResource ButtonStyle}"
+                   >
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid  FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <!--Column 0-->
+        <ScrollViewer Grid.Row="0"
+              Grid.Column="0"
+              Grid.RowSpan="2"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled"
+              PanningMode="Both"
+              PanningDeceleration="0.001">
+            <ItemsControl ItemsSource="{Binding Categories}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="CategorieButton"
+                        Content="{Binding Categorie_Nom}"
+                        Margin="5"
+                        Command="{Binding DataContext.SelectCategorieCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding}"
+                        Style="{StaticResource CategorieButtonStyle}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
-            <UniformGrid
-                Background="#00B140"
-                Columns="2"
-                Grid.Row="0"
-                Grid.Column="0"
-                >
-                <Button Style="{StaticResource MaterialDesignIconButton}"
-                        Command="{Binding Select}"
-                        Click="ChoixClientButton_Click"
-                        >
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <TextBlock Text="{Binding Ticket.Document_Acteur_Nom}"/>
-                        <md:PackIcon Kind="PersonAdd"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource MaterialDesignIconButton}"
-                        Command="{Binding DeleteLigneCommand}"
-                        >
-                    <md:PackIcon Kind="Trash"/>
-                </Button>
-            </UniformGrid>
-        
-            <TextBox Text="{Binding SearchArticle,UpdateSourceTrigger=PropertyChanged}"
-                     Background="#00B140"
-                     FontSize="20"
-                     Grid.Row="0"
-                     Grid.Column="1"
-                     md:HintAssist.HelperTextFontSize="16"
-                     md:HintAssist.Hint="Tapez un nom, un code à barre..."
-                     KeyDown="TextBox_KeyDown"
-                     />
 
-        <!-- First Column -->
-        <Grid Grid.Column="0" Grid.Row="1">
+
+        <Grid Grid.Row="2"
+                     Grid.Column="0"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-    
-            <!-- Content for the first column -->
-            <DataGrid Grid.Row="0"
-                      Background="White"
-                      ItemsSource="{Binding Lignes}"
-                      AutoGenerateColumns="False"
-                      IsReadOnly="True"
-                      SelectedItem="{Binding SelectedLigne}"
-                      >
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="*" Header="Quantité" Binding="{Binding Document_Ligne_Quantity}"/>
-                    <DataGridTextColumn Width="3*" Header="Désignation" Binding="{Binding Document_Ligne_Article_Nom}"/>
-                    <DataGridTextColumn Width="*" Header="Prix U" Binding="{Binding Document_Ligne_Prix_Unitaire}"/>
-                    <DataGridTextColumn Width="*" Header="Sous total" Binding="{Binding Document_Ligne_Total}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <DockPanel Grid.Row="1"
-                       Background="LightCoral"
-                       >
-                <TextBlock Text="Total:"
-                           FontSize="24"
-                           Padding="10"
-                           />
-                <Label Content="{Binding Total}"
-                       ContentStringFormat=" {0} DH"
-                       FontSize="24"
-                       Padding="10"
-                       />
-            </DockPanel>
-            <UniformGrid Grid.Row="2" Rows="1">
-                <Button Foreground="White" Padding="0 10" Content="Espece" Background="#00B140"/>
-                <Button Foreground="White" Padding="0 10" Content="TPE" Background="#00B140"/>
-            </UniformGrid>
-            <UniformGrid Grid.Row="3" Columns="6">
-                <Button Content="Save"/>
-                <Button Content="Notes"/>
-                <Button Content="Terminal"/>
-                <Button Content="Discount"/>
-                <Button Content="Drawer"/>
-                <Button Content="More"/>
-            </UniformGrid>
-        </Grid>
-        
-        <!-- Second Column -->
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-
-            <!-- Content for the second column -->
-            <Grid Grid.Row="0">
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <UniformGrid Grid.Column="0"
-                             Columns="6"
-                             Rows="2"
-                             Name="CategoriesGrid"/>
-                <UniformGrid Grid.Column="1" Columns="1">
-                    <Button Margin="5" Name="CategoriePagePrecedenteButton" Click="CategoriePagePrecedenteButton_Click">
-                        <md:PackIcon Kind="ArrowBack"/>
-                    </Button>
-                    <Button Margin="5" Name="CategoriePageSuivanteButton" Click="CategoriePageSuivanteButton_Click">
-                        <md:PackIcon Kind="ArrowForward"/>
-                    </Button>
-                </UniformGrid>
-                <Label Content="{Binding CategoriePage}"
-                       ContentStringFormat=" Page {0}"
-                       VerticalContentAlignment="Bottom"
-                       HorizontalAlignment="Right"
-                       />
+                <TextBox Text="{Binding SearchArticle,UpdateSourceTrigger=PropertyChanged}"
+                         KeyDown="TextBox_KeyDown"
+                         Grid.Column="1"
+                         Padding="5"
+                         FontSize="20"
+                         />
+                <Button x:Name="SearchArticleButton"
+                        Click="SearchArticleButton_Click"
+                        Style="{StaticResource ButtonStyle}"
+                        HorizontalAlignment="Left"
+                        Grid.Column="0"
+                    >
+                    <md:PackIcon Kind="Search" Width="50" Height="50"/>
+                </Button>
             </Grid>
-            <Separator Grid.Row="1"/>
-            <UniformGrid Grid.Row="2"
-                         Columns="4"
-                         Rows="4"
-                         Name="ArticlesGrid"
-                         Margin="0 10 0 0"
-                         >
-                <UniformGrid.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                        <Setter Property="Width" Value="auto"/>
-                        <Setter Property="Height" Value="auto"/>
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="md:ElevationAssist.Elevation" Value="Dp16"/>
-                    </Style>
-                </UniformGrid.Resources>
-                
-            </UniformGrid>
+
+            <Button x:Name="PageSuivanteButton"
+                    Click="PageSuivanteButton_Click"
+                    Style="{StaticResource ButtonStyle}"
+                    Grid.Row="1"
+                    >
+                <md:PackIcon Kind="ArrowRight" Width="50" Height="50"/>
+            </Button>
+            <Button x:Name="PagePrecedenteButton"
+                    Click="PagePrecedenteButton_Click"
+                    Style="{StaticResource ButtonStyle}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    >
+                <md:PackIcon Kind="ArrowLeft" Width="50" Height="50"/>
+            </Button>
+
         </Grid>
+
+        <!--Column 1-->
+        <UniformGrid Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Grid.Column="1"
+                     Columns="1"
+                    >
+            <Button Style="{StaticResource ButtonStyle}" Content="نقود" Name="EspeceButton" Click="EspeceButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="سلف" Name="CreditButton" Click="CreditButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="شيك" Name="ChequeButton" Click="ChequeButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="الغاء الدفع" Name="AnnulerPaiementButton" Click="AnnulerPaiementButton_Click"/>
+        </UniformGrid>
+
+        <!--Column 2-->
+        <UniformGrid Grid.Row="0"
+                     Grid.Column="2"
+                     Columns="4"
+                    >
+            <Label Content="البيع بالتقسيط"/>
+            <Label Content="{Binding Ticket.Document_Num}"/>
+            <Label Content="{Binding Ticket.Document_Acteur_Nom}"/>
+            <Label Content="{Binding Total}"
+                       ContentStringFormat="المجموع : {0} درهم"
+                       />
+        </UniformGrid>
+
+        <DataGrid Grid.Row="1"
+                  Grid.Column="2"
+                  Background="White"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Lignes}"
+                  SelectedItem="{Binding SelectedLigne}"
+                  IsReadOnly="True"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="الكمية" Binding="{Binding Document_Ligne_Quantity}"/>
+                <DataGridTextColumn Width="3*" Header="الاسم" Binding="{Binding Document_Ligne_Article_Nom}"/>
+                <DataGridTextColumn Width="*" Header="التمن" Binding="{Binding Document_Ligne_Prix_Unitaire}"/>
+                <DataGridTextColumn Width="*" Header="المجموع" Binding="{Binding Document_Ligne_Total}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2"
+              Grid.Column="2">
+            <ItemsControl VerticalAlignment="Stretch"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Articles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="5" Rows="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding DataContext.AddArticleCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                CommandParameter="{Binding}"
+                                Style="{StaticResource ArticleButtonStyle}"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                Padding="5">
+                            <md:Card x:Name="ArticleButton"
+                                     MaxWidth="150">
+                                <!-- Constrain the width of the Card -->
+                                <TextBlock Text="{Binding Article_Nom}"
+                                           TextWrapping="Wrap"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Center" />
+                            </md:Card>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Label Content="{Binding PageActuelle}"
+                   ContentStringFormat=" صفحة {0}"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="left"
+                   />
+        </Grid>
+
+        <!--Column 3-->
+        <UniformGrid Grid.Row="0"
+                     Grid.Column="3"
+                     Grid.RowSpan="3"
+                     Columns="1"
+                    >
+            <Button Style="{StaticResource ButtonStyle}" Content="اختيار الزبون" Name="ChoixClientButton" Click="ChoixClientButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" Name="QteButton" Content="الكمية" Click="QteButton_Click"/>
+            <UniformGrid>
+                <Button Style="{StaticResource ButtonStyle}" Name="PlusQteButton" Click="PlusQteButton_Click">
+                    <md:PackIcon Kind="Plus"/>
+                </Button>
+                <Button Style="{StaticResource ButtonStyle}" Name="MoinsQteButton" Click="MoinsQteButton_Click">
+                    <md:PackIcon Kind="Minus"/>
+                </Button>
+            </UniformGrid>
+            <Button Style="{StaticResource ButtonStyle}" Name="ImprimerButton" Click="ImprimerButton_Click">
+                <md:PackIcon Kind="Printer"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" Name="SupprimerLigneButton" Click="SupprimerLigneButton_Click">
+                <md:PackIcon Kind="Trash"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyle}" Name="QuitterButton" Click="QuitterButton_Click">
+                <md:PackIcon Kind="ExitToApp" Foreground="red"/>
+            </Button>
+        </UniformGrid>
+
     </Grid>
 </Window>

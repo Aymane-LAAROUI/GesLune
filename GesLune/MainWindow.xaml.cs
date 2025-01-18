@@ -8,6 +8,7 @@ namespace GesLune
         private readonly Dictionary<string, Type> _windows = new()
         {
             { "0",typeof(PosWindow)},
+            { "1",typeof(ListeVenteWindow)},
         };
 
         public MainWindow()

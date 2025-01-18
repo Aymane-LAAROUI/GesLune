@@ -2,7 +2,7 @@
 using GesLune.Sdk.ViewModels;
 using System.Windows;
 
-namespace GesLune.Windows
+namespace GesLune
 {
     public partial class ActeurSelectionWindow : Window
     {

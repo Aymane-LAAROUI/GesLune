@@ -1,0 +1,60 @@
+﻿<Window x:Class="GesLune.KeyBoards.ArabicKeyBoardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GesLune"
+        mc:Ignorable="d"
+        Title="ArabicKeyBoardWindow" Height="400" Width="700">
+    <Grid Background="#2E2E2E">
+        <TextBox Name="InputTextBox" FontSize="20" VerticalAlignment="Top" Height="40" Margin="10" Padding="5" Background="#FFFFFF" Foreground="#000000" Text="{Binding Query,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel VerticalAlignment="Bottom" Margin="10">
+            <UniformGrid Rows="1" Columns="3" Margin="5">
+                <Button Content="مسافة" Width="300" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#2196F3" Foreground="White"/>
+                <Button Content="⌫" Width="100" Click="InitButton_Click" FontSize="18" Padding="10" Margin="2" Background="#F44336" Foreground="White"/>
+                <Button Content="⌫" Width="100" Click="BackspaceButton_Click" FontSize="18" Padding="10" Margin="2" Background="#F44336" Foreground="White"/>
+            </UniformGrid>
+            <!-- Styling for a modern keyboard look -->
+            <UniformGrid Rows="1" Columns="10" Margin="5">
+                <Button Content="ض" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ص" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ث" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ق" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ف" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="غ" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ع" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ه" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="خ" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+                <Button Content="ح" Click="KeyButton_Click" FontSize="18" Padding="10" Margin="2" Background="#4CAF50" Foreground="White"/>
+            </UniformGrid>
+
+            <UniformGrid Rows="1" Columns="10" Margin="5">
+                <UniformGrid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Background" Value="#4CAF50"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <EventSetter Event="Click" Handler="KeyButton_Click"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <Button Content="ج"/>
+                <Button Content="ش"/>
+                <Button Content="س"/>
+                <Button Content="ي"/>
+                <Button Content="ب"/>
+                <Button Content="ل"/>
+                <Button Content="ا"/>
+                <Button Content="ت"/>
+                <Button Content="ن"/>
+                <Button Content="م"/>
+            </UniformGrid>
+            <UniformGrid>
+                <Button Content="خروج" Width="100" Click="Button_Click" FontSize="25" Padding="4" Margin="2" Background="#F44336" Foreground="White"/>
+                <Button Content="تأكيد" Width="100" Click="Button_Click_1" FontSize="25" Padding="4" Margin="2" Background="#2196F3" Foreground="White"/>
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>

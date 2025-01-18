@@ -15,8 +15,36 @@ namespace GesLune.Sdk.Repositories
         public static List<Model_Article> GetByName(string rech)
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
-            return connection.Query<Model_Article>($"SELECT * FROM Tble_Articles WHERE Article_Nom LIKE '%{rech}%'").ToList();
+            object parameters = new { rech = $"%{rech}%" };
+            return connection.Query<Model_Article>($"SELECT * FROM Tble_Articles WHERE Article_Nom LIKE @rech",parameters).ToList();
         }
+        public static List<Model_Article> GetByName(string rech, int pageNumber, int pageSize)
+        {
+            using SqlConnection connection = new(MainRepository.ConnectionString);
+            // Calculate the number of rows to skip
+            int offset = (pageNumber - 1) * pageSize;
+
+            // Define the SQL query with pagination
+            string query = @"
+                           SELECT * 
+                           FROM Tble_Articles 
+                           WHERE Article_Nom LIKE @rech
+                           ORDER BY Article_Id -- Ensure a consistent order
+                           OFFSET @offset ROWS 
+                           FETCH NEXT @pageSize ROWS ONLY";
+
+            // Define the parameters
+            var parameters = new
+            {
+                rech = $"%{rech}%",
+                offset,
+                pageSize
+            };
+
+            // Execute the query and return the results
+            return connection.Query<Model_Article>(query, parameters).ToList();
+        }
+
         public static List<Model_Article> GetByCategorieId(int id)
         {
             using SqlConnection connection = new(MainRepository.ConnectionString);
