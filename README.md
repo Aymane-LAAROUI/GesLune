@@ -5,7 +5,7 @@ A Windows-based Point of Sale (POS) and inventory management system built with W
 ---
 
 ## 📂 Project Structure
-
+```text
 GesLune/
 ├── DB Scripts/ # SQL schema & stored procedures
 ├── GesLune/ # WPF UI and windows (MainWindow, LoginWindow, etc.)
@@ -16,7 +16,7 @@ GesLune/
 ├── README.md # You're reading it!
 ├── CHANGELOG.md # Version history
 ├── DBDiagram.png # Database schema (ERD)
-
+```
 
 ---
 
